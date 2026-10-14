@@ -1,5 +1,18 @@
 # @autonexhub/react
 
+## 1.1.0
+
+### Minor Changes
+
+- feat(sheet): add inline variant for non-modal floating panel
+
+  - Added `inline` prop to SheetContent for non-modal side panels
+  - Added `container` prop for custom portal mounting
+  - Added `inlineSheetVariants` for floating card styling (rounded-xl, shadow-lg)
+  - Added shell panel host integration (`[data-shell-panel-host]`)
+  - Inline variant floats with 8px margin inside the host container
+  - Default width 58% of host (min 560px, max 1100px)
+
 ## 1.0.0
 
 ### Minor Changes
