@@ -1,0 +1,98 @@
+{
+  "name": "@autonexia/react",
+  "version": "0.0.0",
+  "description": "React component library for Autonex applications",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "@autonexia/tokens": "workspace:*",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "^1.1.2",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
+    "@radix-ui/react-aspect-ratio": "^1.0.3",
+    "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-checkbox": "^1.0.4",
+    "@radix-ui/react-collapsible": "^1.0.3",
+    "@radix-ui/react-context-menu": "^2.1.5",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "@radix-ui/react-hover-card": "^1.0.7",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-menubar": "^1.0.4",
+    "@radix-ui/react-navigation-menu": "^1.1.4",
+    "@radix-ui/react-popover": "^1.0.7",
+    "@radix-ui/react-progress": "^1.0.3",
+    "@radix-ui/react-radio-group": "^1.1.3",
+    "@radix-ui/react-scroll-area": "^1.0.5",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-slider": "^1.1.2",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-switch": "^1.0.3",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "@radix-ui/react-toggle": "^1.0.3",
+    "@radix-ui/react-toggle-group": "^1.0.4",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "cmdk": "^0.2.1",
+    "date-fns": "^3.6.0",
+    "embla-carousel-react": "^8.0.0",
+    "input-otp": "^1.2.4",
+    "lucide-react": "^0.400.0",
+    "react-day-picker": "^8.10.0",
+    "react-resizable-panels": "^2.0.0",
+    "recharts": "^2.12.0",
+    "sonner": "^1.4.0",
+    "tailwind-merge": "^2.2.0",
+    "vaul": "^0.9.0",
+    "marked": "^12.0.0",
+    "turndown": "^7.1.0",
+    "turndown-plugin-gfm": "^1.0.0",
+    "@phosphor-icons/react": "^2.1.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.0.0",
+    "@testing-library/jest-dom": "^6.4.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@types/turndown": "^5.0.0",
+    "@vitejs/plugin-react": "^4.3.0",
+    "happy-dom": "^14.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Autonexhub/autonex-ui.git",
+    "directory": "packages/react"
+  },
+  "license": "MIT"
+}
