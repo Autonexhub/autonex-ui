@@ -1,5 +1,5 @@
 {
-  "name": "@autonexia/react",
+  "name": "@autonexhub/react",
   "version": "1.0.0",
   "description": "React component library for Autonex applications",
   "main": "./dist/index.js",
@@ -25,7 +25,7 @@
     "test:watch": "vitest"
   },
   "peerDependencies": {
-    "@autonexia/tokens": "workspace:*",
+    "@autonexhub/tokens": "workspace:*",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.0.0"
@@ -96,7 +96,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "provenance": true
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",

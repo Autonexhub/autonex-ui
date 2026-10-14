@@ -1,5 +1,5 @@
 {
-  "name": "@autonexia/tokens",
+  "name": "@autonexhub/tokens",
   "version": "0.1.0",
   "description": "Design tokens for Autonex applications",
   "main": "./dist/index.css",
@@ -34,7 +34,7 @@
   },
   "publishConfig": {
     "access": "public",
-    "provenance": true
+    "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",

@@ -20,7 +20,7 @@ importers:
 
   packages/react:
     dependencies:
-      '@autonexia/tokens':
+      '@autonexhub/tokens':
         specifier: workspace:*
         version: link:../tokens
       '@phosphor-icons/react':

@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write
   contents: read
+  packages: write
 
 jobs:
   release:
@@ -21,9 +21,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           cache: "pnpm"
-          registry-url: "https://registry.npmjs.org"
+          registry-url: "https://npm.pkg.github.com"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -31,5 +31,7 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-      - name: Publish to npm
+      - name: Publish to GitHub Packages
         run: pnpm release
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
