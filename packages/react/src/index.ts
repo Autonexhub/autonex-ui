@@ -199,3 +199,62 @@ export {
   TooltipContent,
   TooltipProvider,
 } from "./components/ui/tooltip"
+
+// Additional Components
+export { Alert, AlertTitle, AlertDescription, AlertAction, alertVariants } from "./components/ui/alert"
+
+export { AspectRatio } from "./components/ui/aspect-ratio"
+
+export { Badge, badgeVariants } from "./components/ui/badge"
+export type { BadgeProps } from "./components/ui/badge"
+
+export {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  BreadcrumbEllipsis,
+} from "./components/ui/breadcrumb"
+
+export {
+  Drawer,
+  DrawerPortal,
+  DrawerOverlay,
+  DrawerTrigger,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerDescription,
+} from "./components/ui/drawer"
+
+export {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetOverlay,
+  SheetPortal,
+  SheetTitle,
+  SheetTrigger,
+} from "./components/ui/sheet"
+
+export { Skeleton } from "./components/ui/skeleton"
+
+export { Toaster, toast } from "./components/ui/sonner"
+
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableCaption,
+} from "./components/ui/table"
