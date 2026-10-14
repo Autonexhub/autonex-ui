@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="0-Foundations/Animations" />
+
+# Animations
+
+All animations respect `prefers-reduced-motion`.
+
+## Easing Curves
+
+| Name | Value | Usage |
+|------|-------|-------|
+| Material ease | `cubic-bezier(0.4, 0, 0.2, 1)` | Collapsible, accordion |
+| Smooth out | `cubic-bezier(0.22, 1, 0.36, 1)` | Page reveals, fade-rise |
+| Bounce | `cubic-bezier(0.34, 1.56, 0.64, 1)` | Success confirmations |
+| Snappy | `cubic-bezier(0.16, 1, 0.3, 1)` | Value swaps, row enter |
+
+## Keyframe Animations
+
+| Class | Duration | Usage |
+|-------|----------|-------|
+| `animate-shimmer` | 2s infinite | Progress sweeps (skeletons use `animate-pulse`) |
+| `animate-fade-rise` | 500ms | Element entrance |
+| `animate-value-swap` | 180ms | Number updates |
+| `animate-done-bounce` | 220ms | Success feedback |
+| `animate-row-enter` | 220ms | Table row insertion |
+
+## Page Reveal
+
+Staggered entrance animation:
+
+```jsx
+<div className="page-reveal">
+  <div>First (0ms)</div>
+  <div>Second (90ms)</div>
+  <div>Third (180ms)</div>
+  <div>Fourth (270ms)</div>
+  <div>Fifth+ (340ms)</div>
+</div>
+```
+
+## Collapsible Animations
+
+```jsx
+// In tailwind.config.ts
+collapsible-down: 300ms cubic-bezier(0.4, 0, 0.2, 1)  // Material ease
+collapsible-up: 250ms cubic-bezier(0.4, 0, 0.2, 1)
+```

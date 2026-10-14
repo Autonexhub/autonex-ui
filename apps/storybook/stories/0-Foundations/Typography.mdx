@@ -1,0 +1,62 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="0-Foundations/Typography" />
+
+# Typography
+
+## Font Family
+
+**Inter Variable** — loaded from `@fontsource-variable/inter`
+
+```css
+font-family: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+```
+
+## Density Scale
+
+The dashboard uses the 15px base (93.75%, decisión Bruno 03/09) — spacious density:
+
+```css
+html { font-size: 93.75%; } /* 15px */
+```
+
+## Text Sizes
+
+The root is 15px (93.75% — decisión Bruno 03/09, spacious density), so Tailwind's rem-based
+classes resolve to the real values in the table below (rem × 15).
+
+| Class | Size | Usage |
+|-------|------|-------|
+| `text-xs` | 11,25px | Timestamps, metadata |
+| `text-sm` | 13,1px | Body text, labels |
+| `text-base` | 15px | Emphasis |
+| `text-lg` | 16,9px | Section titles |
+| `text-xl` | 18,75px | Page subtitles |
+| `text-2xl` | 22,5px | Page titles |
+| `text-3xl` | 28,1px | Dashboard headers |
+
+## Font Weights
+
+| Class | Weight | Usage |
+|-------|--------|-------|
+| `font-normal` | 400 | Body text |
+| `font-medium` | 500 | Labels, buttons |
+| `font-semibold` | 600 | Headings |
+| `font-bold` | 700 | Emphasis (rare) |
+
+## Text Colors
+
+| Token | Usage |
+|-------|-------|
+| `text-foreground` | Primary text |
+| `text-muted-foreground` | Secondary/meta text |
+| `text-destructive` | Errors |
+| `text-success` | Positive states |
+
+## Monospace
+
+System mono only for: IDs, timestamps, code, metrics.
+
+```css
+font-family: ui-monospace, monospace;
+```

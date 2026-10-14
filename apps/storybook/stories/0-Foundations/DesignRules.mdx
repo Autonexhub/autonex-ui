@@ -1,0 +1,500 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="0-Foundations/Design Rules" />
+
+# Design Rules
+
+Decision trees for component variants. Reference: `saas-design-system/DESIGN-RULES.md`
+
+## Button Variants
+
+| Situation | Variant | Rule |
+|-----------|---------|------|
+| Main action (Save, Create) | `default` (black) | Max 1 per block |
+| Secondary action | `outline` | Use instead of `secondary` |
+| Tertiary / toolbar | `ghost` | Dense areas |
+| Cancel / close | `ghost` | Not destructive |
+| Destructive (Delete) | `destructive` | Soft red, not alarming |
+| Success (rare) | `success` | Only if adds value |
+| Link in text | `link` | Inline only |
+| Star CTA | `brand` | Max 1 per screen |
+
+**Icons:** Phosphor icons (regular weight) only on key actions (Create, Add, Export). Text-only for rest.
+
+## Badge Variants
+
+| Situation | Variant |
+|-----------|---------|
+| State OK / active | `success` (soft) |
+| State error / failed | `destructive` (soft) |
+| Neutral tag / category | `secondary` |
+| Strong emphasis | `*-solid` variants |
+
+**Rule:** Color = meaning (green OK, red error, gray neutral)
+
+**Chips de control** (píldoras clicables tipo velocidad de audio "1.5x"): SIEMPRE la forma
+del Badge oficial — `rounded-3xl bg-secondary text-secondary-foreground` — nunca un chip
+estilado a mano con otra redondez (caso chip de velocidad, 01/09).
+
+## Conversation States (Canonical)
+
+Every state maps to exactly one Badge variant — same label, same variant, everywhere:
+
+| State | Badge variant |
+|-------|---------------|
+| Activa / En curso | `info` (azul de marca suave — revisión Bruno 01/09) |
+| Pendiente / Esperando Agente | `warning` (ámbar suave) |
+| Completada / Resuelta | `success` (verde suave) |
+| Fallida / Error | `destructive` (rojo suave) |
+| Descartada / Archivada | `secondary` (gris) |
+
+The channel column in tables always uses **`<ChannelBadge>`** (grey pill + colored dot) — never
+bare text, never colored logos. Channel icons elsewhere are monochrome (`text-muted-foreground`).
+
+## Density (medidas propias, 2026-09-01)
+
+Densidad decidida por Bruno el 01/09: sidebar items **32px** tall (`h-8`, 20px icons, `px-2.5`,
+regular weight — active gets medium); table text **14px/20** (`text-[14px] leading-5`, decisión Bruno 03/09; antes 15/24) with `px-4 py-3` cells and 48px
+header (`text-sm font-normal` on `bg-muted` — mismo gris que la sidebar, Bruno 01/09); default buttons **40px** (`h-10 px-5`); page titles **24px** (`text-2xl
+font-semibold`). Colors were NOT part of this package.
+
+**Escala base (decisión Bruno 03/09)**: `html { font-size: 93.75% }` = **15px**. Probado A/B/C/D en
+páginas reales: Inter tiene la x-height mayor que otras sans a los mismos px, y a 16px el panel se
+leía grande y sin aire frente a los SaaS de referencia. Todo el panel va en rem, así que baja
+uniforme (~6%); las tablas a 14px fijos (`text-[14px] leading-5` en ui/table; con base 15 el `text-sm` daría 13,1). La sidebar sigue a 13px fijos. No volver a 16px ni
+bajar a 14px (la compacta se descartó) sin decisión de Bruno.
+
+**Neutros (decisión Bruno 02/09)**: tinta `#161617`; grises neutros `#F5F5F5` (muted/sidebar/cabeceras),
+`#E6E6E8` (bordes), `#6B6B6E` (texto secundario), sidebar inactivo `#4B4B4E`. Probado A/B en las
+páginas reales: la mejora se ve sobre todo en tablas (más definición). No mezclar con grises cálidos.
+
+**Page container**: `px-10 py-6` (40px lateral gutters, decisión Bruno 01/09 inspirada en el
+aire lateral del panel). Excepciones full-bleed: Inbox (dos paneles) y Linear (escala propia).
+
+**Fichas sin h1 de página** (decisión Bruno 02/09): ContactoDetalle no lleva título de página —
+la identidad vive en la tarjeta izquierda (estilo HubSpot). Es una variante deliberada del
+DetailPageTemplate para fichas donde ya has "entrado dentro" de la entidad; no replicarla en
+páginas de listado ni añadirle cabecera "para igualar".
+
+## Table Text Hierarchy
+
+| Column type | Style |
+|-------------|-------|
+| Identity (name, title) | `font-medium text-foreground` |
+| Numbers / values | `text-foreground tabular-nums` |
+| Metadata (time, date, secondary) | `text-muted-foreground` |
+| States / scores | `<Badge>` / `<ScoreBadge>` |
+
+## Switch
+
+Checked = **success green** (`bg-success`), unchecked = grey `bg-input`. Decided 2026-08-31.
+
+## Chat Bubbles
+
+User = **left**, `variant="muted"` (grey). Agent = **right**, `variant="agent"`
+(`bg-brand-soft` tint, ink text). No reactions UI for now.
+
+**Forma (decisión Bruno 01/09):** `rounded-3xl` con la esquina superior del
+lado de la etiqueta recortada a `md` (izq. en burbujas de inicio, dcha. en las de fin) —
+horneado en `ui/bubble.tsx`, no re-declarar por página.
+
+**Agrupado (01/09):** la etiqueta de rol (avatar + "Cliente"/"Agente"/"Operador") solo se
+pinta cuando el turno CAMBIA respecto al mensaje anterior — nunca repetida en mensajes
+consecutivos del mismo rol.
+
+**Horas (01/09):** distinto dato, distinto trato. En VOZ el tiempo es una posición del
+audio (interactiva y redundante): solo al hover (`opacity-0 group-hover/bubble:opacity-100`),
+al costado del bocadillo (derecha en cliente, lado interior en agente), con tooltip de fecha
+completa. En TEXTO (WhatsApp/web/IG) es un timestamp real que se escanea: fecha corta SIEMPRE
+visible debajo del bocadillo, como WhatsApp.
+
+## Elevation (decisión Bruno 01/09)
+
+Los bloques que "flotan" sobre el blanco (tarjetas de Inicio, bloques de métricas, el
+buscador del Inicio, todo `Card`) llevan **borde hairline + sombra susurro** `shadow-elev`
+(la `--shadow-sm` del DS: `0 1px 2px rgba(34,34,34,.04), 0 2px 8px rgba(34,34,34,.04)`) —
+horneada en `ui/card.tsx`. Las tablas de listado también la llevan en su marco
+(revisión Bruno 01/09: un solo lenguaje de elevación en toda la página).
+Nunca sombras más duras: la elevación se insinúa, no se declara. Única excepción: lo que flota
+DELANTE del contenido (el panel lateral no modal, ver *Paneles laterales*) lleva `shadow-lg`.
+
+## Audio Player (decisiones Bruno 01/09)
+
+Receta única en los 3 reproductores (Conversaciones, CRM, Storage):
+sin caja gris alrededor · onda WaveSurfer de **micro-barras 2px casi pegadas**
+(`barWidth:2 barGap:1 barRadius:2`, silueta continua suavizada) ·
+reproducido y cursor = `--foreground` · resto = muted-foreground al 35% **SÓLIDO**
+(`color-mix(... 35%, white)` — nunca alpha: WaveSurfer hereda el alpha al pintar el
+progreso) · play redondo `bg-primary` con icono compensado `-ml-0.5` y hover/focus de
+halo oficial (`ring-2 ring-ring/30`) · chip de velocidad = píldora Badge secondary que
+cicla al toque · carga = `AudioPlayerSkeleton` (calca la anatomía real del player).
+
+## Charts
+
+Recharts with `type="linear"` (straight lines with `dot r=3`), `strokeWidth={2}`, vertical
+fill gradient 0.30→0, dotted grid without vertical lines, axes without lines, and colors
+**always `var(--chart-1..6)`** — never `hsl()` wrapping, never brand or semantic colors in series.
+
+## KPIs de métricas (decisión Bruno 01/09)
+
+La celda de KPI (componente único `KPICell`, todas las pestañas y orgs) tiene TRES estados
+y los tres se muestran — ninguno se "simplifica":
+dato + histórico → flecha de tendencia diagonal + % + "vs N días anteriores" (N = días del
+filtro) · dato sin histórico → "Sin datos previos" · sin dato → valor "–" sin sublínea.
+Etiqueta "Ahorro anual" (sin "proyectado"; la fórmula vive en el tooltip ⓘ).
+
+## Motion (decisión Bruno 01/09)
+
+Las páginas entran AL INSTANTE: prohibidas las animaciones de entrada de página o de
+sección (el viejo `page-reveal` escalonado se eliminó; la fuente original tampoco anima).
+El movimiento se reserva para micro-feedback (hover, toasts, overlays, valores que cambian)
+con duraciones cortas. Sin excepciones: la del hero del Inicio se retiró el 03/09 (Bruno) — `animate-fade-rise` y los `animationDelay` escalonados están vigilados en `design:check`.
+
+## Toasts & Overlays
+
+One toast system: **sonner** via `@/components/ui/sonner`, bottom-right, Phosphor icons.
+Dialogs open centered (fade + zoom). Sheets slide in from the right. Nothing enters from corners.
+
+**Behavior rules:**
+- Toasts auto-dismiss (default duration); only errors may persist longer. One idea per toast.
+- A destructive action that can't be undone gets an `AlertDialog`, never just a toast.
+- Destructive confirmations name the thing and the consequence ("¿Eliminar esta conversación?
+  Se borrarán los mensajes y el audio") and the confirm button repeats the verb ("Eliminar" — never "Aceptar").
+- If an action IS undoable, skip the confirmation and offer "Deshacer" in the success toast instead.
+- Never stack dialogs on dialogs; a flow with steps belongs in a Sheet or a page.
+- Explicaciones contextuales: icono ⓘ (`Info` h-3.5, muted) junto al título, con el Tooltip
+  oficial — decisión Bruno 02/09 tras probar y descartar el subrayado punteado.
+
+## Chasis (decisión Bruno 03/09)
+
+Probados en vivo A (actual) y B (inset) con un interruptor de desarrollo; **B · inset es el
+chasis único** y el interruptor se retiró. Receta (vive en `MainLayout.tsx` + `SidebarShell.tsx`;
+calcada en 4-Templates/AppShell):
+
+- **Lienzo** gris `bg-sidebar` (#F5F5F5) bajo TODA la superficie: raíz `h-screen overflow-hidden`.
+- **Sidebar** 240px (48px plegada) sobre ese gris, **sin borde derecho** — sidebar y lienzo son la
+  misma superficie; el límite lo marca la tarjeta.
+- **Contenido = tarjeta** `bg-background rounded-xl border border-border shadow-elev` con **8px de
+  aire** arriba/derecha/abajo (`pt-2 pr-2 pb-2` en el `<main>`); a la izquierda 0 porque el `p-2`
+  de la propia sidebar ya deja el hueco (móvil: `pl-2`).
+- **Cabecera DENTRO de la tarjeta** como fila superior `h-12 border-b`: [trigger sidebar]
+  [Contexto] › [Página] (› [Entidad] en fichas). Nunca fuera de la tarjeta. **Y es la ÚNICA
+  cabecera**: ninguna sección apila una barra propia debajo (Linear tenía una `sticky` con sus
+  breadcrumbs y se retiró el 03/09 — "doble header, no está bien"); lo que queda es la cabecera
+  de página normal (h1 + acciones, `px-10 py-6`) seguida de su toolbar.
+- **Scroll ÚNICO** dentro de la tarjeta (`flex-1 min-h-0 overflow-y-auto`). El documento nunca
+  scrollea: `document.scrollingElement.scrollHeight ≤ innerHeight` en toda página.
+
+**Por qué:** el gris deja de ser "la sidebar" y pasa a ser el **lienzo** sobre el que flotan uno o
+varios paneles. Las secciones de varios paneles (Inbox de dos columnas, tableros kanban, fichas
+de tres columnas) tienen así un marco natural sin inventar bordes ni sombras por página.
+
+**Páginas de altura completa:** la altura es la que deja la tarjeta, no el viewport. Contenedor
+de página `h-full` (o `flex h-full flex-col` si tiene cabecera propia) y las zonas que scrollean
+`flex-1 min-h-0 overflow-auto`. Kanbans de Linear: `<LinearShell fill>` + tablero `flex-1`.
+**Prohibido** `calc(100vh-Npx)`, `h-screen` o `100dvh` dentro del chasis (solo lo usan el propio
+chasis, la sidebar `fixed` y los overlays `fixed` como Sheet/Dialog, que van sobre el lienzo).
+
+## Sidebar (medidas propias, 2026-09-01 — activo/hover fijados el 03/09)
+
+Grey canvas (`--sidebar` #F5F5F5, measured); content sits in a white card on top. **Sin borde
+derecho** (chasis inset, Bruno 03/09: la sidebar y el lienzo son el mismo gris; la tarjeta blanca
+marca el límite). **Sin contadores** junto a "Todas" ni a los canales — los números que había eran
+totales de conversaciones, no notificaciones, y se retiraron el 03/09. Inactive items: text **and** icons in the same mid grey (`--sidebar-foreground`
+#4B4B4E). **Activo = píldora gris más oscura** (`bg-sidebar-accent` #E9E9EB) con tinta
+(#161617) al **mismo peso que el resto — sin bold**. **Hover = blanco suave**
+(`bg-background/70`). Decisión Bruno 03/09: es la inversa de lo que hubo (activo blanco /
+hover gris). Ítems **32px en píxeles** (`h-[32px]`: con la base tipográfica a 15px, `h-8`
+bajaba a 30px), iconos Phosphor *light* 18px, texto 13px peso 380, gap 16px, `rounded-lg`.
+Receta única en `src/components/sidebars/sidebarStyles.ts` — los 5 sidebars y el selector
+de organización (32px) la heredan; nunca se re-estila por sidebar.
+
+**Marcadores (decisión Bruno 03/09, patrón HubSpot).** Primera fila fija "Marcadores"
+(`BookmarkSimple` + `CaretRight`), visible SOLO si hay algún módulo marcado. Abre un Popover
+oficial a la derecha con los módulos marcados; en cada fila, al hover, `PushPinSlash`
+(ghost 24px, "Quitar marcador") desancla al momento. Al pie tras `Separator`, "Administrar"
+(`PencilSimple`) → Dialog oficial SOLO para ordenar (arrastre). En cada ítem de la sidebar,
+al hover, la chincheta `PushPin` (24px ghost, `opacity-0 group-hover:opacity-100`) alterna el
+marcador; al pasar por la chincheta solo se ilumina ella, no el módulo. El módulo no se mueve
+de su sección. Apertura por hover condicionada: con el último clic dentro de la sidebar
+("sidebar armada"), pasar el ratón por Marcadores abre el Popover sin clic (120 ms); si el
+último clic fue fuera, hace falta clic. Persistencia por usuario en localStorage
+(`sidebar_bookmarks_v1_{userId}`, icono por nombre). Ver 3-Organisms/SidebarBookmarks.
+
+## Scores (RAP / Autonex Score)
+
+Scores render through the official **`<ScoreBadge>`** component (`@/components/ScoreBadge`) —
+never a hand-made pill, never a bare number. Los scores van en **rectángulo SÓLIDO
+de esquinas suaves** (`*-solid` + `rounded-md`, revisión Bruno 01/09, diseño del diseñador):
+color y silueta los distinguen de las píldoras suaves de estado. Thresholds are normalized
+across scales (5, 10 or 100): **≥ 80% success · ≥ 60% warning · below destructive**.
+`autonex_score` (1-5) in the app uses the dedicated `<AutonexScore>` with the same thresholds.
+**Exception (decided 2026-08-31):** dashboard KPI cards MAY show a score as a large headline
+number ("7.8 /10") — the badge rule applies to tables, lists and detail rows.
+
+## Fila / elemento seleccionado (decisión Bruno 02/09)
+
+La fila activa de una tabla o el ítem activo de una lista se marca con **`bg-muted`** (el mismo gris
+de la cabecera de tabla y de la sidebar) — ese gris es el TOPE de oscuridad. Hover = `bg-muted/50`.
+Nunca `bg-primary/5` ni `bg-primary/10` (negro translúcido): con la tinta oscura se ve sucio.
+Vigilado en `design:check`.
+
+### Listas de correo: leído/no leído (decisión Bruno 03/09)
+
+"Como Gmail": el estado de lectura se lee por **fondo + peso**, nunca por un punto de color.
+
+| Estado | Fondo | Remitente · Asunto · Fecha |
+|--------|-------|----------------------------|
+| No leído | `bg-card` (blanco) | `font-semibold text-foreground` |
+| Leído | `bg-muted/60` (gris tenue) | peso normal; asunto en `text-foreground`, fecha en `text-muted-foreground` |
+| Seleccionado (click o checkbox) | `bg-muted` pleno, hover `bg-muted/80` | el peso sigue el estado de lectura |
+
+Fuera el punto azul y cualquier `bg-brand/5`. El seleccionado es más oscuro que el leído a propósito
+para que no se confundan; el `bg-muted` sigue siendo el TOPE de oscuridad de la regla de arriba.
+
+## Selected States
+
+A selected control (like/dislike, favorite, filters) se muestra **RELLENO, no solo tintado**
+(confirmado Bruno 01/09): en botones con texto, fondo suave persistente
+(`bg-success-soft text-success`); en botones de solo icono, el glifo Phosphor pasa a
+`weight="fill"` con su color semántico. Y **keeps its semantic color on hover** —
+the generic ghost hover (`hover:text-foreground`) must never repaint a selected control black.
+Pattern: `bg-success-soft text-success hover:text-success hover:bg-success-soft` (same for warning/destructive).
+
+## Avatars
+
+Initials avatars use the component default — **neutral grey** (`bg-muted text-muted-foreground`),
+no color overrides. Chart colors are for charts; brand blue is for actions.
+
+## Forms
+
+Forms compose with **`Field`** (label + control + description + `FieldError` via `aria-invalid`)
+and **`InputGroup`** (input with icon/prefix/suffix/button) — never hand-assembled label+input
+stacks. Segmented button clusters use **`ButtonGroup`**; list rows use **`Item`**.
+
+**Placeholders (decisión Bruno 02/09):** ningún campo de formulario va mudo. Todo `Input`/`Textarea`
+lleva un placeholder de ejemplo ("Ej: Horarios de verano", "612 345 678") o una `FieldDescription`
+que explique qué se espera; las fechas usan el `DatePicker` oficial (nunca `type="date"`/`datetime-local`
+nativos); las unidades van como sufijo dentro del campo (`InputGroupAddon`, p. ej. "días").
+
+## Toolbars de listado (decisión Bruno 02/09)
+
+La fila de herramientas sobre una tabla o lista (buscador → filtros → columnas → acción) va **toda a
+40 px**: buscador `h-10`, selects/filtros `h-10`, botones por defecto. Nunca mezclar 32/36/40 en la
+misma fila. Orden y anchos: buscador `flex-1` hasta el bloque de la derecha, `gap-3`, y **`mb-6` entre
+las pestañas de página y la toolbar** (como Conversaciones) — la toolbar nunca pegada a las tabs.
+Los formularios dentro de diálogos mantienen los 36 px del átomo.
+
+## Selects con contenido custom (trampa conocida, 01/09)
+
+El `SelectTrigger` de shadcn aplica `line-clamp-1` a sus hijos `<span>` — un `<span>`
+envolvente con flex se rompe en silencio (el icono se apila sobre el texto). Contenido
+custom dentro del trigger SIEMPRE en `<div>`, nunca en `<span>`. Nos mordió dos veces
+(selector de bandejas y filtros de Casos Pendientes).
+
+## Alerts
+
+Semantic alerts use a **soft tinted background** (DS pairs: `--success-soft` / `--warning-soft` /
+`--destructive-soft`), icon + title in the semantic color, and the **description in ink**
+(`text-foreground/80`) — long text never renders in color. Neutral alerts stay white with a border.
+
+## Paneles laterales (decisión Bruno 03/09)
+
+Dos variantes del `Sheet` oficial, y la elección es por **qué hay detrás**:
+
+| Situación | Variante | Receta |
+|-----------|----------|--------|
+| Formulario, flujo con pasos, confirmación — pide toda la atención | **modal** (por defecto) | `<Sheet>` + `<SheetContent>`: velo, bloquea el resto |
+| Detalle de un elemento de un LISTADO (Conversaciones, Casos pendientes) | **no modal / inline** | `<Sheet modal={false}>` + `<SheetContent inline>`: sin velo, tarjeta flotante; cierra con ✕, Esc o clic fuera |
+
+Patrón "una pantalla más": el panel no modal es **otra tarjeta blanca flotando por encima de la
+tarjeta de contenido** — `rounded-xl border border-border shadow-lg` (sombra de flotante, más
+marcada que `shadow-elev`: aquí la elevación sí se declara porque el panel está DELANTE, no
+apoyado), separada **8px** del borde superior, derecho e inferior de la **tarjeta del chasis**
+(`top-2 right-2 bottom-2`), **sin velo** y con ✕ arriba a la derecha. Ocupa TODA la altura de la
+tarjeta: arranca en su borde superior y tapa la fila del breadcrumb ("Operaciones › Conversaciones"),
+nunca la sidebar. La lista de detrás sigue viva y clicable: **clic en otra fila → el panel cambia
+de entidad** (la página veta el cierre para ese clic con `onPointerDownOutside` + `preventDefault`
+sobre sus filas, así no hay cerrar/abrir ni parpadeo); **clic en cualquier otra zona** (lista vacía,
+cabecera, sidebar, selector de organización) **→ cierra**, igual que ✕ y Esc (ajuste Bruno 03/09).
+Mover el foco fuera (Tab) no cierra. Ancho por defecto ~58% del host
+(mín 560px, máx 1100px), redimensionable desde su borde izquierdo si la página lo necesita. Se
+monta en la tarjeta del chasis (`[data-shell-panel-host]` = cabecera + área de scroll, lo publica
+`MainLayout`). Horneado en `ui/sheet.tsx` (`inlineSheetVariants`); ver 3-Organisms/Sheet ›
+"No modal (panel lateral)".
+
+## Dialogs (ampliado tras el incidente del 04/09)
+
+**Un formulario va en diálogo centrado, no en panel lateral.** Medido el 04/09: el panel
+tiene 59 formularios en `Dialog` y **ninguno** en `Sheet` (Organizaciones, Usuarios, Packs,
+Almacenamiento, Nueva tarea de Linear…). El panel lateral es para el DETALLE de un elemento
+de un listado, no para pedir datos — ver *Paneles laterales*.
+
+### El espaciado lo pone el contenedor. NO lo anules.
+
+`DialogContent` ya trae `p-6` (24px por los cuatro lados) y `gap-6` entre sus bloques, y
+`DialogHeader` **no lleva relleno propio a propósito**, porque ya se lo da el contenedor.
+
+| Pieza | Qué hace | Qué NO hacer |
+|-------|----------|--------------|
+| `DialogContent` | `p-6` + `gap-6` + `max-h-[85dvh]` con scroll propio | `p-0`, `gap-0` |
+| `DialogHeader` | solo apila título y bajada (`gap-1.5`) | darle `px-*`/`py-*`/`border-b` |
+| `DialogFooter` | alinea los botones a la derecha | envolverlo en un `div` con relleno |
+
+**Qué pasó el 04/09** (queda escrito para que no se repita): al montar el diálogo de
+Comentarios se puso `p-0 gap-0` para que scrollease solo el centro, y luego se rehizo el
+relleno a mano en cada trozo con valores inventados (`pt-5`, `pb-4`, `py-6`, `pt-2`). El
+título quedó descolgado del borde y el diálogo, más alto de lo necesario. **El componente
+estaba bien; lo anulamos nosotros.**
+
+**Si el contenido es alto**, el scroll ya lo hace `DialogContent` (`max-h-[85dvh]` +
+`overflow-y-auto`). No hace falta fabricar un área de scroll interna, y menos a costa del
+relleno. Si de verdad se necesita cabecera fija con centro scrollable, se envuelve **solo**
+el centro en un `div` con `min-h-0 overflow-y-auto`, sin tocar el relleno del contenedor.
+
+### Anchos
+
+`max-w-2xl` por defecto (los formularios de Marta necesitan sitio). Para confirmaciones
+simples, `className="sm:max-w-md"` caso por caso.
+
+### Título
+
+`DialogTitle` es `text-lg font-semibold` (04/09). Antes era `text-base font-medium`, el
+**mismo peso** que una etiqueta de campo y a 1,9px de distancia: no se leía como título.
+No se re-estila por página.
+
+### Nunca
+
+Ni diálogos apilados sobre diálogos (un flujo con pasos va en `Sheet` o en página), ni
+`border-b` bajo la cabecera (lo llevaba un solo diálogo de todo el panel, y era un
+invento).
+
+## Table Headers
+
+`TableHeader` carries its own solid `bg-muted` band (mismo gris #F5F5F5 que la sidebar) and `TableHead` is `text-sm font-normal
+text-foreground` (decisión Bruno 01/09: el look de la tabla de Conversaciones en dev es el
+canon) — both baked into the component. Never re-style headers per page.
+El **checkbox de selección de la cabecera** va SIEMPRE con `className="border-border bg-background"`
+(blanco sobre la banda gris, decisión Bruno 01/09; verificado mecánicamente en `design:check`).
+
+## Tabs Variants
+
+| Situation | Variant |
+|-----------|---------|
+| Page section navigation | `line` (default) |
+| Short filter (2-3 items) | `default` (segmented) |
+| Conmutar vistas dentro de un panel/drawer (Resumen · Mensajes) | `default` (segmented) — decisión Bruno 02/09, en TODOS los paneles de conversación |
+
+## Agente IA (color y naming — decisión Bruno 02/09)
+
+- **Color**: token semántico `ai` / `ai-soft` (`#7532DD`, morado sereno de la familia de los
+  semánticos — decisión Bruno 02/09; `chart-*` siguen siendo solo para gráficas). Se usa en todo lo que genera el agente:
+  icono `MagicWand` + título en `text-ai` de la tarjeta "Resumen para agente IA".
+- **Encabezado "Resumen" de los paneles de conversación** (sheet de Conversaciones, paneles de
+  detalle voz/texto, Casos Pendientes): `MagicWand` (`h-4 w-4 text-ai`) + título en `text-ai`, con
+  el mismo tamaño/peso que tenía; la explicación se abre desde el icono ⓘ junto al título
+  (Tooltip oficial, ver *Toasts & Overlays*).
+- **"Resumen de Conversaciones" de la ficha de contacto** (`ConversationInsightsCard`): mismo
+  tratamiento `MagicWand h-4 w-4 text-ai` + título `text-ai` que el "Resumen para agente IA"
+  (decisión Bruno 03/09: también lo genera el agente; antes se había dejado fuera).
+- **Naming**: NUNCA "Marta" en la UI genérica — no todos los clientes tienen a Marta, tienen
+  "agentes IA". El resumen que el agente usa antes de la siguiente conversación se llama
+  **"Resumen para agente IA"**; el análisis para el humano sigue siendo "Resumen de conversaciones".
+
+## Asistente (chat) — Buscador con IA v1 (decisión Bruno 03/09)
+
+El Inicio es "como Claude, lo más simple posible": HOME (saludo + caja de chat + chips) y CHAT en la
+misma página, sin navegar. Componentes en `components/assistant/`; story 4-Templates/AssistantChat.
+
+- **Caja de entrada** (`AssistantComposer`): `Textarea` auto-crecible de 1 a 4 líneas en un contenedor
+  `rounded-2xl border bg-card shadow-elev`; botón de enviar redondo `bg-primary` (ArrowUp) que solo se
+  activa con texto. Enter envía, Shift+Enter salta línea. Ayuda discreta debajo en `text-xs text-muted-foreground`.
+- **Usuario**: a la derecha, `Bubble variant="default"` (negro neutro del sistema).
+- **Asistente**: a la izquierda, **sin burbuja** — texto plano `text-sm leading-relaxed text-foreground`
+  con encabezado `MagicWand text-ai` + "Rambo IA" (`text-xs text-ai`) solo cuando cambia el turno
+  (regla Agrupado). Los resultados van debajo como `Item`s clicables (ChatCircle / ChartLineUp).
+- **Espera**: sin skeleton. Fila `MagicWand text-ai` + palabra que rota cada ~1,5 s (Pensando, Reflexionando,
+  Consultando, Buscando, Repasando, Ordenando ideas) + tres puntos `animate-pulse` escalonados
+  (`motion-reduce:animate-none`).
+- **Revelado por palabras** (`useWordReveal`): la respuesta llega completa y se pinta a ~25 ms por palabra;
+  los resultados aparecen al terminar. Con `prefers-reduced-motion` sale entera al instante.
+- **Errores**: mensaje del asistente "No he podido responder ahora mismo. Inténtalo de nuevo." + "Reintentar"
+  (ghost sm). Sin toasts. `scope: unsupported` se pinta como una respuesta normal sin resultados.
+- **Aviso bajo la caja**: centrado en `text-xs text-muted-foreground`, en HOME y en CHAT — "Rambo IA puede
+  cometer errores. Comprueba la información importante." (`dashboard:assistant.disclaimer`, es/en/ca).
+- **Corte del scroll**: el hilo NO se corta en seco bajo la cabecera. El área de scroll lleva una máscara
+  de degradado en su borde superior — `[mask-image:linear-gradient(to_bottom,transparent_0,black_24px)]`
+  (con su gemela `-webkit-mask-image`) — y **solo cuando hay scroll** (`scrollTop > 4`), para que arriba
+  del todo la primera línea se vea entera. Máscara, no un degradado `from-background` superpuesto: así
+  funciona sobre cualquier fondo y no tapa nada cuando el hilo está arriba.
+- **Acciones del asistente** (decisión Bruno 03/09): arriba a la derecha del área de chat, dos botones de
+  SOLO ICONO `ghost size="icon-sm" text-muted-foreground` (32px) sin texto visible, con `aria-label` y
+  Tooltip — `SidebarSimple` ("Chats", el mismo lenguaje visual que el toggle de la sidebar del chasis) y
+  `Plus` ("Nueva conversación"). Componente único `AssistantChatActions`, igual en HOME y en CHAT para que
+  el historial no quede fuera de alcance.
+- **Historial de Chats** (decisión Bruno 03/09): panel lateral DERECHO en la variante flotante `inline`
+  del `Sheet` — la misma del detalle de conversación, sin velo, cierra al clicar fuera y con Esc — de
+  360px con: título "Chats" + icono `Info` h-3.5 muted con el aviso de privacidad (30 días, visible para
+  todo el equipo), buscador `InputGroup h-10` que filtra por `q`, la fila destacada "Nueva conversación"
+  (`Plus`) arriba de la lista — con el panel abierto el botón "+" de la cabecera queda tapado, así que la
+  entrada vive también aquí: crea el chat y cierra el panel — y la lista (título + `text-xs
+  text-muted-foreground` con quién lo creó y la fecha relativa). Al hover de cada fila, renombrar
+  (`PencilSimple`, edición en línea) y borrar (`Trash` + `AlertDialog` que NOMBRA el chat).
+- **Resultados**: un resultado de tipo `conversation` abre el detalle SIN salir de Rambo IA
+  (`UnifiedConversationDetailPanel` en un `Sheet inline`); `metrics` sigue navegando a su página.
+- **Naming**: el turno del asistente se firma "Rambo IA" (`MagicWand text-ai`); en UI genérica se sigue
+  diciendo "agente IA". El hilo se vacía con "Nueva conversación" o al cambiar de organización, pero
+  cada turno se guarda en el historial de chats (`persist` / `chat_id`) para poder recuperarlo.
+
+## Excepciones de color documentadas
+
+- **Vista previa de WhatsApp** (Plantillas): usa los colores reales de WhatsApp (fondo beige, burbuja
+  verde, enlaces azules) porque simula lo que verá el cliente final — excepción aprobada por Bruno
+  02/09. Encapsulada en su componente; no reutilizar esos hex fuera de la previsualización.
+- Ya vigentes: colores de workflow de Linear, branding de HubSpot, color-pickers (dato), lightbox.
+
+## Nombres de secciones (decisión Bruno 02/09)
+
+- Prompt del agente: **"Comportamiento"** (nunca "System Prompt" visible).
+- KB: **"Base de conocimientos"** en sidebar, h1, breadcrumb y pestaña; la pestaña de adjuntos es
+  **"Base de archivos"**. La lista de bloques de la KB se presenta como **tarjetas** (más cómodo
+  para el usuario, decisión Bruno) — no convertirla en tabla.
+
+## Fichas (detalle de entidad — decisión Bruno 02/09)
+
+- El breadcrumb de la cabecera muestra la entidad: `Operaciones › Contactos › Recepción Can Dragó`
+  (las páginas de ficha "cuelgan" su nombre en la cabecera).
+- El volver vive DENTRO de la tarjeta de identidad (estilo HubSpot: `‹ Contactos` en la cabecera de
+  la tarjeta), nunca como fila suelta encima del grid — así las tres columnas arrancan a la misma altura.
+
+## Channel Order (Canonical)
+
+Always: **Todos · Teléfono · Web · WhatsApp · Instagram · Manual**
+
+## Filters
+
+Always use `FilterPopover` component. Never manual Select + Checkbox.
+
+**Toolbar order:** Search (flex-1) → Filter → Columns → Actions
+
+## Skeleton Loading
+
+- Page structure always visible (title, layout)
+- Skeleton only in content area
+- Skeletons use the official `<Skeleton>` atom (`animate-pulse`, like the preset); `animate-shimmer` is reserved for progress sweeps
+- **Tablas (decisión Bruno 01/09)**: los TÍTULOS de columna son estructura, no datos —
+  se pintan reales durante la carga y solo las filas hacen shimmer (`TableSkeleton` con
+  `headers` + `template` de anchos reales). El estado VACÍO también conserva el marco y
+  la cabecera real, con el `EmptyState` dentro (patrón `EmptyTable`). Así cargando →
+  vacío → con datos comparten estructura y nada salta.
+- El skeleton calca la anatomía real del componente que sustituye (caso `AudioPlayerSkeleton`,
+  `DashboardHomeSkeleton`, `ContactRecordSkeleton` con sus 3 columnas de 340/1fr/340) — nunca un
+  layout genérico.
+- **Tarjetas que cargan por su cuenta** (revisión "lagazo" Bruno 03/09): una tarjeta que hace su
+  propia petición (Resumen de conversaciones, Tareas) reserva su alto con un skeleton de su
+  anatomía (`ConversationInsightsBodySkeleton`, filas `h-11`) en vez de aparecer vacía y crecer
+  de golpe. Abrir un elemento del historial nunca dispara el `loading` de la página.
+
+**Gráficas (decisión Bruno 02/09):** título real + UN solo bloque `Skeleton` del alto de la gráfica
+(`VoiceMetricsSkeleton` / `ChartSkeleton`). Prohibidas las siluetas dibujadas (ondas, barras,
+burbujas en SVG): se veían infantiles y no aportan.

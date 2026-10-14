@@ -8,11 +8,10 @@ import {
   ItemMedia,
   ItemSeparator,
   ItemTitle,
-  Avatar,
-  AvatarFallback,
-  Badge,
-  Button,
 } from '@autonexhub/react';
+import { Avatar, AvatarFallback } from '@autonexhub/react';
+import { Badge } from '@autonexhub/react';
+import { Button } from '@autonexhub/react';
 import {
   CaretRight,
   ChatCircle,
@@ -30,26 +29,26 @@ const meta: Meta<typeof Item> = {
     variant: {
       control: 'select',
       options: ['default', 'outline', 'muted'],
-      description: 'default: no border. outline: visible border (lists in card). muted: soft background.',
+      description: 'default: sin borde. outline: borde visible (listas en card). muted: fondo suave.',
       table: { defaultValue: { summary: 'default' } },
     },
     size: {
       control: 'select',
       options: ['default', 'sm', 'xs'],
-      description: 'Row density',
+      description: 'Densidad de la fila',
       table: { defaultValue: { summary: 'default' } },
     },
     asChild: {
       control: 'boolean',
-      description: 'Render direct child (e.g. <a> or <button>) with Item styles',
+      description: 'Renderiza el hijo directo (ej. <a> o <button>) con los estilos del Item',
     },
-    className: { control: 'text', description: 'Additional classes' },
+    className: { control: 'text', description: 'Clases adicionales' },
   },
   parameters: {
     docs: {
       description: {
         component:
-          'Generic list row: ItemMedia (icon/avatar/image) + ItemContent (ItemTitle + ItemDescription) + ItemActions. Use for contact lists, conversations, settings, or search results instead of hand-rolling divs. ItemGroup groups rows (role="list") and ItemSeparator divides them. With asChild the whole row is clickable (<a> or <button>) with hover bg-muted and ring focus.',
+          'Fila de lista genérica: ItemMedia (icono/avatar/imagen) + ItemContent (ItemTitle + ItemDescription) + ItemActions. Usar para listas de contactos, conversaciones, ajustes o resultados en lugar de maquetar divs a mano. ItemGroup agrupa filas (role="list") e ItemSeparator las divide. Con asChild la fila entera es clicable (<a> o <button>) con hover bg-muted y foco de anillo.',
       },
     },
   },
@@ -65,11 +64,11 @@ export const Default: Story = {
         <Phone />
       </ItemMedia>
       <ItemContent>
-        <ItemTitle>Incoming call</ItemTitle>
-        <ItemDescription>Query about opening hours.</ItemDescription>
+        <ItemTitle>Llamada entrante</ItemTitle>
+        <ItemDescription>Consulta sobre horarios de apertura del centro.</ItemDescription>
       </ItemContent>
       <ItemActions>
-        <Button variant="ghost" size="icon-sm" aria-label="More options">
+        <Button variant="ghost" size="icon-sm" aria-label="Más opciones">
           <DotsThreeVertical />
         </Button>
       </ItemActions>
@@ -78,14 +77,14 @@ export const Default: Story = {
   args: { variant: 'outline', size: 'default' },
 };
 
-export const Variants: Story = {
+export const Variantes: Story = {
   render: () => (
     <div className="flex w-96 flex-col gap-3">
       {(['default', 'outline', 'muted'] as const).map((variant) => (
         <Item key={variant} variant={variant}>
           <ItemContent>
             <ItemTitle>variant="{variant}"</ItemTitle>
-            <ItemDescription>Example of the {variant} variant.</ItemDescription>
+            <ItemDescription>Ejemplo de la variante {variant}.</ItemDescription>
           </ItemContent>
         </Item>
       ))}
@@ -93,8 +92,8 @@ export const Variants: Story = {
   ),
 };
 
-export const ContactList: Story = {
-  name: 'Contact list',
+export const ListaDeContactos: Story = {
+  name: 'Lista de contactos',
   render: () => (
     <ItemGroup className="w-[26rem] rounded-lg border border-border bg-card p-2">
       <Item size="sm">
@@ -104,11 +103,11 @@ export const ContactList: Story = {
           </Avatar>
         </ItemMedia>
         <ItemContent>
-          <ItemTitle>Maria Garcia</ItemTitle>
-          <ItemDescription>+34 612 345 678 · Member since 2023</ItemDescription>
+          <ItemTitle>María García</ItemTitle>
+          <ItemDescription>+34 612 345 678 · Socia desde 2023</ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Badge variant="success">Active</Badge>
+          <Badge variant="success">Activa</Badge>
         </ItemActions>
       </Item>
       <ItemSeparator />
@@ -119,11 +118,11 @@ export const ContactList: Story = {
           </Avatar>
         </ItemMedia>
         <ItemContent>
-          <ItemTitle>John Peters</ItemTitle>
-          <ItemDescription>+34 698 765 432 · Interested in membership</ItemDescription>
+          <ItemTitle>Jordi Puig</ItemTitle>
+          <ItemDescription>+34 698 765 432 · Interesado en matrícula</ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Badge variant="warning">Pending</Badge>
+          <Badge variant="warning">Pendiente</Badge>
         </ItemActions>
       </Item>
       <ItemSeparator />
@@ -134,19 +133,81 @@ export const ContactList: Story = {
           </Avatar>
         </ItemMedia>
         <ItemContent>
-          <ItemTitle>Laura Smith</ItemTitle>
-          <ItemDescription>+34 655 111 222 · Cancellation requested</ItemDescription>
+          <ItemTitle>Laura Sanz</ItemTitle>
+          <ItemDescription>+34 655 111 222 · Baja solicitada</ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Badge variant="destructive">Cancelled</Badge>
+          <Badge variant="destructive">Baja</Badge>
         </ItemActions>
       </Item>
     </ItemGroup>
   ),
 };
 
-export const Sizes: Story = {
-  name: 'Sizes',
+export const ListaDeConversaciones: Story = {
+  name: 'Lista de conversaciones (clicable)',
+  render: () => (
+    <ItemGroup className="w-[28rem] gap-1">
+      <Item asChild variant="default">
+        <a href="#conversacion-1" onClick={(e) => e.preventDefault()}>
+          <ItemMedia variant="icon">
+            <WhatsappLogo className="size-5 text-muted-foreground" />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>Reserva de pista de pádel</ItemTitle>
+            <ItemDescription>
+              La clienta pregunta por disponibilidad el sábado por la mañana y confirma reserva a
+              las 10:00.
+            </ItemDescription>
+          </ItemContent>
+          <ItemContent className="items-end">
+            <span className="text-xs text-muted-foreground">hace 5 min</span>
+            <CaretRight className="size-4 text-muted-foreground" />
+          </ItemContent>
+        </a>
+      </Item>
+      <Item asChild variant="default">
+        <a href="#conversacion-2" onClick={(e) => e.preventDefault()}>
+          <ItemMedia variant="icon">
+            <Phone className="size-5 text-muted-foreground" />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>Horarios de la piscina en agosto</ItemTitle>
+            <ItemDescription>
+              Llamada atendida por Marta: horario reducido de agosto y normas de acceso con
+              invitados.
+            </ItemDescription>
+          </ItemContent>
+          <ItemContent className="items-end">
+            <span className="text-xs text-muted-foreground">hace 1 h</span>
+            <CaretRight className="size-4 text-muted-foreground" />
+          </ItemContent>
+        </a>
+      </Item>
+      <Item asChild variant="default">
+        <a href="#conversacion-3" onClick={(e) => e.preventDefault()}>
+          <ItemMedia variant="icon">
+            <InstagramLogo className="size-5 text-muted-foreground" />
+          </ItemMedia>
+          <ItemContent>
+            <ItemTitle>Precio del bono de 10 sesiones</ItemTitle>
+            <ItemDescription>
+              DM de Instagram: tarifas de bonos y condiciones de caducidad; se envía enlace de
+              compra.
+            </ItemDescription>
+          </ItemContent>
+          <ItemContent className="items-end">
+            <span className="text-xs text-muted-foreground">ayer</span>
+            <CaretRight className="size-4 text-muted-foreground" />
+          </ItemContent>
+        </a>
+      </Item>
+    </ItemGroup>
+  ),
+};
+
+export const Tamanos: Story = {
+  name: 'Tamaños',
   render: () => (
     <div className="flex w-96 flex-col gap-3">
       {(['default', 'sm', 'xs'] as const).map((size) => (
@@ -158,7 +219,7 @@ export const Sizes: Story = {
             <ItemTitle>size="{size}"</ItemTitle>
           </ItemContent>
           <ItemActions>
-            <Button variant="ghost" size="icon-xs" aria-label="Options">
+            <Button variant="ghost" size="icon-xs" aria-label="Opciones">
               <DotsThreeVertical />
             </Button>
           </ItemActions>

@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="0-Foundations/Spacing" />
+
+# Spacing
+
+Standard Tailwind spacing scale.
+
+## Scale
+
+The root is 15px (93.75% — decisión Bruno 03/09, spacious density), so Tailwind's
+nominal pixel values apply directly.
+
+| Class | Value | Usage |
+|-------|-------|-------|
+| `gap-1` / `p-1` | 3,75px | Tight spacing |
+| `gap-2` / `p-2` | 7,5px | Default small |
+| `gap-3` / `p-3` | 11,25px | Medium |
+| `gap-4` / `p-4` | 15px | Standard |
+| `gap-6` / `p-6` | 22,5px | Section padding |
+| `gap-8` / `p-8` | 30px | Page padding |
+
+## Page Layout
+
+```jsx
+<div className="p-6">           {/* Page padding */}
+  <div className="mb-6">        {/* Header spacing */}
+    <h1>Title</h1>
+  </div>
+  <div className="space-y-4">   {/* Content spacing */}
+    ...
+  </div>
+</div>
+```
+
+## Card Padding
+
+- Standard cards: `p-4` or `p-6`
+- Dense cards (tables): `p-3`
+- Dialog content: `p-6`

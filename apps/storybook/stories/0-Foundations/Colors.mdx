@@ -1,0 +1,71 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+
+<Meta title="0-Foundations/Colors" />
+
+# Color System
+
+Design tokens for the Marta dashboard. All colors are CSS custom properties defined in `index.css`.
+
+**Source of truth: the Autonex Design System** (brand DS, Claude Design). The panel uses the
+same palette as marketing — white canvas, ink near-black and the official Autonex blue — so
+product and brand read as one.
+
+**Neutrals (decisión Bruno 02/09):** la escala de grises del panel es **neutra** (sin tinte cálido)
+y la tinta es `#161617`. Más contraste en texto secundario y bordes más definidos — donde más se
+nota es en las tablas. Pendiente de reflejar en el DS de marca.
+
+## Semantic Colors
+
+<ColorPalette>
+  <ColorItem title="Background" subtitle="--background" colors={{ 'Page bg (white canvas)': '#ffffff' }} />
+  <ColorItem title="Card" subtitle="--card" colors={{ 'Card/popover': '#ffffff' }} />
+  <ColorItem title="Foreground" subtitle="--foreground" colors={{ 'Ink (text, primary buttons)': '#161617' }} />
+  <ColorItem title="Muted" subtitle="--muted" colors={{ 'Search bar, inputs, active nav, table headers': '#F5F5F5' }} />
+  <ColorItem title="Muted fg" subtitle="--muted-foreground" colors={{ 'Secondary text': '#6B6B6E' }} />
+  <ColorItem title="Border" subtitle="--border" colors={{ 'Hairline borders': '#E6E6E8' }} />
+</ColorPalette>
+
+Cards sit flat on the white canvas and are delimited by the hairline border — **not** by shadow.
+Shadow is reserved for floating surfaces (popovers, dialogs) and hover.
+
+## Brand & Status Colors
+
+<ColorPalette>
+  <ColorItem title="Brand" subtitle="--brand" colors={{ 'Official Autonex blue': '#2F75FF', 'Hover': '#4F88FF', 'Press': '#3F7CF2', 'Soft (agent bubble, info)': '#E4EEFF' }} />
+  <ColorItem title="Success" subtitle="--success" colors={{ 'OK/active': '#1E7A5A' }} />
+  <ColorItem title="Warning" subtitle="--warning" colors={{ 'Caution': '#B4741A' }} />
+  <ColorItem title="Destructive" subtitle="--destructive" colors={{ 'Error/danger': '#B3392E' }} />
+  <ColorItem title="AI agent" subtitle="--ai" colors={{ 'Generado por el agente IA (icono + título de "Resumen para agente IA")': '#7532DD', 'Soft': '#EFE8FB' }} />
+</ColorPalette>
+
+**`--ai`** (decisión Bruno 02/09) es el color semántico de todo lo que genera el agente IA: morado
+sereno `#7532DD`, de la misma familia de intensidad que success/warning/destructive. Los `chart-*`
+siguen reservados a gráficas.
+
+For small blue **text** on white, use the darker step `#2461DB` (brand DS `blue-600`) to keep
+AA contrast; `#2F75FF` is for fills, icons and large text.
+
+**`--ring`** is not a fill color: it is the **focus color** — the solid brand blue `#2F75FF`,
+always used with an opacity modifier as a halo around the focused control (e.g.
+`focus-visible:ring-2 ring-ring/30`). Never use it as a background.
+
+## Chart Colors
+
+Use these for data visualization. **Never use brand blue in charts.**
+
+<ColorPalette>
+  <ColorItem title="Chart 1" subtitle="--chart-1" colors={{ 'Blue': 'oklch(0.635 0.170 261)' }} />
+  <ColorItem title="Chart 2" subtitle="--chart-2" colors={{ 'Mint': 'oklch(0.730 0.115 170)' }} />
+  <ColorItem title="Chart 3" subtitle="--chart-3" colors={{ 'Lilac': 'oklch(0.680 0.165 318)' }} />
+  <ColorItem title="Chart 4" subtitle="--chart-4" colors={{ 'Sky': 'oklch(0.700 0.130 236)' }} />
+  <ColorItem title="Chart 5" subtitle="--chart-5" colors={{ 'Coral': 'oklch(0.720 0.150 42)' }} />
+  <ColorItem title="Chart 6" subtitle="--chart-6" colors={{ 'Periwinkle': 'oklch(0.650 0.170 285)' }} />
+</ColorPalette>
+
+## Usage Rules
+
+- **Brand blue** (`#2F75FF`): Max 1 element per screen (active menu, CTA button)
+- **Grey** (`#F5F5F5`): only in subtle zones — search bar, input fills, active sidebar item. The canvas stays white.
+- **Charts**: Use chart-1 through chart-6, never brand blue
+- **Status colors**: Green = OK, Red = error, Amber = warning, Gray = neutral
+- **No hardcoded colors**: Always use CSS variables

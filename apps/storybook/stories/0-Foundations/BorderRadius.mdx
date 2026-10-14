@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="0-Foundations/BorderRadius" />
+
+# Border Radius
+
+Base radius: `--radius: 0.45rem` (7.2px at the 16px root). Scale from the shadcn preset.
+
+## Scale
+
+| Class | Multiplier | Usage |
+|-------|------------|-------|
+| `rounded-sm` | 60% | Small elements |
+| `rounded-md` | 80% | Inputs, small cards |
+| `rounded-lg` | 100% | Cards, containers |
+| `rounded-xl` | 140% | Large cards |
+| `rounded-2xl` | 180% | Dialogs |
+| `rounded-3xl` | 220% | Badges |
+| `rounded-4xl` | 260% | Buttons (pill) |
+| `rounded-full` | 9999px | Avatars, dots |
+
+## Usage
+
+```jsx
+<Button />           {/* rounded-4xl (pill) */}
+<Badge />            {/* rounded-3xl */}
+<Card />             {/* rounded-lg or rounded-xl */}
+<Avatar />           {/* rounded-full */}
+<Input />            {/* rounded-md */}
+```

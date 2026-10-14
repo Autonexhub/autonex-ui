@@ -1,111 +1,53 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { DatePicker } from '@autonexhub/react';
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
+import { Calendar as CalendarIcon } from '@phosphor-icons/react';
+import { Button } from '@autonexhub/react';
+import { Calendar } from '@autonexhub/react';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@autonexhub/react';
+import { cn } from '@autonexhub/react';
+
+const DatePicker = () => {
+  const [date, setDate] = React.useState<Date>();
+
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          className={cn(
+            'w-[240px] justify-start text-left font-normal',
+            !date && 'text-muted-foreground'
+          )}
+        >
+          <CalendarIcon className="mr-2 h-4 w-4" />
+          {date ? format(date, 'PPP', { locale: es }) : <span>Selecciona una fecha</span>}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0" align="start">
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={setDate}
+          initialFocus
+        />
+      </PopoverContent>
+    </Popover>
+  );
+};
 
 const meta: Meta<typeof DatePicker> = {
   title: '2-Molecules/DatePicker',
   component: DatePicker,
   tags: ['autodocs'],
-  argTypes: {
-    placeholder: {
-      control: 'text',
-      description: 'Placeholder text when no date selected',
-    },
-    clearable: {
-      control: 'boolean',
-      description: 'Show clear button when date is selected',
-    },
-    align: {
-      control: 'select',
-      options: ['start', 'center', 'end'],
-      description: 'Popover alignment',
-    },
-    size: {
-      control: 'select',
-      options: ['inline', 'field'],
-      description: 'Size variant: inline for rows, field for forms',
-    },
-  },
-  parameters: {
-    docs: {
-      description: {
-        component: 'Click-to-open date picker that returns ISO "YYYY-MM-DD" strings.',
-      },
-    },
-  },
 };
 
 export default meta;
 type Story = StoryObj<typeof DatePicker>;
 
-export const Default: Story = {
-  render: function Render() {
-    const [date, setDate] = React.useState<string | null>(null);
-    return (
-      <DatePicker
-        value={date}
-        onChange={setDate}
-        placeholder="Pick a date"
-      />
-    );
-  },
-};
-
-export const WithValue: Story = {
-  render: function Render() {
-    const [date, setDate] = React.useState<string | null>('2024-03-15');
-    return (
-      <DatePicker
-        value={date}
-        onChange={setDate}
-      />
-    );
-  },
-};
-
-export const Clearable: Story = {
-  render: function Render() {
-    const [date, setDate] = React.useState<string | null>('2024-03-15');
-    return (
-      <DatePicker
-        value={date}
-        onChange={setDate}
-        clearable
-      />
-    );
-  },
-};
-
-export const FieldSize: Story = {
-  render: function Render() {
-    const [date, setDate] = React.useState<string | null>(null);
-    return (
-      <div className="w-64">
-        <DatePicker
-          value={date}
-          onChange={setDate}
-          size="field"
-          placeholder="Select date"
-        />
-      </div>
-    );
-  },
-};
-
-export const WithMinMax: Story = {
-  render: function Render() {
-    const [date, setDate] = React.useState<string | null>(null);
-    const today = new Date().toISOString().split('T')[0];
-    const nextMonth = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-
-    return (
-      <DatePicker
-        value={date}
-        onChange={setDate}
-        min={today}
-        max={nextMonth}
-        placeholder="Pick a date (next 30 days)"
-      />
-    );
-  },
-};
+export const Default: Story = {};

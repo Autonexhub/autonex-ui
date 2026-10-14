@@ -1,14 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import * as React from 'react';
-import { Combobox, Button } from '@autonexhub/react';
-import { User, Buildings, Phone, CaretUpDown } from '@phosphor-icons/react';
-
-interface ComboboxOption {
-  value: string;
-  label: string;
-  sublabel?: string;
-  icon?: React.ReactNode;
-}
+import { Combobox, ComboboxTrigger, type ComboboxOption } from '@autonexhub/react';
+import { User, Buildings, Phone } from '@phosphor-icons/react';
 
 const meta: Meta<typeof Combobox> = {
   title: '2-Molecules/Combobox',
@@ -44,39 +37,29 @@ const meta: Meta<typeof Combobox> = {
 export default meta;
 type Story = StoryObj<typeof Combobox>;
 
-const assistants: ComboboxOption[] = [
+const asistentes: ComboboxOption[] = [
   { value: 'marta', label: 'Marta' },
-  { value: 'maria', label: 'Maria' },
+  { value: 'maria', label: 'María' },
   { value: 'carla', label: 'Carla' },
-  { value: 'lucia', label: 'Lucia' },
+  { value: 'lucia', label: 'Lucía' },
   { value: 'paula', label: 'Paula' },
 ];
-
-const ComboboxTrigger = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
-  ({ className, children, ...props }, ref) => (
-    <Button ref={ref} variant="outline" className={className} {...props}>
-      <span className="truncate">{children}</span>
-      <CaretUpDown className="size-4 shrink-0 text-muted-foreground" />
-    </Button>
-  ),
-);
-ComboboxTrigger.displayName = 'ComboboxTrigger';
 
 export const Default: Story = {
   render: function Render() {
     const [value, setValue] = React.useState<string | null>(null);
-    const selected = assistants.find((a) => a.value === value);
+    const selected = asistentes.find((a) => a.value === value);
 
     return (
       <Combobox
-        options={assistants}
+        options={asistentes}
         value={value}
         onChange={setValue}
-        placeholder="Search assistant..."
-        emptyText="No assistant found."
+        placeholder="Buscar asistente..."
+        emptyText="No se encontró ningún asistente."
         trigger={
           <ComboboxTrigger className="w-[200px]">
-            {selected?.label ?? 'Select assistant'}
+            {selected?.label ?? 'Seleccionar asistente'}
           </ComboboxTrigger>
         }
       />
@@ -85,13 +68,13 @@ export const Default: Story = {
 };
 
 const contacts: ComboboxOption[] = [
-  { value: '1', label: 'Maria Garcia', sublabel: '+34 612 345 678', icon: <User className="h-4 w-4" /> },
-  { value: '2', label: 'John Peters', sublabel: '+34 623 456 789', icon: <User className="h-4 w-4" /> },
-  { value: '3', label: 'Anna Lopez', sublabel: '+34 634 567 890', icon: <User className="h-4 w-4" /> },
+  { value: '1', label: 'María García', sublabel: '+34 612 345 678', icon: <User className="h-4 w-4" /> },
+  { value: '2', label: 'Juan Pérez', sublabel: '+34 623 456 789', icon: <User className="h-4 w-4" /> },
+  { value: '3', label: 'Ana López', sublabel: '+34 634 567 890', icon: <User className="h-4 w-4" /> },
   { value: '4', label: 'Carlos Ruiz', sublabel: '+34 645 678 901', icon: <User className="h-4 w-4" /> },
-  { value: '5', label: 'Elena Martin', sublabel: '+34 656 789 012', icon: <User className="h-4 w-4" /> },
-  { value: '6', label: 'Peter Sanchez', sublabel: '+34 667 890 123', icon: <User className="h-4 w-4" /> },
-  { value: '7', label: 'Laura Fernandez', sublabel: '+34 678 901 234', icon: <User className="h-4 w-4" /> },
+  { value: '5', label: 'Elena Martín', sublabel: '+34 656 789 012', icon: <User className="h-4 w-4" /> },
+  { value: '6', label: 'Pedro Sánchez', sublabel: '+34 667 890 123', icon: <User className="h-4 w-4" /> },
+  { value: '7', label: 'Laura Fernández', sublabel: '+34 678 901 234', icon: <User className="h-4 w-4" /> },
   { value: '8', label: 'Miguel Torres', sublabel: '+34 689 012 345', icon: <User className="h-4 w-4" /> },
 ];
 
@@ -105,8 +88,8 @@ export const WithIcons: Story = {
         options={contacts}
         value={value}
         onChange={setValue}
-        placeholder="Search contact..."
-        emptyText="No contact found."
+        placeholder="Buscar contacto..."
+        emptyText="No se encontró ningún contacto."
         width={280}
         trigger={
           <ComboboxTrigger className="w-[280px]">
@@ -116,7 +99,7 @@ export const WithIcons: Story = {
                 {selected.label}
               </span>
             ) : (
-              'Select contact'
+              'Seleccionar contacto'
             )}
           </ComboboxTrigger>
         }
@@ -126,9 +109,9 @@ export const WithIcons: Story = {
 };
 
 const organizations: ComboboxOption[] = [
-  { value: 'hemomadrid', label: 'Hemomadrid', sublabel: 'Hematology clinic', icon: <Buildings className="h-4 w-4" /> },
-  { value: 'spawell', label: 'Spawell', sublabel: 'Wellness center', icon: <Buildings className="h-4 w-4" /> },
-  { value: 'dental-clinic', label: 'Dental Clinic Plus', sublabel: 'General dentistry', icon: <Buildings className="h-4 w-4" /> },
+  { value: 'hemomadrid', label: 'Hemomadrid', sublabel: 'Clínica de hematología', icon: <Buildings className="h-4 w-4" /> },
+  { value: 'spawell', label: 'Spawell', sublabel: 'Centro de bienestar', icon: <Buildings className="h-4 w-4" /> },
+  { value: 'clinica-dental', label: 'Clínica Dental Plus', sublabel: 'Odontología general', icon: <Buildings className="h-4 w-4" /> },
 ];
 
 export const WithSublabels: Story = {
@@ -141,13 +124,13 @@ export const WithSublabels: Story = {
         options={organizations}
         value={value}
         onChange={setValue}
-        placeholder="Search organization..."
-        emptyText="No organization found."
+        placeholder="Buscar organización..."
+        emptyText="No se encontró ninguna organización."
         width={300}
         searchThreshold={3}
         trigger={
           <ComboboxTrigger className="w-[300px]">
-            {selected?.label ?? 'Select organization'}
+            {selected?.label ?? 'Seleccionar organización'}
           </ComboboxTrigger>
         }
       />
@@ -156,7 +139,7 @@ export const WithSublabels: Story = {
 };
 
 const fewOptions: ComboboxOption[] = [
-  { value: 'voice', label: 'Voice', icon: <Phone className="h-4 w-4" /> },
+  { value: 'voz', label: 'Voz', icon: <Phone className="h-4 w-4" /> },
   { value: 'whatsapp', label: 'WhatsApp' },
   { value: 'instagram', label: 'Instagram' },
 ];
@@ -174,7 +157,7 @@ export const NoSearch: Story = {
         searchThreshold={10}
         trigger={
           <ComboboxTrigger className="w-[200px]">
-            {selected?.label ?? 'Select channel'}
+            {selected?.label ?? 'Seleccionar canal'}
           </ComboboxTrigger>
         }
       />
