@@ -1,6 +1,6 @@
 {
   "name": "@autonexia/tokens",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Design tokens for Autonex applications",
   "main": "./dist/index.css",
   "types": "./dist/tailwind.preset.d.ts",
@@ -12,8 +12,12 @@
       "require": "./dist/tailwind.preset.js"
     }
   },
-  "files": ["dist"],
-  "sideEffects": ["*.css"],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "build": "tsup && cp src/index.css dist/index.css",
     "dev": "tsup --watch",
