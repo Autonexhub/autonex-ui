@@ -1,25 +1,37 @@
 name: Release
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
-  contents: read
+  contents: write
   packages: write
+  pull-requests: write
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.changesets.outputs.published }}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - uses: pnpm/action-setup@v2
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "pnpm"
@@ -31,7 +43,100 @@ jobs:
       - name: Build packages
         run: pnpm build
 
-      - name: Publish to GitHub Packages
-        run: pnpm release
+      - name: Create Release PR or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+          version: pnpm version-packages
+          title: "chore: version packages"
+          commit: "chore: version packages"
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-storybook:
+    name: Deploy Storybook to Hostinger
+    needs: release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Build Storybook
+        run: pnpm --filter storybook build
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}" > ~/.ssh/hostinger
+          chmod 600 ~/.ssh/hostinger
+          # Add host key with retry and timeout
+          for i in 1 2 3; do
+            if ssh-keyscan -p ${{ secrets.HOSTINGER_SSH_PORT }} -T 10 ${{ secrets.HOSTINGER_SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null; then
+              echo "SSH host key added successfully"
+              break
+            else
+              echo "Attempt $i failed, retrying..."
+              sleep 2
+            fi
+          done
+          # Verify key was added
+          if ! grep -q "${{ secrets.HOSTINGER_SSH_HOST }}" ~/.ssh/known_hosts; then
+            echo "Warning: Could not add SSH host key via keyscan, adding StrictHostKeyChecking=no"
+            echo "Host ${{ secrets.HOSTINGER_SSH_HOST }}" >> ~/.ssh/config
+            echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+            echo "  UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+          fi
+
+      - name: Deploy Storybook to Hostinger
+        run: |
+          # Retry up to 2 times with short backoff
+          waits=(20 30)
+          attempt=0
+          until rsync -avz --delete \
+            -e "ssh -i ~/.ssh/hostinger -o ConnectTimeout=45 -o ServerAliveInterval=15 -o ServerAliveCountMax=4 -p ${{ secrets.HOSTINGER_SSH_PORT }}" \
+            apps/storybook/storybook-static/ \
+            ${{ secrets.HOSTINGER_SSH_USER }}@${{ secrets.HOSTINGER_SSH_HOST }}:${{ secrets.STORYBOOK_DEPLOY_PATH }}/; do
+            if [ $attempt -ge ${#waits[@]} ]; then echo "rsync failed after $attempt attempts"; exit 1; fi
+            wait_time=${waits[$attempt]}
+            attempt=$((attempt + 1))
+            echo "rsync attempt $attempt failed, waiting ${wait_time}s and retrying..."
+            sleep $wait_time
+          done
+
+      - name: Set permissions
+        run: |
+          ssh -i ~/.ssh/hostinger -p ${{ secrets.HOSTINGER_SSH_PORT }} \
+            ${{ secrets.HOSTINGER_SSH_USER }}@${{ secrets.HOSTINGER_SSH_HOST }} << 'ENDSSH'
+            cd ${{ secrets.STORYBOOK_DEPLOY_PATH }}
+            find . -type d -exec chmod 755 {} \;
+            find . -type f -exec chmod 644 {} \;
+          ENDSSH
+
+      - name: Verify deployment
+        run: |
+          echo "Storybook deployed to https://storybook.autonexhub.es"
+          # Quick check that index.html exists
+          ssh -i ~/.ssh/hostinger -p ${{ secrets.HOSTINGER_SSH_PORT }} \
+            ${{ secrets.HOSTINGER_SSH_USER }}@${{ secrets.HOSTINGER_SSH_HOST }} \
+            "test -f ${{ secrets.STORYBOOK_DEPLOY_PATH }}/index.html && echo 'Deployment verified: index.html exists'"
