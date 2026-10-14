@@ -1,5 +1,21 @@
 # @autonexhub/react
 
+## 2.0.0
+
+### Minor Changes
+
+- 2213dc7: Add new UI components: Bubble, ButtonGroup, Calendar, Carousel, Chart, Combobox, Command, DatePicker, Field, InputGroup, InputOTP, Item, Kbd, Pagination, Resizable, RichTextEditor, Sidebar
+
+  - Migrated 18 new components from marta-backend
+  - Added comprehensive exports for Field (FieldGroup, FieldLegend, FieldSeparator, FieldSet, FieldContent, FieldTitle)
+  - Added comprehensive exports for InputGroup (InputGroupAddon, InputGroupInput, InputGroupTextarea)
+  - Added Storybook stories for Calendar, Item, Combobox, DatePicker
+
+### Patch Changes
+
+- Updated dependencies [2213dc7]
+  - @autonexhub/tokens@2.0.0
+
 ## 1.1.0
 
 ### Minor Changes
