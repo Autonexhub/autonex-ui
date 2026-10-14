@@ -1,0 +1,128 @@
+/* Autonex Design Tokens
+   Source of truth: Autonex Brand Design System */
+
+:root {
+  /* Base */
+  --background: #ffffff;
+  --foreground: #161617;
+  --card: #ffffff;
+  --card-foreground: #161617;
+  --popover: #ffffff;
+  --popover-foreground: #161617;
+
+  /* Primary */
+  --primary: #161617;
+  --primary-foreground: #ffffff;
+
+  /* Secondary */
+  --secondary: #F5F5F5;
+  --secondary-foreground: #161617;
+
+  /* Muted */
+  --muted: #F5F5F5;
+  --muted-foreground: #6B6B6E;
+
+  /* Accent */
+  --accent: #F5F5F5;
+  --accent-foreground: #161617;
+
+  /* Destructive */
+  --destructive: #B3392E;
+  --destructive-foreground: #ffffff;
+  --destructive-soft: #F7E5E2;
+
+  /* Brand */
+  --brand: #2F75FF;
+  --brand-hover: #4F88FF;
+  --brand-active: #3F7CF2;
+  --brand-soft: #E4EEFF;
+  --brand-foreground: #ffffff;
+
+  /* Warning */
+  --warning: #B4741A;
+  --warning-foreground: #ffffff;
+  --warning-soft: #F8EEDC;
+
+  /* Success */
+  --success: #1E7A5A;
+  --success-foreground: #ffffff;
+  --success-soft: #E2F0EA;
+
+  /* AI */
+  --ai: #7532DD;
+  --ai-soft: #EFE8FB;
+
+  /* Borders & Inputs */
+  --border: #E6E6E8;
+  --input: #E6E6E8;
+  --ring: #2F75FF;
+
+  /* Charts */
+  --chart-1: oklch(0.635 0.170 261);
+  --chart-2: oklch(0.730 0.115 170);
+  --chart-3: oklch(0.680 0.165 318);
+  --chart-4: oklch(0.700 0.130 236);
+  --chart-5: oklch(0.720 0.150 42);
+  --chart-6: oklch(0.650 0.170 285);
+
+  /* Radius */
+  --radius: 0.45rem;
+
+  /* Sidebar */
+  --sidebar: #F5F5F5;
+  --sidebar-foreground: #4B4B4E;
+  --sidebar-primary: #161617;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #E9E9EB;
+  --sidebar-accent-foreground: #161617;
+  --sidebar-border: #E6E6E8;
+  --sidebar-ring: #2F75FF;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: #db2627;
+  --destructive-foreground: oklch(0.985 0 0);
+  --destructive-soft: rgba(179, 57, 46, 0.22);
+  --brand: #4C87F0;
+  --brand-soft: rgba(76, 135, 240, 0.18);
+  --brand-foreground: #ffffff;
+  --warning: #f59e0b;
+  --warning-foreground: oklch(0.205 0 0);
+  --warning-soft: rgba(180, 116, 26, 0.22);
+  --success: #069668;
+  --success-foreground: oklch(0.985 0 0);
+  --success-soft: rgba(30, 122, 90, 0.22);
+  --ai: #A98AF0;
+  --ai-soft: rgba(117, 50, 221, 0.22);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: #4C87F0;
+  --chart-1: oklch(0.635 0.170 261);
+  --chart-2: oklch(0.730 0.115 170);
+  --chart-3: oklch(0.680 0.165 318);
+  --chart-4: oklch(0.700 0.130 236);
+  --chart-5: oklch(0.720 0.150 42);
+  --chart-6: oklch(0.650 0.170 285);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: #4C87F0;
+}

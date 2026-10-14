@@ -1,0 +1,40 @@
+{
+  "name": "@autonexia/tokens",
+  "version": "0.0.0",
+  "description": "Design tokens for Autonex applications",
+  "main": "./dist/index.css",
+  "types": "./dist/tailwind.preset.d.ts",
+  "exports": {
+    ".": "./dist/index.css",
+    "./tailwind.preset": {
+      "import": "./dist/tailwind.preset.mjs",
+      "require": "./dist/tailwind.preset.js",
+      "types": "./dist/tailwind.preset.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "tsup && cp src/index.css dist/index.css",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.5.0"
+  },
+  "peerDependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Autonexhub/autonex-ui.git",
+    "directory": "packages/tokens"
+  },
+  "license": "MIT"
+}
