@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss"
 
-const autonexiaPreset: Partial<Config> = {
+export const autonexiaPreset: Partial<Config> = {
   darkMode: "class",
   theme: {
     extend: {
@@ -84,6 +84,8 @@ const autonexiaPreset: Partial<Config> = {
         sm: "calc(var(--radius) * 0.6)",
         xl: "calc(var(--radius) * 1.4)",
         "2xl": "calc(var(--radius) * 2)",
+        "3xl": "calc(var(--radius) * 2.5)",
+        "4xl": "calc(var(--radius) * 3)",
       },
       boxShadow: {
         elev: "0 1px 2px rgba(34,34,34,.04), 0 2px 8px rgba(34,34,34,.04)",
