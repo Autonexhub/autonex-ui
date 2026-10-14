@@ -1,5 +1,12 @@
 # @autonexhub/react
 
+## 2.0.1
+
+### Patch Changes
+
+- Add missing exports: ComboboxOption, ComboboxTrigger, KbdGroup
+  - @autonexhub/tokens@2.0.1
+
 ## 2.0.0
 
 ### Minor Changes

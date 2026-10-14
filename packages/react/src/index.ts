@@ -287,7 +287,8 @@ export {
 } from "./components/ui/chart"
 export type { ChartConfig } from "./components/ui/chart"
 
-export { Combobox } from "./components/ui/combobox"
+export { Combobox, ComboboxTrigger } from "./components/ui/combobox"
+export type { ComboboxOption } from "./components/ui/combobox"
 
 export {
   Command,
@@ -345,7 +346,7 @@ export {
   ItemFooter,
 } from "./components/ui/item"
 
-export { Kbd } from "./components/ui/kbd"
+export { Kbd, KbdGroup } from "./components/ui/kbd"
 
 export {
   Pagination,
