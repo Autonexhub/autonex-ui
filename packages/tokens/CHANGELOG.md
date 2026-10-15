@@ -1,5 +1,11 @@
 # @autonexhub/tokens
 
+## 3.0.0
+
+### Major Changes
+
+- cb29af6: Resizable: migrate to react-resizable-panels v4 (`Group`/`Panel`/`Separator`). Props change: `orientation` replaces `direction`, sizes accept numbers or strings like "30%", `onLayoutChanged` replaces `onLayout`.
+
 ## 2.0.1
 
 ## 2.0.0
