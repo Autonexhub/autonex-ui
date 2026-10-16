@@ -10,7 +10,8 @@
     "@autonexhub/react": "workspace:*",
     "@autonexhub/tokens": "workspace:*",
     "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react-dom": "^18.3.0",
+    "react-day-picker": "^8.10.0"
   },
   "devDependencies": {
     "@phosphor-icons/react": "^2.1.0",
