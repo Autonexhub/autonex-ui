@@ -1,6 +1,6 @@
 {
   "name": "@autonexhub/tokens",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Design tokens for Autonex applications",
   "main": "./dist/index.css",
   "types": "./dist/tailwind.preset.d.ts",
