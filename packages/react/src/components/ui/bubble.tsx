@@ -24,8 +24,10 @@ const bubbleVariants = cva(
           "[&_[data-slot=bubble-content]]:bg-secondary [&_[data-slot=bubble-content]]:text-secondary-foreground",
         muted:
           "[&_[data-slot=bubble-content]]:bg-muted [&_[data-slot=bubble-content]]:text-foreground",
+        // Operador humano: blanco con borde, para distinguirlo del cliente (gris) y
+        // del agente (azul suave) sin el negro translúcido prohibido.
         tinted:
-          "[&_[data-slot=bubble-content]]:bg-primary/10 [&_[data-slot=bubble-content]]:text-foreground",
+          "[&_[data-slot=bubble-content]]:border [&_[data-slot=bubble-content]]:border-border [&_[data-slot=bubble-content]]:bg-background [&_[data-slot=bubble-content]]:text-foreground",
         outline:
           "[&_[data-slot=bubble-content]]:border-border [&_[data-slot=bubble-content]]:border [&_[data-slot=bubble-content]]:bg-background",
         ghost:

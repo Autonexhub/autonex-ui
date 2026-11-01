@@ -114,7 +114,7 @@ export function QuotaCard({ view: data, collapsed, today, labels = defaultQuotaL
           // Sin tarjeta (decisión Bruno 02/09): fila hermana del perfil — anillo a la
           // izquierda (32px, como el avatar) + dos líneas; hover en píldora como los módulos.
           className={cn(
-            'w-full text-left rounded-md transition-colors hover:bg-background/70',
+            'w-full text-left rounded-md transition-colors hover:bg-sidebar-accent/60',
             collapsed ? 'flex items-center justify-center p-1' : 'flex items-center gap-2 px-2 py-2',
           )}
         >

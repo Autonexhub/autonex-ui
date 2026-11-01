@@ -12,7 +12,7 @@ export interface FilterOption {
   count?: number;
 }
 
-interface FilterPopoverProps {
+export interface FilterPopoverProps {
   label: string;
   options: FilterOption[];
   selected: string[];

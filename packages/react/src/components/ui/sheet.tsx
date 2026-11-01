@@ -90,6 +90,8 @@ interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
     VariantProps<typeof sheetVariants> {
   hideCloseButton?: boolean;
+  /** Texto accesible del botón de cerrar (default "Close"). */
+  closeLabel?: string;
   /**
    * `inline`: non-modal variant as a floating card (see `inlineSheetVariants`).
    * Use with `<Sheet modal={false}>`: no overlay, closes with ✕, Esc or a
@@ -105,7 +107,7 @@ interface SheetContentProps
 
 const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
   (
-    { side = "right", variant, inline = false, container, className, children, hideCloseButton = false, onFocusOutside, ...props },
+    { side = "right", variant, inline = false, container, className, children, hideCloseButton = false, closeLabel = "Close", onFocusOutside, ...props },
     ref,
   ) => {
     const resolvedVariant = variant ?? (inline ? "inline" : "modal");
@@ -142,7 +144,7 @@ const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Con
         {!hideCloseButton && (
           <SheetPrimitive.Close className="absolute right-4 top-4 inline-flex size-8 items-center justify-center rounded-4xl bg-secondary text-secondary-foreground transition-colors hover:bg-border/60 focus:outline-none focus-visible:ring-1 focus-visible:ring-border disabled:pointer-events-none">
             <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
+            <span className="sr-only">{closeLabel}</span>
           </SheetPrimitive.Close>
         )}
       </SheetPrimitive.Content>
