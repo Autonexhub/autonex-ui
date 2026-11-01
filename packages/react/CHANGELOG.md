@@ -1,5 +1,19 @@
 # @autonexhub/react
 
+## 6.0.0
+
+### Minor Changes
+
+- 596ddf6: Add presentational navigation and assistant components, each with stories:
+  AppShell, RealmRail, SidebarShell/SidebarNavItem/SidebarBookmarks (+ sidebar styles), UserMenu, WorkspaceSwitcher, ContextDropdown, AutonexIsotipo;
+  AssistantSidePanel, AssistantChat, AssistantChatsPanel, AssistantComposer, AssistantMessage, AssistantThread, AssistantThinking (+ useReducedMotion, useWordReveal).
+  Links go through a `renderLink` prop; text through `labels` props (Spanish defaults).
+
+### Patch Changes
+
+- Updated dependencies [596ddf6]
+  - @autonexhub/tokens@6.0.0
+
 ## 5.0.0
 
 ### Minor Changes
