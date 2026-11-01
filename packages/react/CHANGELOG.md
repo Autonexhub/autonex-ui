@@ -1,5 +1,19 @@
 # @autonexhub/react
 
+## 5.0.0
+
+### Minor Changes
+
+- 0dd2e43: Move generic marta-backend components into the package, each with stories:
+  SectionHeader, StatusDot, StatCard/StatCardGrid, OrganizationAvatar, DocumentAttachmentCard, PanelChartTooltip, LocationFilter, LocationMultiSelect, ResponsiveList, WhatsAppPreview, ErrorBoundary, ThemeToggle, ImageViewerModal.
+  Alert: `quiet-*` variants. FilterPopover: searchable list (`searchThreshold`, `searchPlaceholder`, `noResultsLabel`). SheetContent: `closeLabel`. Bubble `tinted` variant and QuotaCard hover updated.
+  Components that had translations take `labels` props (Spanish defaults).
+
+### Patch Changes
+
+- Updated dependencies [0dd2e43]
+  - @autonexhub/tokens@5.0.0
+
 ## 4.0.0
 
 ### Minor Changes
