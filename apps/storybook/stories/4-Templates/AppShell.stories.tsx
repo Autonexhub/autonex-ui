@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import {
+  AssistantSidePanel,
   Badge,
   Button,
   Card,
@@ -14,6 +15,9 @@ import {
   TableRow,
 } from '@autonexhub/react';
 import { AppShellFrame } from './AppShellFrame';
+import { ANSWER_WITH_RESULTS } from '../assistant-mocks';
+
+const noop = () => undefined;
 
 /**
  * El chasis del panel con navegación por reinos (Bruno 29/10, sobre el chasis
@@ -238,18 +242,10 @@ export const ModulosPlegados: Story = {
   ),
 };
 
-/** Marcador de posición del panel del asistente (el componente real es de otra pieza). */
-const AsistentePlaceholder = ({ children }: { children?: React.ReactNode }) => (
-  <div className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-border bg-background shadow-elev">
-    <div className="flex h-12 shrink-0 items-center border-b border-border px-4 text-sm font-semibold">Rambo IA</div>
-    <div className="flex-1 space-y-3 p-4 text-sm text-muted-foreground">{children ?? 'Panel del asistente (slot `assistantPanel`).'}</div>
-  </div>
-);
-
 export const ConRambo: Story = {
   name: 'Con Rambo IA abierto',
   render: () => (
-    <AppShellFrame realm="crm" page="Contactos" assistantOpen assistantPanel={<AsistentePlaceholder />}>
+    <AppShellFrame realm="crm" page="Contactos" assistantOpen assistantPanel={<AssistantSidePanel className="h-full w-full" orgName="Joyas y Sangría" messages={[]} active={false} onSend={noop} onReset={noop} onOpenChats={noop} onClose={noop} />}>
       <Placeholder title="Contactos" text="El panel de Rambo (400px) estrecha el contenido; se abre con el botón lila o desde el rail." />
     </AppShellFrame>
   ),
@@ -263,10 +259,16 @@ export const ConRamboConversacion: Story = {
       page="Métricas"
       assistantOpen
       assistantPanel={
-        <AsistentePlaceholder>
-          <p className="rounded-lg bg-muted p-2 text-foreground">¿Qué conversaciones de esta semana hablan de horarios?</p>
-          <p>Encontré 12 conversaciones que mencionan horarios…</p>
-        </AsistentePlaceholder>
+        <AssistantSidePanel
+          className="h-full w-full"
+          orgName="Joyas y Sangría"
+          active
+          messages={ANSWER_WITH_RESULTS.map((m) => (m.role === 'assistant' ? { ...m, revealed: true } : m))}
+          onSend={noop}
+          onReset={noop}
+          onOpenChats={noop}
+          onClose={noop}
+        />
       }
     >
       <Placeholder title="Métricas" text="El hilo sigue al navegar: el chat abierto se guarda por organización." />
