@@ -437,3 +437,4 @@ export { ResponsiveList, DEFAULT_RESPONSIVE_LIST_LABELS } from "./components/mol
 export type { ResponsiveListProps, ResponsiveListColumn, ResponsiveListSelection, ResponsiveListLabels } from "./components/molecules/responsive-list"
 
 export * from "./components/navigation"
+export * from "./components/assistant"
