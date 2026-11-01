@@ -15,6 +15,10 @@ const alertVariants = cva(
           "border-transparent bg-warning-soft text-warning [&_[data-slot=alert-description]]:text-foreground/80",
         success:
           "border-transparent bg-success-soft text-success [&_[data-slot=alert-description]]:text-foreground/80",
+        // Discretos: sin caja ni tinte — solo el icono en color, título en tinta y descripción atenuada.
+        "quiet-destructive": "rounded-none border-0 bg-transparent px-0 py-0 text-foreground [&>svg]:text-destructive",
+        "quiet-warning": "rounded-none border-0 bg-transparent px-0 py-0 text-foreground [&>svg]:text-warning",
+        "quiet-success": "rounded-none border-0 bg-transparent px-0 py-0 text-foreground [&>svg]:text-success",
       },
     },
     defaultVariants: {
