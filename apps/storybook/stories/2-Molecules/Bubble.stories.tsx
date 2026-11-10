@@ -9,36 +9,43 @@ const meta: Meta = {
     docs: {
       description: {
         component: `
-Chat bubble component for conversation messages.
+Burbuja de chat para los mensajes de una conversación. Forma horneada en \`ui/bubble.tsx\`:
+\`rounded-3xl\` con la esquina superior del lado de la etiqueta recortada a \`md\`.
 
-## Variants
-- **agent**: Canonical for agent messages — soft brand tint (bg-brand-soft), ink text, right-aligned
-- **muted**: Gray background, canonical for user messages (left-aligned)
-- **default**: Primary color (dark ink)
-- **secondary**: Secondary background
-- **tinted**: Light tint of primary color
-- **outline**: Border only, transparent background
-- **ghost**: No styling, raw text
-- **brand**: Brand color (tokens bg-brand / text-brand-foreground)
-- **destructive**: Error/warning styling
+## Variantes canónicas (las que usa la app)
+- **muted**: cliente / usuario — gris \`bg-muted\`, a la izquierda.
+- **agent**: agente IA — tinte suave de marca \`bg-brand-soft\`, texto en tinta, a la derecha.
+- **tinted**: operador humano — tinte neutro de la tinta, a la derecha (Inbox, conversaciones de
+  WhatsApp, detalle de conversación, casos pendientes). El tinte lo pone el componente
+  (\`bg-primary/10\`, no es un token del DS); en páginas y stories nunca se re-declara a mano.
 
-## Alignment
-- \`align="start"\`: Left-aligned (default; user messages)
-- \`align="end"\`: Right-aligned (agent messages)
+## Variantes auxiliares
+- **default**: tinta sólida (\`bg-primary\`).
+- **secondary**: fondo \`bg-secondary\`.
+- **outline**: solo borde, fondo blanco.
+- **ghost**: texto plano sin burbuja.
+- **brand**: azul de marca sólido (\`bg-brand\`) — cuenta como el único azul de la pantalla.
+- **destructive**: error o aviso (\`bg-destructive/10 text-destructive\`).
 
-## Pattern (canonical, Design Rules)
-User = left, \`variant="muted"\`. Agent = right, \`variant="agent"\`.
+## Alineación
+- \`align="start"\`: izquierda (por defecto; cliente).
+- \`align="end"\`: derecha (agente IA y operador).
+
+## Patrón canónico (Design Rules)
+Cliente = izquierda, \`variant="muted"\`. Agente IA = derecha, \`variant="agent"\`. Operador humano = derecha, \`variant="tinted"\`.
 
 \`\`\`tsx
 <BubbleGroup>
   <Bubble variant="muted">
-    <BubbleContent>Mensaje del usuario</BubbleContent>
+    <BubbleContent>Mensaje del cliente</BubbleContent>
   </Bubble>
   <Bubble variant="agent" align="end">
-    <BubbleContent>Respuesta del agente</BubbleContent>
+    <BubbleContent>Respuesta del agente IA</BubbleContent>
+  </Bubble>
+  <Bubble variant="tinted" align="end">
+    <BubbleContent>Respuesta del operador</BubbleContent>
   </Bubble>
 </BubbleGroup>
-
 \`\`\`
 `,
       },
@@ -87,9 +94,9 @@ export const AllVariants: Story = {
         </Bubble>
       </div>
       <div className="space-y-1">
-        <p className="text-xs text-muted-foreground">tinted</p>
-        <Bubble variant="tinted">
-          <BubbleContent>Mensaje con estilo tinted</BubbleContent>
+        <p className="text-xs text-muted-foreground">tinted (operador humano, derecha)</p>
+        <Bubble variant="tinted" align="end">
+          <BubbleContent>Mensaje del operador con estilo tinted</BubbleContent>
         </Bubble>
       </div>
       <div className="space-y-1">
@@ -178,7 +185,7 @@ export const WithAvatar: Story = {
           </BubbleContent>
         </Bubble>
         <Avatar className="h-8 w-8">
-          <AvatarFallback className="text-xs">AI</AvatarFallback>
+          <AvatarFallback className="text-xs">IA</AvatarFallback>
         </Avatar>
       </div>
     </div>
@@ -200,11 +207,11 @@ export const LongMessage: Story = {
         <BubbleContent>
           Entiendo tu situación. Voy a explicarte las opciones disponibles para tu tratamiento:
           <br /><br />
-          1. <strong>Opción conservadora:</strong> Seguimiento periódico cada 3 meses con radiografías de control.
+          1. <span className="font-medium">Opción conservadora:</span> Seguimiento periódico cada 3 meses con radiografías de control.
           <br /><br />
-          2. <strong>Tratamiento activo:</strong> Comenzar con fisioterapia 2 veces por semana durante 6 semanas.
+          2. <span className="font-medium">Tratamiento activo:</span> Comenzar con fisioterapia 2 veces por semana durante 6 semanas.
           <br /><br />
-          3. <strong>Intervención:</strong> En casos más severos, podríamos considerar una intervención menor.
+          3. <span className="font-medium">Intervención:</span> En casos más severos, podríamos considerar una intervención menor.
           <br /><br />
           ¿Te gustaría que te explique alguna de estas opciones con más detalle?
         </BubbleContent>
@@ -214,7 +221,7 @@ export const LongMessage: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Long message with formatted content.',
+        story: 'Mensaje largo con contenido formateado.',
       },
     },
   },

@@ -17,7 +17,7 @@ const meta: Meta<typeof ScrollArea> = {
   parameters: {
     docs: {
       description: {
-        component: 'Custom scrollable area with styled scrollbars. Use for overflow content.',
+        component: 'Área con scroll y barras con el estilo del panel. Para contenido que desborda.',
       },
     },
   },
@@ -31,6 +31,7 @@ const tags = Array.from({ length: 50 }).map(
 );
 
 export const Vertical: Story = {
+  name: 'Vertical',
   render: () => (
     <ScrollArea className="h-72 w-48 rounded-lg border">
       <div className="p-4">
@@ -78,6 +79,7 @@ const works = [
 ];
 
 export const Horizontal: Story = {
+  name: 'Horizontal',
   render: () => (
     <ScrollArea className="w-96 whitespace-nowrap rounded-lg border">
       <div className="flex w-max space-x-4 p-4">
@@ -89,7 +91,7 @@ export const Horizontal: Story = {
               </div>
             </div>
             <figcaption className="pt-2 text-xs text-muted-foreground">
-              <span className="font-semibold text-foreground">{work.artist}</span>
+              <span className="font-medium text-foreground">{work.artist}</span>
             </figcaption>
           </figure>
         ))}
@@ -100,9 +102,10 @@ export const Horizontal: Story = {
 };
 
 export const WithContent: Story = {
+  name: 'Con contenido',
   render: () => (
     <ScrollArea className="h-[200px] w-[350px] rounded-lg border p-4">
-      <h4 className="mb-4 text-sm font-semibold">Conversación reciente</h4>
+      <h4 className="mb-4 text-sm font-medium">Conversación reciente</h4>
       <div className="space-y-4">
         {Array.from({ length: 10 }).map((_, i) => (
           <div key={i} className="flex items-start gap-3">
@@ -121,10 +124,11 @@ export const WithContent: Story = {
 };
 
 export const BothDirections: Story = {
+  name: 'En las dos direcciones',
   render: () => (
     <ScrollArea className="h-[300px] w-[400px] rounded-lg border">
       <div className="p-4" style={{ width: '600px' }}>
-        <h4 className="mb-4 text-sm font-semibold">Tabla grande</h4>
+        <h4 className="mb-4 text-sm font-medium">Tabla grande</h4>
         <Table>
           <TableHeader>
             <TableRow>

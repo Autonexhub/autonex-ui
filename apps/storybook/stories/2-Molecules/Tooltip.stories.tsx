@@ -14,14 +14,14 @@ const meta: Meta<typeof Tooltip> = {
   argTypes: {
     delayDuration: {
       control: { type: 'number', min: 0, max: 1000, step: 50 },
-      description: 'Delay in ms before tooltip appears',
+      description: 'Retardo en ms antes de que aparezca el tooltip',
       table: {
         defaultValue: { summary: '300' },
       },
     },
     disableHoverableContent: {
       control: 'boolean',
-      description: 'If true, tooltip closes when hovering its content',
+      description: 'Si es true, el tooltip se cierra al pasar el ratón por su contenido',
     },
   },
   // TooltipProvider is now global in .storybook/preview.tsx
@@ -29,26 +29,26 @@ const meta: Meta<typeof Tooltip> = {
     docs: {
       description: {
         component: `
-Tooltip on hover/focus. Shows contextual information on hover.
+Tooltip al pasar el ratón o al enfocar. Muestra información de contexto.
 
-## Usage
-TooltipProvider is included globally. Just use:
+## Uso
+TooltipProvider ya está incluido de forma global. Basta con:
 
 \`\`\`tsx
 <Tooltip>
   <TooltipTrigger asChild>
-    <Button>Hover me</Button>
+    <Button>Pasa el ratón</Button>
   </TooltipTrigger>
   <TooltipContent>
-    Tooltip text
+    Texto del tooltip
   </TooltipContent>
 </Tooltip>
 
 \`\`\`
 
 ## Props
-- **side**: top | right | bottom | left (default: top)
-- **delayDuration**: ms before showing (default: 300ms)
+- **side**: top | right | bottom | left (por defecto: top)
+- **delayDuration**: ms antes de mostrarse (por defecto: 300 ms)
 `,
       },
     },
@@ -59,6 +59,7 @@ export default meta;
 type Story = StoryObj<typeof Tooltip>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -72,19 +73,21 @@ export const Default: Story = {
 };
 
 export const WithIcon: Story = {
+  name: 'Con icono',
   render: () => (
     <Tooltip>
       <TooltipTrigger>
         <Question className="h-4 w-4 text-muted-foreground" />
       </TooltipTrigger>
       <TooltipContent>
-        <p>El score RAP mide la calidad de la conversación (0-10)</p>
+        <p>La puntuación RAP mide la calidad de la conversación (0-10)</p>
       </TooltipContent>
     </Tooltip>
   ),
 };
 
 export const Positions: Story = {
+  name: 'Posiciones',
   render: () => (
     <div className="flex gap-8">
       <Tooltip>

@@ -45,9 +45,17 @@ const meta: Meta<typeof DatePicker> = {
   title: '2-Molecules/DatePicker',
   component: DatePicker,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Selector de una fecha: botón `outline` que abre un `Calendar` dentro de un `Popover`, con la fecha formateada en español. Es el selector oficial: nunca `type="date"` nativo.',
+      },
+    },
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof DatePicker>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  name: 'Por defecto',};

@@ -24,7 +24,7 @@ const meta: Meta<typeof Menubar> = {
   parameters: {
     docs: {
       description: {
-        component: 'Desktop-style menubar. Use for application-level menus.',
+        component: 'Barra de menús estilo escritorio. Para menús a nivel de aplicación.',
       },
     },
   },
@@ -34,6 +34,7 @@ export default meta;
 type Story = StoryObj<typeof Menubar>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Menubar>
       <MenubarMenu>
@@ -117,6 +118,7 @@ function MenubarWithCheckboxesExample() {
 }
 
 export const WithCheckboxes: Story = {
+  name: 'Con casillas',
   render: () => <MenubarWithCheckboxesExample />,
 };
 
@@ -142,10 +144,12 @@ function MenubarWithRadioGroupExample() {
 }
 
 export const WithRadioGroup: Story = {
+  name: 'Con opción única',
   render: () => <MenubarWithRadioGroupExample />,
 };
 
 export const WithSubmenu: Story = {
+  name: 'Con submenú',
   render: () => (
     <Menubar>
       <MenubarMenu>

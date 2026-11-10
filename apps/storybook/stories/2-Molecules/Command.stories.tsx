@@ -37,32 +37,32 @@ const meta: Meta = {
     docs: {
       description: {
         component: `
-Command palette / autocomplete component for searching and executing actions.
+Paleta de comandos / autocompletado para buscar y ejecutar acciones.
 
-## Components
-- **Command**: Base container with rounded-3xl styling
-- **CommandInput**: Search input with icon
-- **CommandList**: Scrollable results container
-- **CommandGroup**: Grouped items with heading
-- **CommandItem**: Individual selectable item with checkmark
-- **CommandShortcut**: Keyboard shortcut hint
-- **CommandDialog**: Modal version (Cmd+K style)
+## Piezas
+- **Command**: contenedor base (\`rounded-3xl\`).
+- **CommandInput**: campo de búsqueda con icono.
+- **CommandList**: contenedor de resultados con scroll.
+- **CommandGroup**: grupo de elementos con encabezado.
+- **CommandItem**: elemento seleccionable con check.
+- **CommandShortcut**: pista del atajo de teclado.
+- **CommandDialog**: versión modal (estilo Cmd+K).
 
-## Patterns
+## Patrones
 
-### Inline search
+### Búsqueda en línea
 \`\`\`tsx
 <Command className="border">
   <CommandInput placeholder="Buscar..." />
   <CommandList>
     <CommandGroup heading="Sugerencias">
-      <CommandItem>Item 1</CommandItem>
+      <CommandItem>Elemento 1</CommandItem>
     </CommandGroup>
   </CommandList>
 </Command>
 \`\`\`
 
-### Command palette (Cmd+K)
+### Paleta de comandos (Cmd+K)
 \`\`\`tsx
 <CommandDialog open={open} onOpenChange={setOpen}>
   <Command>
@@ -81,6 +81,7 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Command className="border max-w-md">
       <CommandInput placeholder="Escribe para buscar..." />
@@ -124,6 +125,7 @@ export const Default: Story = {
 };
 
 export const WithShortcuts: Story = {
+  name: 'Con atajos',
   render: () => (
     <Command className="border max-w-md">
       <CommandInput placeholder="Buscar acciones..." />
@@ -152,7 +154,7 @@ export const WithShortcuts: Story = {
           </CommandItem>
           <CommandItem>
             <Book className="mr-2 h-4 w-4" />
-            <span>Ir a Knowledge Base</span>
+            <span>Ir a Base de conocimientos</span>
             <CommandShortcut>⌘K</CommandShortcut>
           </CommandItem>
         </CommandGroup>
@@ -162,7 +164,7 @@ export const WithShortcuts: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Command menu with keyboard shortcuts displayed.',
+        story: 'Menú de comandos con los atajos de teclado visibles.',
       },
     },
   },
@@ -185,7 +187,7 @@ function CommandDialogExample() {
   return (
     <div className="flex flex-col items-center gap-4 p-8">
       <p className="text-sm text-muted-foreground">
-        Presiona <Kbd>⌘K</Kbd> o haz clic en el botón
+        Pulsa <Kbd>⌘K</Kbd> o haz clic en el botón
       </p>
       <Button onClick={() => setOpen(true)} variant="outline" className="gap-2">
         <MagnifyingGlass className="h-4 w-4" />
@@ -243,11 +245,12 @@ function CommandDialogExample() {
 }
 
 export const Dialog: Story = {
+  name: 'Diálogo (Cmd+K)',
   render: () => <CommandDialogExample />,
   parameters: {
     docs: {
       description: {
-        story: 'Command palette in a modal dialog, triggered by Cmd+K or button click.',
+        story: 'Paleta de comandos en un diálogo modal; se abre con Cmd+K o con el botón.',
       },
     },
   },
@@ -271,7 +274,7 @@ function AutocompleteExample() {
 
   return (
     <div className="max-w-md">
-      <p className="text-sm text-muted-foreground mb-2">Autocomplete dropdown para buscar contactos</p>
+      <p className="text-sm text-muted-foreground mb-2">Autocompletado para buscar contactos</p>
       <Command className="border">
         <CommandInput
           placeholder="Buscar contacto por nombre o teléfono..."
@@ -314,11 +317,12 @@ function AutocompleteExample() {
 }
 
 export const Autocomplete: Story = {
+  name: 'Autocompletado',
   render: () => <AutocompleteExample />,
   parameters: {
     docs: {
       description: {
-        story: 'Command used as an autocomplete dropdown for searching contacts. Type to filter results.',
+        story: 'Command usado como autocompletado para buscar contactos. Escribe para filtrar los resultados.',
       },
     },
   },
@@ -343,7 +347,7 @@ function MultiSelectAutocompleteExample() {
 
   return (
     <div className="max-w-md">
-      <p className="text-sm text-muted-foreground mb-2">Multi-select para etiquetas</p>
+      <p className="text-sm text-muted-foreground mb-2">Selección múltiple de etiquetas</p>
       <Command className="border">
         <CommandInput placeholder="Buscar etiquetas..." />
         <CommandList>
@@ -383,17 +387,19 @@ function MultiSelectAutocompleteExample() {
 }
 
 export const MultiSelectAutocomplete: Story = {
+  name: 'Autocompletado múltiple',
   render: () => <MultiSelectAutocompleteExample />,
   parameters: {
     docs: {
       description: {
-        story: 'Multi-select autocomplete for tags with checkmarks.',
+        story: 'Autocompletado de selección múltiple para etiquetas, con check.',
       },
     },
   },
 };
 
 export const Empty: Story = {
+  name: 'Sin resultados',
   render: () => (
     <Command className="border max-w-md">
       <CommandInput placeholder="Buscar..." value="xyz123" />
@@ -411,7 +417,7 @@ export const Empty: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Empty state when no results match the search query.',
+        story: 'Estado vacío cuando ningún resultado coincide con la búsqueda.',
       },
     },
   },

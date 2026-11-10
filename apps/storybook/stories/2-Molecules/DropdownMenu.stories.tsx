@@ -25,7 +25,7 @@ const meta: Meta<typeof DropdownMenu> = {
   parameters: {
     docs: {
       description: {
-        component: 'Dropdown menu triggered by a button. Use for actions and navigation.',
+        component: 'Menú desplegable que se abre desde un botón. Para acciones y navegación.',
       },
     },
   },
@@ -35,6 +35,7 @@ export default meta;
 type Story = StoryObj<typeof DropdownMenu>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -65,6 +66,7 @@ export const Default: Story = {
 };
 
 export const WithDestructiveItem: Story = {
+  name: 'Con acción destructiva',
   render: () => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -88,13 +90,14 @@ export const WithDestructiveItem: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Acciones peligrosas usan `variant="destructive"` en el item: texto e icono en rojo con hover suave.',
+        story: 'Acciones peligrosas usan `variant="destructive"` en el elemento: texto e icono en rojo con hover suave.',
       },
     },
   },
 };
 
 export const WithCheckboxItems: Story = {
+  name: 'Con casillas',
   render: function Render() {
     const [showStatusBar, setShowStatusBar] = React.useState(true);
     const [showActivityBar, setShowActivityBar] = React.useState(false);
@@ -124,6 +127,7 @@ export const WithCheckboxItems: Story = {
 };
 
 export const WithRadioItems: Story = {
+  name: 'Con opción única',
   render: function Render() {
     const [position, setPosition] = React.useState('bottom');
 
@@ -147,6 +151,7 @@ export const WithRadioItems: Story = {
 };
 
 export const WithSubmenu: Story = {
+  name: 'Con submenú',
   render: () => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -167,7 +172,7 @@ export const WithSubmenu: Story = {
           <DropdownMenuSubContent>
             <DropdownMenuItem>
               <Envelope className="mr-2 h-4 w-4" />
-              <span>Por email</span>
+              <span>Por correo</span>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <span>Por enlace</span>

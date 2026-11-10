@@ -17,51 +17,41 @@ const meta: Meta = {
     docs: {
       description: {
         component: `
-Sonner is the toast notification library used throughout the dashboard.
+**Qué es:** los avisos efímeros (toasts) del panel. **Es el ÚNICO sistema de toasts**: el
+\`toast.tsx\`/\`use-toast.ts\` de Radix se eliminó el 31/08/2026 y no hay que reintroducirlo.
+Salen abajo a la derecha a través del envoltorio \`Toaster\` de \`@autonexhub/react\` (iconos Phosphor,
+tokens de popover); los diálogos siguen centrados y los sheets entran por la derecha.
 
-## IMPORTANT
-**This is the ONLY toast system** — the legacy Radix \`toast.tsx\`/\`use-toast.ts\`
-were removed (2026-08-31). Toasts appear bottom-right via the \`@/components/ui/sonner\`
-wrapper (Phosphor icons, popover tokens); dialogs stay centered, sheets slide from the right.
+**Cuándo:** confirmar una acción (guardado, creado, eliminado), avisar de un error recuperable o
+seguir una operación asíncrona. No sirve para errores que bloquean: eso va en la propia página.
 
-## Usage
+## Uso
 \`\`\`tsx
 import { toast } from 'sonner';
 
-// Simple messages
 toast.success('Guardado correctamente');
 toast.error('Error al guardar');
 toast.info('Información importante');
 toast.warning('Atención requerida');
 
-// With description
-toast.success('Contacto creado', {
-  description: 'El contacto ha sido añadido a la lista.',
-});
+// Con descripción
+toast.success('Contacto creado', { description: 'El contacto se ha añadido a la lista.' });
 
-// With action
-toast.error('Error de conexión', {
-  action: {
-    label: 'Reintentar',
-    onClick: () => retry(),
-  },
-});
+// Con acción
+toast.error('Error de conexión', { action: { label: 'Reintentar', onClick: () => retry() } });
 
-// Promise toast (loading → success/error)
+// Promesa (cargando → éxito/error)
 toast.promise(saveData(), {
-  loading: 'Guardando...',
+  loading: 'Guardando…',
   success: 'Guardado correctamente',
   error: 'Error al guardar',
 });
 \`\`\`
 
-## Setup
-The \`<Toaster />\` component must be mounted once at the app root (in App.tsx or layout).
+**Montaje:** \`<Toaster />\` se monta una sola vez en la raíz de la app.
 
-## Props (Toaster)
-- **position**: Where toasts appear (bottom-right default)
-- **richColors**: Enhanced color styling
-- **theme**: light/dark/system
+**Reglas:** textos en español, cortos y en positivo ("Cambios guardados", no "Se han guardado los
+cambios correctamente"). Un toast por acción; nada de encadenarlos.
 `,
       },
     },
@@ -72,35 +62,37 @@ export default meta;
 type Story = StoryObj;
 
 export const AllVariants: Story = {
+  name: 'Variantes',
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Button onClick={() => toast.success('Operación completada')}>
-        Success
+        Éxito
       </Button>
       <Button onClick={() => toast.error('Ha ocurrido un error')} variant="destructive">
         Error
       </Button>
       <Button onClick={() => toast.info('Información importante')} variant="outline">
-        Info
+        Información
       </Button>
       <Button onClick={() => toast.warning('Atención requerida')} variant="outline">
-        Warning
+        Aviso
       </Button>
       <Button onClick={() => toast('Mensaje neutral')} variant="secondary">
-        Default
+        Neutro
       </Button>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Click buttons to see different toast variants.',
+        story: 'Pulsa cada botón para ver las variantes.',
       },
     },
   },
 };
 
 export const WithDescription: Story = {
+  name: 'Con descripción',
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Button
@@ -127,6 +119,7 @@ export const WithDescription: Story = {
 };
 
 export const WithAction: Story = {
+  name: 'Con acción',
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Button
@@ -134,7 +127,7 @@ export const WithAction: Story = {
           toast.error('No se pudo conectar', {
             action: {
               label: 'Reintentar',
-              onClick: () => toast.success('Conectado!'),
+              onClick: () => toast.success('Conectado'),
             },
           })
         }
@@ -163,6 +156,7 @@ export const WithAction: Story = {
 };
 
 export const PromiseToast: Story = {
+  name: 'Promesa',
   render: function Render() {
     const simulateAsync = () =>
       new Promise((resolve, reject) => {
@@ -182,20 +176,21 @@ export const PromiseToast: Story = {
           })
         }
       >
-        Simular operación async
+        Simular operación asíncrona
       </Button>
     );
   },
   parameters: {
     docs: {
       description: {
-        story: 'Promise toast shows loading state, then success or error based on promise result.',
+        story: 'Muestra el estado de carga y después éxito o error según el resultado de la promesa.',
       },
     },
   },
 };
 
 export const CustomDuration: Story = {
+  name: 'Duración',
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Button
@@ -221,6 +216,7 @@ export const CustomDuration: Story = {
 };
 
 export const WithCustomIcon: Story = {
+  name: 'Icono propio',
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Button
@@ -230,7 +226,7 @@ export const WithCustomIcon: Story = {
           })
         }
       >
-        Loading icon
+        Icono de carga
       </Button>
       <Button
         variant="outline"
@@ -240,13 +236,14 @@ export const WithCustomIcon: Story = {
           })
         }
       >
-        Custom success icon
+        Icono de éxito propio
       </Button>
     </div>
   ),
 };
 
 export const Dismiss: Story = {
+  name: 'Cerrar',
   render: function Render() {
     let toastId: string | number;
     return (
@@ -270,17 +267,18 @@ export const Dismiss: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Programmatically dismiss specific or all toasts.',
+        story: 'Cerrar por código un toast concreto o todos.',
       },
     },
   },
 };
 
 export const CommonPatterns: Story = {
+  name: 'Patrones habituales',
   render: () => (
     <div className="space-y-4">
       <div>
-        <h3 className="text-sm font-medium mb-2">Patrones comunes en el dashboard:</h3>
+        <h3 className="text-sm font-medium mb-2">Patrones habituales en el panel</h3>
       </div>
       <div className="flex flex-wrap gap-2">
         <Button
@@ -319,7 +317,7 @@ export const CommonPatterns: Story = {
             })
           }
         >
-          Warning con acción
+          Aviso con acción
         </Button>
       </div>
     </div>
@@ -327,7 +325,7 @@ export const CommonPatterns: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Common toast patterns used throughout the dashboard.',
+        story: 'Patrones habituales en el panel.',
       },
     },
   },

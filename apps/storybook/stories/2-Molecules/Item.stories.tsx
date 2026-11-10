@@ -58,6 +58,7 @@ export default meta;
 type Story = StoryObj<typeof Item>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: (args) => (
     <Item {...args} className="w-96">
       <ItemMedia variant="icon">

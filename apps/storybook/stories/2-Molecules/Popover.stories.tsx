@@ -15,28 +15,28 @@ const meta: Meta<typeof Popover> = {
   argTypes: {
     modal: {
       control: 'boolean',
-      description: 'If true, interaction outside popover is blocked',
+      description: 'Si es true, se bloquea la interacción fuera del popover',
       table: {
         defaultValue: { summary: 'false' },
       },
     },
     defaultOpen: {
       control: 'boolean',
-      description: 'Initial open state (uncontrolled)',
+      description: 'Estado abierto inicial (no controlado)',
     },
     open: {
       control: 'boolean',
-      description: 'Open state (controlled)',
+      description: 'Estado abierto (controlado)',
     },
     onOpenChange: {
       action: 'openChange',
-      description: 'Callback when open state changes',
+      description: 'Se llama cuando cambia el estado abierto',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Floating panel for forms/filters. Use PopoverTrigger and PopoverContent.',
+        component: 'Panel flotante para formularios cortos y filtros. Se compone con PopoverTrigger y PopoverContent.',
       },
     },
   },
@@ -46,6 +46,7 @@ export default meta;
 type Story = StoryObj<typeof Popover>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Popover>
       <PopoverTrigger asChild>
@@ -56,11 +57,11 @@ export const Default: Story = {
           <h4 className="font-medium">Datos del contacto</h4>
           <Field>
             <FieldLabel htmlFor="nombre">Nombre</FieldLabel>
-            <Input id="nombre" defaultValue="María García" />
+            <Input id="nombre" defaultValue="María García" placeholder="Ej: María García" />
           </Field>
           <Field>
             <FieldLabel htmlFor="telefono">Teléfono</FieldLabel>
-            <Input id="telefono" defaultValue="+34 612 345 678" />
+            <Input id="telefono" defaultValue="+34 612 345 678" placeholder="612 345 678" />
           </Field>
         </div>
       </PopoverContent>

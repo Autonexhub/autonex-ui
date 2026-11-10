@@ -55,6 +55,7 @@ export default meta;
 type Story = StoryObj<typeof Field>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: (args) => (
     <Field {...args} className="w-96">
       <FieldLabel htmlFor="nombre-default">Nombre</FieldLabel>
@@ -144,7 +145,7 @@ export const ContactForm: Story = {
                 <FieldDescription>Con prefijo si no es +34.</FieldDescription>
               </Field>
               <Field>
-                <FieldLabel htmlFor="cf-email">Email</FieldLabel>
+                <FieldLabel htmlFor="cf-email">Correo electrónico</FieldLabel>
                 <Input id="cf-email" type="email" placeholder="maria@ejemplo.com" />
               </Field>
             </div>

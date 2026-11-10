@@ -10,20 +10,20 @@ const meta: Meta<typeof Alert> = {
     variant: {
       control: 'select',
       options: ['default', 'destructive', 'warning', 'success'],
-      description: 'Visual style: semantic variants use a soft tinted background (DS pairs), icon+title in the semantic color, description in ink',
+      description: 'Estilo visual: las variantes semánticas usan fondo suave (pares del DS), icono y título en el color semántico y descripción en tinta',
       table: {
         defaultValue: { summary: 'default' },
       },
     },
     className: {
       control: 'text',
-      description: 'Additional CSS classes (width, margins)',
+      description: 'Clases CSS adicionales (ancho, márgenes)',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Alert banner for messages. Use with AlertTitle and AlertDescription. Add icon as first child.',
+        component: 'Aviso en banda para mensajes. Se compone con AlertTitle y AlertDescription; el icono va como primer hijo.',
       },
     },
   },
@@ -33,6 +33,7 @@ export default meta;
 type Story = StoryObj<typeof Alert>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Alert className="w-96">
       <Info className="h-4 w-4" />
@@ -45,6 +46,7 @@ export const Default: Story = {
 };
 
 export const Destructive: Story = {
+  name: 'Error',
   render: () => (
     <Alert variant="destructive" className="w-96">
       <WarningCircle className="h-4 w-4" />
@@ -57,7 +59,7 @@ export const Destructive: Story = {
 };
 
 export const Warning_: Story = {
-  name: 'Warning',
+  name: 'Aviso',
   render: () => (
     <Alert variant="warning" className="w-96">
       <Warning className="h-4 w-4" />
@@ -70,6 +72,7 @@ export const Warning_: Story = {
 };
 
 export const Success: Story = {
+  name: 'Éxito',
   render: () => (
     <Alert variant="success" className="w-96">
       <CheckCircle className="h-4 w-4" />
@@ -82,7 +85,7 @@ export const Success: Story = {
 };
 
 export const AdminOnly: Story = {
-  name: 'Admin Only Warning',
+  name: 'Aviso solo para administradores',
   render: () => (
     <Alert className="w-96">
       <WarningCircle className="h-4 w-4" />
