@@ -19,21 +19,21 @@ const meta: Meta<typeof AlertDialog> = {
   argTypes: {
     defaultOpen: {
       control: 'boolean',
-      description: 'Initial open state',
+      description: 'Estado abierto inicial',
     },
     open: {
       control: 'boolean',
-      description: 'Controlled open state',
+      description: 'Estado abierto (controlado)',
     },
     onOpenChange: {
       action: 'openChange',
-      description: 'Callback when open state changes',
+      description: 'Se llama cuando cambia el estado abierto',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Modal dialog for destructive/important actions requiring confirmation. User must respond.',
+        component: 'Diálogo modal para acciones destructivas o importantes que requieren confirmación. El usuario tiene que responder.',
       },
     },
   },
@@ -43,6 +43,7 @@ export default meta;
 type Story = StoryObj<typeof AlertDialog>;
 
 export const DeleteConfirmation: Story = {
+  name: 'Confirmar eliminación',
   render: () => (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -66,6 +67,7 @@ export const DeleteConfirmation: Story = {
 };
 
 export const DiscardChanges: Story = {
+  name: 'Descartar cambios',
   render: () => (
     <AlertDialog>
       <AlertDialogTrigger asChild>

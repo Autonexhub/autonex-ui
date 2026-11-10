@@ -8,29 +8,29 @@ const meta: Meta<typeof Tabs> = {
   argTypes: {
     defaultValue: {
       control: 'text',
-      description: 'Initial active tab value (uncontrolled)',
+      description: 'Pestaña activa inicial (no controlado)',
     },
     value: {
       control: 'text',
-      description: 'Active tab value (controlled)',
+      description: 'Pestaña activa (controlado)',
     },
     orientation: {
       control: 'radio',
       options: ['horizontal', 'vertical'],
-      description: 'Tab orientation',
+      description: 'Orientación de las pestañas',
       table: {
         defaultValue: { summary: 'horizontal' },
       },
     },
     onValueChange: {
       action: 'valueChange',
-      description: 'Callback when active tab changes',
+      description: 'Se llama cuando cambia la pestaña activa',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Tab navigation. Default variant is "line" (underline). Use "default" (segmented) for short filters.',
+        component: 'Navegación por pestañas. La variante por defecto es "line" (subrayado); "default" (segmentada) se reserva para filtros cortos.',
       },
     },
   },
@@ -40,7 +40,7 @@ export default meta;
 type Story = StoryObj<typeof Tabs>;
 
 export const LineVariant: Story = {
-  name: 'Line Variant (default)',
+  name: 'Variante line (por defecto)',
   render: () => (
     <Tabs defaultValue="comportamiento" className="w-96">
       <TabsList>
@@ -56,7 +56,7 @@ export const LineVariant: Story = {
 };
 
 export const ChannelTabs: Story = {
-  name: 'Channel Tabs (canonical order)',
+  name: 'Pestañas de canal (orden canónico)',
   render: () => (
     <Tabs defaultValue="all" className="w-full">
       <TabsList>
@@ -72,7 +72,7 @@ export const ChannelTabs: Story = {
 };
 
 export const TwoTabs: Story = {
-  name: 'Two Tabs',
+  name: 'Dos pestañas',
   render: () => (
     <Tabs defaultValue="list" className="w-64">
       <TabsList>
@@ -84,7 +84,7 @@ export const TwoTabs: Story = {
 };
 
 export const Segmented: Story = {
-  name: 'Segmented (filters)',
+  name: 'Segmentada (filtros)',
   render: () => (
     <Tabs defaultValue="all" className="w-96">
       <TabsList variant="default">

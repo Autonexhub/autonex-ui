@@ -14,16 +14,16 @@ const meta: Meta<typeof Accordion> = {
     type: {
       control: 'radio',
       options: ['single', 'multiple'],
-      description: 'Single or multiple items can be open',
+      description: 'Si puede abrirse un solo panel o varios',
       table: { defaultValue: { summary: 'single' } },
     },
     collapsible: {
       control: 'boolean',
-      description: 'Allow closing all items (only for type="single")',
+      description: 'Permite cerrar todos los paneles (solo con type="single")',
     },
     defaultValue: {
       control: 'text',
-      description: 'Initially open item(s)',
+      description: 'Panel o paneles abiertos al inicio',
     },
   },
   parameters: {
@@ -39,6 +39,7 @@ export default meta;
 type Story = StoryObj<typeof Accordion>;
 
 export const Single: Story = {
+  name: 'Uno abierto',
   render: () => (
     // Ancho fijo del contenedor: el acordeón NUNCA cambia de ancho al abrir o
     // cerrar (en la app lo fija el diálogo, la tarjeta o la columna que lo aloja).
@@ -59,7 +60,7 @@ export const Single: Story = {
       <AccordionItem value="item-3">
         <AccordionTrigger>¿Cuánto cuesta?</AccordionTrigger>
         <AccordionContent>
-          Ofrecemos planes basados en consumo. Contacta con ventas para más info.
+          Ofrecemos planes basados en consumo. Contacta con ventas para más información.
         </AccordionContent>
       </AccordionItem>
     </Accordion>
@@ -68,6 +69,7 @@ export const Single: Story = {
 };
 
 export const Multiple: Story = {
+  name: 'Varios abiertos',
   render: () => (
     <div className="w-[28rem] max-w-full">
     <Accordion type="multiple" defaultValue={['item-1']} className="w-full">

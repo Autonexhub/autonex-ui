@@ -16,7 +16,7 @@ const meta: Meta<typeof Pagination> = {
   parameters: {
     docs: {
       description: {
-        component: 'Pagination navigation. Use for paginated lists and tables.',
+        component: 'Navegación por páginas. Para listas y tablas paginadas.',
       },
     },
   },
@@ -26,6 +26,7 @@ export default meta;
 type Story = StoryObj<typeof Pagination>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Pagination>
       <PaginationContent>
@@ -55,6 +56,7 @@ export const Default: Story = {
 };
 
 export const WithManyPages: Story = {
+  name: 'Con muchas páginas',
   render: () => (
     <Pagination>
       <PaginationContent>
@@ -93,6 +95,7 @@ export const WithManyPages: Story = {
 };
 
 export const FirstPage: Story = {
+  name: 'Primera página',
   render: () => (
     <Pagination>
       <PaginationContent>
@@ -119,6 +122,7 @@ export const FirstPage: Story = {
 };
 
 export const LastPage: Story = {
+  name: 'Última página',
   render: () => (
     <Pagination>
       <PaginationContent>
@@ -145,6 +149,7 @@ export const LastPage: Story = {
 };
 
 export const Simple: Story = {
+  name: 'Simple',
   render: () => (
     <Pagination>
       <PaginationContent>

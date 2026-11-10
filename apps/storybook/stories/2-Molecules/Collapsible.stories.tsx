@@ -15,25 +15,25 @@ const meta: Meta<typeof Collapsible> = {
   argTypes: {
     defaultOpen: {
       control: 'boolean',
-      description: 'Initial open state',
+      description: 'Estado abierto inicial',
     },
     open: {
       control: 'boolean',
-      description: 'Controlled open state',
+      description: 'Estado abierto (controlado)',
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable the collapsible',
+      description: 'Desactiva el desplegable',
     },
     onOpenChange: {
       action: 'openChange',
-      description: 'Callback when open state changes',
+      description: 'Se llama cuando cambia el estado abierto',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Expandable/collapsible section. Use for progressive disclosure.',
+        component: 'Sección que se expande y se pliega. Para mostrar información de forma progresiva.',
       },
     },
   },
@@ -43,16 +43,17 @@ export default meta;
 type Story = StoryObj<typeof Collapsible>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: function Render() {
     const [isOpen, setIsOpen] = React.useState(false);
     return (
       <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-80 space-y-2">
         <div className="flex items-center justify-between">
-          <h4 className="text-sm font-semibold">Filtros avanzados</h4>
+          <h4 className="text-sm font-medium">Filtros avanzados</h4>
           <CollapsibleTrigger asChild>
             <Button variant="ghost" size="sm">
               <CaretDown className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-              <span className="sr-only">Toggle</span>
+              <span className="sr-only">Mostrar u ocultar</span>
             </Button>
           </CollapsibleTrigger>
         </div>
@@ -73,6 +74,7 @@ export const Default: Story = {
 };
 
 export const DefaultOpen: Story = {
+  name: 'Abierto al inicio',
   render: () => (
     <Collapsible defaultOpen className="w-80 space-y-2">
       <CollapsibleTrigger asChild>

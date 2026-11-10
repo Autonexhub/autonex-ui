@@ -10,23 +10,23 @@ const meta: Meta<typeof Calendar> = {
     mode: {
       control: 'select',
       options: ['single', 'multiple', 'range'],
-      description: 'Selection mode',
+      description: 'Modo de selección',
       table: { defaultValue: { summary: 'single' } },
     },
     showOutsideDays: {
       control: 'boolean',
-      description: 'Show days from adjacent months',
+      description: 'Muestra los días de los meses contiguos',
       table: { defaultValue: { summary: 'true' } },
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable the calendar',
+      description: 'Desactiva el calendario',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Date selection calendar. Use inside Popover for DatePicker pattern.',
+        component: 'Calendario para elegir fechas. Dentro de un Popover forma el patrón DatePicker.',
       },
     },
   },
@@ -36,6 +36,7 @@ export default meta;
 type Story = StoryObj<typeof Calendar>;
 
 export const Single: Story = {
+  name: 'Una fecha',
   render: function Render() {
     const [date, setDate] = React.useState<Date | undefined>(new Date());
     return (
@@ -50,6 +51,7 @@ export const Single: Story = {
 };
 
 export const Range: Story = {
+  name: 'Rango',
   render: function Render() {
     const [range, setRange] = React.useState<{ from: Date; to?: Date } | undefined>({
       from: new Date(),
@@ -68,6 +70,7 @@ export const Range: Story = {
 };
 
 export const Multiple: Story = {
+  name: 'Varias fechas',
   render: function Render() {
     const [dates, setDates] = React.useState<Date[] | undefined>([new Date()]);
     return (
@@ -82,6 +85,7 @@ export const Multiple: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Desactivado',
   render: () => (
     <Calendar
       mode="single"

@@ -18,30 +18,30 @@ const meta: Meta<typeof Select> = {
   argTypes: {
     defaultValue: {
       control: 'text',
-      description: 'Initial selected value (uncontrolled)',
+      description: 'Valor seleccionado inicial (no controlado)',
     },
     value: {
       control: 'text',
-      description: 'Selected value (controlled)',
+      description: 'Valor seleccionado (controlado)',
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable the select',
+      description: 'Desactiva el selector',
     },
     required: {
       control: 'boolean',
-      description: 'Mark as required for forms',
+      description: 'Lo marca como obligatorio en formularios',
     },
     onValueChange: {
       action: 'valueChange',
-      description: 'Callback when selection changes',
+      description: 'Se llama cuando cambia la selección',
     },
   },
   parameters: {
     docs: {
       description: {
         component:
-          'Dropdown select. Use SelectTrigger, SelectValue, SelectContent, and SelectItem. SelectTrigger accepts size="sm" | "default" (h-8 / h-9). Fondo bg-muted, check de selección a la derecha (Phosphor).',
+          'Selector desplegable. Se compone con SelectTrigger, SelectValue, SelectContent y SelectItem. SelectTrigger acepta `size="sm" | "default"` (`h-8` / `h-9`). Fondo `bg-muted`, check de selección a la derecha (Phosphor).',
       },
     },
   },
@@ -51,6 +51,7 @@ export default meta;
 type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Select>
       <SelectTrigger className="w-48">
@@ -66,6 +67,7 @@ export const Default: Story = {
 };
 
 export const WithLabel: Story = {
+  name: 'Con etiqueta',
   render: () => (
     <Field className="w-64">
       <FieldLabel>Organización</FieldLabel>
@@ -84,6 +86,7 @@ export const WithLabel: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Tamaños',
   render: () => (
     <div className="flex items-center gap-4">
       <Select defaultValue="a">
@@ -91,7 +94,7 @@ export const Sizes: Story = {
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="a">Small (h-8)</SelectItem>
+          <SelectItem value="a">Pequeño (h-8)</SelectItem>
           <SelectItem value="b">Otra opción</SelectItem>
         </SelectContent>
       </Select>
@@ -100,7 +103,7 @@ export const Sizes: Story = {
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="a">Default (h-9)</SelectItem>
+          <SelectItem value="a">Por defecto (h-9)</SelectItem>
           <SelectItem value="b">Otra opción</SelectItem>
         </SelectContent>
       </Select>
@@ -109,6 +112,7 @@ export const Sizes: Story = {
 };
 
 export const WithGroups: Story = {
+  name: 'Con grupos',
   render: () => (
     <Select>
       <SelectTrigger className="w-56">
@@ -132,6 +136,7 @@ export const WithGroups: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Desactivado',
   render: () => (
     <Select disabled>
       <SelectTrigger className="w-48">
@@ -145,14 +150,14 @@ export const Disabled: Story = {
 };
 
 export const DateRangeSelect: Story = {
-  name: 'Date Range Select (exception to FilterPopover)',
+  name: 'Selector de periodo (excepción a FilterPopover)',
   render: () => (
     <Select defaultValue="7d">
       <SelectTrigger className="w-40">
         <SelectValue />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="24h">Últimas 24h</SelectItem>
+        <SelectItem value="24h">Últimas 24 h</SelectItem>
         <SelectItem value="7d">Últimos 7 días</SelectItem>
         <SelectItem value="30d">Últimos 30 días</SelectItem>
         <SelectItem value="90d">Últimos 90 días</SelectItem>

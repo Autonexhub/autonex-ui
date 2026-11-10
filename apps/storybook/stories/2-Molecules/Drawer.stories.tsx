@@ -20,7 +20,7 @@ const meta: Meta<typeof Drawer> = {
   parameters: {
     docs: {
       description: {
-        component: 'Bottom drawer/sheet. Use for mobile-friendly actions and forms.',
+        component: 'Panel que sube desde abajo. Para acciones y formularios pensados para móvil.',
       },
     },
   },
@@ -30,10 +30,11 @@ export default meta;
 type Story = StoryObj<typeof Drawer>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="outline">Abrir Drawer</Button>
+        <Button variant="outline">Abrir panel inferior</Button>
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
@@ -46,11 +47,11 @@ export const Default: Story = {
           <div className="space-y-4">
             <Field>
               <FieldLabel htmlFor="name">Nombre</FieldLabel>
-              <Input id="name" placeholder="Tu nombre" />
+              <Input id="name" placeholder="Ej: Lucía Martín" />
             </Field>
             <Field>
-              <FieldLabel htmlFor="email">Email</FieldLabel>
-              <Input id="email" type="email" placeholder="tu@email.com" />
+              <FieldLabel htmlFor="email">Correo electrónico</FieldLabel>
+              <Input id="email" type="email" placeholder="Ej: nombre@empresa.es" />
             </Field>
           </div>
         </div>
@@ -66,6 +67,7 @@ export const Default: Story = {
 };
 
 export const WithConfirmation: Story = {
+  name: 'Con confirmación',
   render: () => (
     <Drawer>
       <DrawerTrigger asChild>
@@ -91,6 +93,7 @@ export const WithConfirmation: Story = {
 };
 
 export const WithScrollContent: Story = {
+  name: 'Con contenido largo',
   render: () => (
     <Drawer>
       <DrawerTrigger asChild>
@@ -126,6 +129,7 @@ export const WithScrollContent: Story = {
 };
 
 export const SimpleAction: Story = {
+  name: 'Acción simple',
   render: () => (
     <Drawer>
       <DrawerTrigger asChild>
@@ -144,7 +148,7 @@ export const SimpleAction: Story = {
               Compartir por WhatsApp
             </Button>
             <Button variant="outline" className="justify-start">
-              Compartir por Email
+              Compartir por correo
             </Button>
           </div>
           <DrawerFooter>

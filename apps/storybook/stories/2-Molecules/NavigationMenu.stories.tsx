@@ -18,7 +18,7 @@ const meta: Meta<typeof NavigationMenu> = {
   parameters: {
     docs: {
       description: {
-        component: 'Navigation menu with dropdown panels. Use for site navigation.',
+        component: 'Menú de navegación con paneles desplegables. Para la navegación de un sitio.',
       },
     },
   },
@@ -51,6 +51,7 @@ const ListItem = React.forwardRef<
 ListItem.displayName = 'ListItem';
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <NavigationMenu>
       <NavigationMenuList>
@@ -73,14 +74,14 @@ export const Default: Story = {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="#" title="Agentes de Voz">
+              <ListItem href="#" title="Agentes de voz">
                 Automatiza llamadas telefónicas con IA.
               </ListItem>
-              <ListItem href="#" title="Agentes de Texto">
+              <ListItem href="#" title="Agentes de texto">
                 WhatsApp, Instagram y chat web automatizado.
               </ListItem>
-              <ListItem href="#" title="Knowledge Base">
-                Base de conocimientos para tus agentes.
+              <ListItem href="#" title="Base de conocimientos">
+                La información que consultan tus agentes.
               </ListItem>
             </ul>
           </NavigationMenuContent>
@@ -92,7 +93,7 @@ export const Default: Story = {
               <ListItem href="#" title="Documentación">
                 Aprende a integrar y configurar Autonex.
               </ListItem>
-              <ListItem href="#" title="API Reference">
+              <ListItem href="#" title="Referencia de la API">
                 Referencia completa de nuestra API.
               </ListItem>
               <ListItem href="#" title="Casos de uso">
@@ -115,6 +116,7 @@ export const Default: Story = {
 };
 
 export const Simple: Story = {
+  name: 'Simple',
   render: () => (
     <NavigationMenu>
       <NavigationMenuList>
@@ -144,25 +146,26 @@ export const Simple: Story = {
 };
 
 export const WithSingleDropdown: Story = {
+  name: 'Con un desplegable',
   render: () => (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink className={navigationMenuTriggerStyle()} href="#">
-            Dashboard
+            Panel
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Herramientas</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[300px] gap-3 p-4">
-              <ListItem href="#" title="Editor de prompts">
-                Crea y edita los prompts de tus agentes.
+              <ListItem href="#" title="Comportamiento">
+                Define cómo responden tus agentes.
               </ListItem>
               <ListItem href="#" title="Simulador">
                 Prueba tus agentes en tiempo real.
               </ListItem>
-              <ListItem href="#" title="Analytics">
+              <ListItem href="#" title="Métricas">
                 Métricas y análisis de rendimiento.
               </ListItem>
             </ul>

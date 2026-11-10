@@ -11,24 +11,24 @@ const meta: Meta<typeof Combobox> = {
     align: {
       control: 'radio',
       options: ['start', 'center', 'end'],
-      description: 'Popover alignment',
+      description: 'Alineación del popover',
       table: { defaultValue: { summary: 'start' } },
     },
     width: {
       control: 'number',
-      description: 'Popover width in pixels',
+      description: 'Ancho del popover en píxeles',
       table: { defaultValue: { summary: '240' } },
     },
     searchThreshold: {
       control: 'number',
-      description: 'Show search when options exceed this count',
+      description: 'Muestra el buscador cuando las opciones superan este número',
       table: { defaultValue: { summary: '7' } },
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Searchable select/combobox. Use for selecting from many options.',
+        component: 'Selector con búsqueda (combobox). Para elegir entre muchas opciones.',
       },
     },
   },
@@ -46,6 +46,7 @@ const asistentes: ComboboxOption[] = [
 ];
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: function Render() {
     const [value, setValue] = React.useState<string | null>(null);
     const selected = asistentes.find((a) => a.value === value);
@@ -79,6 +80,7 @@ const contacts: ComboboxOption[] = [
 ];
 
 export const WithIcons: Story = {
+  name: 'Con iconos',
   render: function Render() {
     const [value, setValue] = React.useState<string | null>(null);
     const selected = contacts.find((c) => c.value === value);
@@ -115,6 +117,7 @@ const organizations: ComboboxOption[] = [
 ];
 
 export const WithSublabels: Story = {
+  name: 'Con subetiquetas',
   render: function Render() {
     const [value, setValue] = React.useState<string | null>(null);
     const selected = organizations.find((o) => o.value === value);
@@ -145,6 +148,7 @@ const fewOptions: ComboboxOption[] = [
 ];
 
 export const NoSearch: Story = {
+  name: 'Sin buscador',
   render: function Render() {
     const [value, setValue] = React.useState<string | null>(null);
     const selected = fewOptions.find((o) => o.value === value);

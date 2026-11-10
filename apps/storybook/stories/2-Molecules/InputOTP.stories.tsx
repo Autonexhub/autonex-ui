@@ -14,19 +14,19 @@ const meta: Meta<typeof InputOTP> = {
   argTypes: {
     maxLength: {
       control: 'number',
-      description: 'Maximum number of characters',
+      description: 'Número máximo de caracteres',
       table: { defaultValue: { summary: '6' } },
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable input',
+      description: 'Desactiva el campo',
     },
   },
   parameters: {
     docs: {
       description: {
         component:
-          'One-time password input. Slots h-9 con fondo bg-muted y extremos rounded-3xl; separador con icono Minus (Phosphor). Use for verification codes.',
+          'Campo de código de un solo uso. Casillas `h-9` con fondo `bg-muted` y extremos `rounded-3xl`; separador con el icono `Minus` (Phosphor). Para códigos de verificación.',
       },
     },
   },
@@ -36,6 +36,7 @@ export default meta;
 type Story = StoryObj<typeof InputOTP>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <InputOTP maxLength={6}>
       <InputOTPGroup>
@@ -51,6 +52,7 @@ export const Default: Story = {
 };
 
 export const WithSeparator: Story = {
+  name: 'Con separador',
   render: () => (
     <InputOTP maxLength={6}>
       <InputOTPGroup>
@@ -69,6 +71,7 @@ export const WithSeparator: Story = {
 };
 
 export const FourDigits: Story = {
+  name: 'Cuatro dígitos',
   render: () => (
     <InputOTP maxLength={4}>
       <InputOTPGroup>
@@ -82,6 +85,7 @@ export const FourDigits: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Desactivado',
   render: () => (
     <InputOTP maxLength={6} disabled>
       <InputOTPGroup>
@@ -97,6 +101,7 @@ export const Disabled: Story = {
 };
 
 export const WithLabel: Story = {
+  name: 'Con etiqueta',
   render: () => (
     <Field className="w-fit">
       <FieldLabel>Código de verificación</FieldLabel>

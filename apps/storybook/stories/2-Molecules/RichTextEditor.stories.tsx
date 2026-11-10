@@ -9,34 +9,33 @@ const meta: Meta<typeof RichTextEditor> = {
   argTypes: {
     value: {
       control: 'text',
-      description: 'Markdown content',
+      description: 'Contenido en Markdown',
     },
     placeholder: {
       control: 'text',
-      description: 'Placeholder text when empty',
+      description: 'Texto de ejemplo cuando está vacío',
     },
     minHeight: {
       control: 'text',
-      description: 'Minimum height of editor',
+      description: 'Altura mínima del editor',
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable editing',
+      description: 'Desactiva la edición',
     },
   },
   parameters: {
     docs: {
       description: {
         component: `
-WYSIWYG rich text editor with markdown support.
+Editor de texto enriquecido (WYSIWYG) que guarda Markdown.
 
-## Features
-- Converts markdown ↔ HTML seamlessly
-- Toolbar with formatting options
-- Tooltips on toolbar buttons
-- Supports: Bold, Italic, Headings, Lists, Quotes, Code, Links
+## Características
+- Convierte Markdown ↔ HTML de forma transparente.
+- Barra de herramientas con opciones de formato y tooltips en cada botón.
+- Admite: negrita, cursiva, encabezados, listas, citas, código y enlaces.
 
-## Usage
+## Uso
 \`\`\`tsx
 const [content, setContent] = useState('');
 
@@ -47,10 +46,10 @@ const [content, setContent] = useState('');
 />
 \`\`\`
 
-## Where it's used
-- Knowledge Base content editing
-- Position descriptions (Careers module)
-- System Prompt editing
+## Dónde se usa
+- Edición de la Base de conocimientos.
+- Descripción de puestos (Posiciones, en Administración).
+- Edición del Comportamiento del agente.
 `,
       },
     },
@@ -60,7 +59,7 @@ const [content, setContent] = useState('');
 export default meta;
 type Story = StoryObj<typeof RichTextEditor>;
 
-// Interactive wrapper for controlled state
+// Envoltorio interactivo con estado controlado
 function RichTextEditorDemo({
   initialValue = '',
   ...props
@@ -76,9 +75,9 @@ function RichTextEditorDemo({
     <div className="space-y-4">
       <RichTextEditor value={value} onChange={setValue} {...props} />
       <div className="text-xs text-muted-foreground">
-        <p className="font-medium mb-1">Markdown output:</p>
+        <p className="font-medium mb-1">Markdown resultante:</p>
         <pre className="bg-muted p-2 rounded text-xs overflow-auto max-h-32">
-          {value || '(empty)'}
+          {value || '(vacío)'}
         </pre>
       </div>
     </div>
@@ -86,10 +85,12 @@ function RichTextEditorDemo({
 }
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => <RichTextEditorDemo placeholder="Escribe aquí..." />,
 };
 
 export const WithInitialContent: Story = {
+  name: 'Con contenido inicial',
   render: () => (
     <RichTextEditorDemo
       initialValue={`## Título de ejemplo
@@ -115,13 +116,14 @@ bloque de código
   parameters: {
     docs: {
       description: {
-        story: 'Editor with pre-populated markdown content showing various formatting options.',
+        story: 'Editor con contenido Markdown precargado que muestra varias opciones de formato.',
       },
     },
   },
 };
 
 export const Disabled: Story = {
+  name: 'Desactivado',
   render: () => (
     <RichTextEditorDemo
       initialValue="Este contenido no se puede editar."
@@ -131,13 +133,14 @@ export const Disabled: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Disabled state - content is visible but not editable.',
+        story: 'Estado desactivado: el contenido se ve pero no se puede editar.',
       },
     },
   },
 };
 
 export const CustomHeight: Story = {
+  name: 'Altura personalizada',
   render: () => (
     <RichTextEditorDemo
       placeholder="Editor con altura personalizada..."
@@ -147,20 +150,21 @@ export const CustomHeight: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Editor with custom minimum height (300px).',
+        story: 'Editor con altura mínima personalizada (300px).',
       },
     },
   },
 };
 
 export const KnowledgeBaseExample: Story = {
+  name: 'Ejemplo: Base de conocimientos',
   render: () => (
     <div className="space-y-4">
-      <div className="text-sm font-medium">Contenido del bloque KB</div>
+      <div className="text-sm font-medium">Contenido del bloque de la Base de conocimientos</div>
       <RichTextEditorDemo
         initialValue={`## Horarios de atención
 
-**Lunes a Viernes:** 9:00 - 18:00
+**Lunes a viernes:** 9:00 - 18:00
 **Sábados:** 10:00 - 14:00
 
 ### Servicios disponibles
@@ -178,20 +182,21 @@ export const KnowledgeBaseExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Example of how the editor is used in Knowledge Base content editing.',
+        story: 'Ejemplo de uso del editor al editar un bloque de la Base de conocimientos.',
       },
     },
   },
 };
 
 export const AllToolbarFeatures: Story = {
+  name: 'Todas las opciones de la barra',
   render: () => (
     <div className="space-y-2">
       <p className="text-sm text-muted-foreground">
-        Prueba todas las funciones del toolbar: Negrita, Cursiva, Encabezados, Listas, Citas, Código, Enlaces
+        Prueba todas las funciones de la barra de herramientas: Negrita, Cursiva, Encabezados, Listas, Citas, Código, Enlaces
       </p>
       <RichTextEditorDemo
-        placeholder="Prueba los botones del toolbar..."
+        placeholder="Prueba los botones de la barra de herramientas..."
         minHeight="250px"
       />
     </div>
@@ -199,7 +204,7 @@ export const AllToolbarFeatures: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Interactive playground to test all toolbar formatting options.',
+        story: 'Zona de pruebas interactiva para todas las opciones de formato de la barra.',
       },
     },
   },

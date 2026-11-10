@@ -15,19 +15,19 @@ const meta: Meta<typeof HoverCard> = {
   argTypes: {
     openDelay: {
       control: 'number',
-      description: 'Delay before showing (ms)',
+      description: 'Retardo antes de mostrarse (ms)',
       table: { defaultValue: { summary: '700' } },
     },
     closeDelay: {
       control: 'number',
-      description: 'Delay before hiding (ms)',
+      description: 'Retardo antes de ocultarse (ms)',
       table: { defaultValue: { summary: '300' } },
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Card that appears on hover. Use for previews and additional info.',
+        component: 'Tarjeta que aparece al pasar el ratón. Para vistas previas e información adicional.',
       },
     },
   },
@@ -37,6 +37,7 @@ export default meta;
 type Story = StoryObj<typeof HoverCard>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <HoverCard>
       <HoverCardTrigger asChild>
@@ -49,7 +50,7 @@ export const Default: Story = {
             <AvatarFallback>AU</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold">@autonex</h4>
+            <h4 className="text-sm font-medium">@autonex</h4>
             <p className="text-sm text-muted-foreground">
               Plataforma de IA conversacional para automatización de llamadas y mensajería.
             </p>
@@ -67,6 +68,7 @@ export const Default: Story = {
 };
 
 export const ContactPreview: Story = {
+  name: 'Vista previa de contacto',
   render: () => (
     <HoverCard>
       <HoverCardTrigger asChild>
@@ -78,7 +80,7 @@ export const ContactPreview: Story = {
             <AvatarFallback>MG</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
-            <h4 className="text-sm font-semibold">María García</h4>
+            <h4 className="text-sm font-medium">María García</h4>
             <p className="text-sm text-muted-foreground">+34 612 345 678</p>
             <p className="text-sm text-muted-foreground">maria@ejemplo.com</p>
             <div className="flex items-center pt-2">
@@ -94,6 +96,7 @@ export const ContactPreview: Story = {
 };
 
 export const WithLink: Story = {
+  name: 'Con enlace',
   render: () => (
     <div className="flex items-center gap-4">
       <span className="text-sm text-muted-foreground">Creado por</span>
@@ -105,7 +108,7 @@ export const WithLink: Story = {
         </HoverCardTrigger>
         <HoverCardContent className="w-64" align="start">
           <div className="space-y-2">
-            <h4 className="text-sm font-semibold">Juan Pérez</h4>
+            <h4 className="text-sm font-medium">Juan Pérez</h4>
             <p className="text-xs text-muted-foreground">
               Administrador del sistema
             </p>

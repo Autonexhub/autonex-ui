@@ -15,13 +15,13 @@ const meta: Meta<typeof Breadcrumb> = {
   argTypes: {
     separator: {
       control: 'text',
-      description: 'Custom separator (default is a chevron icon). Pass as child of BreadcrumbSeparator.',
+      description: 'Separador personalizado (por defecto, un icono de chevron). Se pasa como hijo de BreadcrumbSeparator.',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Navigation breadcrumbs. Use BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator.',
+        component: 'Migas de pan de navegación. Se componen con BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage y BreadcrumbSeparator.',
       },
     },
   },
@@ -31,6 +31,7 @@ export default meta;
 type Story = StoryObj<typeof Breadcrumb>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Breadcrumb>
       <BreadcrumbList>

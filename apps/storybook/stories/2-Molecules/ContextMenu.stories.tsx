@@ -24,7 +24,7 @@ const meta: Meta<typeof ContextMenu> = {
   parameters: {
     docs: {
       description: {
-        component: 'Context menu triggered by right-click. Use for contextual actions.',
+        component: 'Menú contextual que se abre con clic derecho. Para acciones sobre el elemento.',
       },
     },
   },
@@ -34,6 +34,7 @@ export default meta;
 type Story = StoryObj<typeof ContextMenu>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <ContextMenu>
       <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
@@ -72,6 +73,7 @@ export const Default: Story = {
 };
 
 export const WithCheckboxes: Story = {
+  name: 'Con casillas',
   render: function Render() {
     const [bookmarked, setBookmarked] = React.useState(true);
     const [pinned, setPinned] = React.useState(false);
@@ -97,6 +99,7 @@ export const WithCheckboxes: Story = {
 };
 
 export const WithSubmenu: Story = {
+  name: 'Con submenú',
   render: () => (
     <ContextMenu>
       <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
@@ -113,7 +116,7 @@ export const WithSubmenu: Story = {
             Compartir
           </ContextMenuSubTrigger>
           <ContextMenuSubContent className="w-48">
-            <ContextMenuItem>Email</ContextMenuItem>
+            <ContextMenuItem>Correo electrónico</ContextMenuItem>
             <ContextMenuItem>WhatsApp</ContextMenuItem>
             <ContextMenuItem>Copiar enlace</ContextMenuItem>
           </ContextMenuSubContent>
@@ -126,6 +129,7 @@ export const WithSubmenu: Story = {
 };
 
 export const WithRadioGroup: Story = {
+  name: 'Con opción única',
   render: function Render() {
     const [priority, setPriority] = React.useState('medium');
 
