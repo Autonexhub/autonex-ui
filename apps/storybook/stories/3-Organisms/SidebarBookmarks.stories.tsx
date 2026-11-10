@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import {
+  Button,
+  SidebarBookmarksDialog,
   SidebarBookmarksItem,
   SidebarNavItem,
   SidebarSectionLabel,
@@ -139,4 +141,42 @@ export const TresMarcados: Story = {
 /** Sin marcadores: la fila "Marcadores" no se pinta y la tarjeta empieza por el título del reino. */
 export const SinMarcadores: Story = {
   render: () => <Demo initial={[]} />,
+};
+
+/** Dialog "Administrar" (`SidebarBookmarksDialog`) abierto con los marcadores. Es SOLO para ordenar:
+ *  arrastra una fila por su asa (`DotsSixVertical`) o, con teclado, enfoca el asa, pulsa **Espacio** para
+ *  levantarla, **flecha arriba/abajo** para moverla y **Espacio** de nuevo para soltarla (**Esc** cancela).
+ *  Quitar un marcador se hace en el Popover, no aquí. */
+export const AdministrarMarcadores: Story = {
+  name: 'Administrar (ordenar)',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Se abre desde la fila **Administrar** del Popover. Recibe `bookmarks`, `onReorder(ids)` con el nuevo orden y `labels` opcional para traducir título, texto de ayuda y botones. Reordenar con arrastre o con teclado (Espacio, flechas, Espacio).',
+      },
+    },
+  },
+  render: () => {
+    const [open, setOpen] = useState(true);
+    const [bookmarks, setBookmarks] = useState<SidebarBookmarkEntry[]>(
+      [MODS.metrics, MODS.contacts, MODS.pending, MODS.emails, MODS.kb].map(entry),
+    );
+    return (
+      <>
+        <Button variant="outline" size="sm" onClick={() => setOpen(true)}>
+          Administrar marcadores
+        </Button>
+        <p className="mt-2 text-xs text-muted-foreground">Orden actual: {bookmarks.map((b) => b.label).join(' · ')}</p>
+        <SidebarBookmarksDialog
+          open={open}
+          onOpenChange={setOpen}
+          bookmarks={bookmarks}
+          onReorder={(ids) =>
+            setBookmarks((list) => ids.map((id) => list.find((b) => b.id === id)).filter((b): b is SidebarBookmarkEntry => !!b))
+          }
+        />
+      </>
+    );
+  },
 };

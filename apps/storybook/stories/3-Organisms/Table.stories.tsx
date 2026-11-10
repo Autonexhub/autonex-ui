@@ -2,7 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react';
 import {
   Table,
   TableBody,
+  TableCaption,
   TableCell,
+  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -102,6 +104,37 @@ export const EmptyTable: Story = {
             </TableCell>
           </TableRow>
         </TableBody>
+      </Table>
+    </TableFrame>
+  ),
+};
+
+/** `TableCaption` (descripción accesible bajo la tabla) y `TableFooter` (fila de totales). */
+export const ConPieYLeyenda: Story = {
+  name: 'Con pie y leyenda',
+  render: () => (
+    <TableFrame>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Canal</TableHead>
+            <TableHead className="text-right">Conversaciones</TableHead>
+            <TableHead className="text-right">Resueltas</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow><TableCell>Voz</TableCell><TableCell className="text-right tabular-nums">128</TableCell><TableCell className="text-right tabular-nums">117</TableCell></TableRow>
+          <TableRow><TableCell>WhatsApp</TableCell><TableCell className="text-right tabular-nums">342</TableCell><TableCell className="text-right tabular-nums">329</TableCell></TableRow>
+          <TableRow><TableCell>Instagram</TableCell><TableCell className="text-right tabular-nums">61</TableCell><TableCell className="text-right tabular-nums">54</TableCell></TableRow>
+        </TableBody>
+        <TableFooter>
+          <TableRow>
+            <TableCell>Total</TableCell>
+            <TableCell className="text-right tabular-nums">531</TableCell>
+            <TableCell className="text-right tabular-nums">500</TableCell>
+          </TableRow>
+        </TableFooter>
+        <TableCaption>Conversaciones de octubre por canal.</TableCaption>
       </Table>
     </TableFrame>
   ),
