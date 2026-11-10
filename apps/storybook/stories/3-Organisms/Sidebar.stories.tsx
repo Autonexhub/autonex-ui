@@ -18,6 +18,12 @@ import {
   SidebarTrigger,
   SidebarInset,
   SidebarSeparator,
+  SidebarInput,
+  SidebarGroupAction,
+  SidebarMenuAction,
+  SidebarMenuBadge,
+  SidebarMenuSkeleton,
+  SidebarRail,
 } from '@autonexhub/react';
 import { Avatar, AvatarFallback } from '@autonexhub/react';
 import { Button } from '@autonexhub/react';
@@ -33,6 +39,8 @@ import {
   Phone,
   Envelope,
   Calendar,
+  Plus,
+  DotsThree,
 } from '@phosphor-icons/react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@autonexhub/react';
 
@@ -384,4 +392,73 @@ export const Floating: Story = {
       },
     },
   },
+};
+
+function ExtrasExample() {
+  return (
+    <SidebarProvider defaultOpen={true}>
+      <Sidebar>
+        <SidebarHeader className="p-4 pb-2">
+          <SidebarInput placeholder="Buscar módulos…" aria-label="Buscar módulos" />
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarGroup>
+            <SidebarGroupLabel>Conversaciones</SidebarGroupLabel>
+            <SidebarGroupAction title="Nueva conversación" aria-label="Nueva conversación">
+              <Plus />
+            </SidebarGroupAction>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton isActive>
+                    <ChatCircle className="h-4 w-4" />
+                    <span>Todas</span>
+                  </SidebarMenuButton>
+                  <SidebarMenuBadge>24</SidebarMenuBadge>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton>
+                    <Envelope className="h-4 w-4" />
+                    <span>Correos</span>
+                  </SidebarMenuButton>
+                  <SidebarMenuAction showOnHover aria-label="Más opciones">
+                    <DotsThree />
+                  </SidebarMenuAction>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+          <SidebarGroup>
+            <SidebarGroupLabel>Cargando módulos</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {[0, 1, 2].map((i) => (
+                  <SidebarMenuItem key={i}>
+                    <SidebarMenuSkeleton showIcon />
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        </SidebarContent>
+        <SidebarRail />
+      </Sidebar>
+      <SidebarInset className="flex-1">
+        <header className="flex items-center gap-2 border-b p-4">
+          <SidebarTrigger />
+          <h1 className="text-lg font-semibold">Conversaciones</h1>
+        </header>
+        <main className="p-6">
+          <p className="text-muted-foreground">Pasa el ratón por el borde derecho de la sidebar para ver el rail y púlsalo para plegarla.</p>
+        </main>
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}
+
+/** Piezas auxiliares: `SidebarInput` (búsqueda), `SidebarGroupAction` (acción del grupo), `SidebarMenuBadge` (contador),
+ *  `SidebarMenuAction` (botón al hover de la fila), `SidebarMenuSkeleton` (carga) y `SidebarRail` (borde que pliega). */
+export const ConPiezasAuxiliares: Story = {
+  name: 'Con piezas auxiliares',
+  render: () => <ExtrasExample />,
 };

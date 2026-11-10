@@ -1,8 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -191,4 +193,31 @@ export const NoModal: Story = {
     },
   },
   render: () => <NoModalDemo />,
+};
+
+/** `SheetFooter` fija las acciones al pie del panel y `SheetClose` cierra desde cualquier botón. */
+export const ConPie: Story = {
+  name: 'Con pie y SheetClose',
+  render: () => (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Editar contacto</Button>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>Editar contacto</SheetTitle>
+          <SheetDescription>Los cambios se aplican a todas sus conversaciones.</SheetDescription>
+        </SheetHeader>
+        <div className="py-4 text-sm text-muted-foreground">Juan García · +34 612 345 678</div>
+        <SheetFooter>
+          <SheetClose asChild>
+            <Button variant="ghost">Cancelar</Button>
+          </SheetClose>
+          <SheetClose asChild>
+            <Button>Guardar</Button>
+          </SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  ),
 };

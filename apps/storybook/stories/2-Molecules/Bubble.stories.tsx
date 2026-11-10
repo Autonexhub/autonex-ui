@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Bubble, BubbleContent, BubbleGroup } from '@autonexhub/react';
+import { Bubble, BubbleContent, BubbleGroup, BubbleReactions } from '@autonexhub/react';
 import { Avatar, AvatarFallback } from '@autonexhub/react';
 
 const meta: Meta = {
@@ -225,4 +225,27 @@ export const LongMessage: Story = {
       },
     },
   },
+};
+
+/** `BubbleReactions`: pastilla de reacciones anclada al borde de la burbuja (`side` arriba/abajo, `align` inicio/fin).
+ *  La burbuja necesita `relative` y margen inferior/superior para que la pastilla no pise el mensaje siguiente. */
+export const WithReactions: Story = {
+  name: 'Con reacciones',
+  render: () => (
+    <BubbleGroup>
+      <Bubble variant="muted" className="relative mb-4">
+        <BubbleContent>¿Podéis confirmarme la cita del jueves a las 10:30?</BubbleContent>
+        <BubbleReactions align="start">
+          <span>👍</span>
+          <span className="text-xs tabular-nums text-muted-foreground">2</span>
+        </BubbleReactions>
+      </Bubble>
+      <Bubble variant="agent" align="end" className="relative mt-4">
+        <BubbleReactions side="top" align="end">
+          <span>✅</span>
+        </BubbleReactions>
+        <BubbleContent>Confirmada: jueves 12 a las 10:30 en el centro de Serrano.</BubbleContent>
+      </Bubble>
+    </BubbleGroup>
+  ),
 };

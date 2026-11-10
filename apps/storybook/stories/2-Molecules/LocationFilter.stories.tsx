@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState, type ComponentProps } from 'react';
-import { LocationFilter } from "@autonexhub/react";
+import { LocationFilter, LocationFilterSection } from "@autonexhub/react";
 
 const CENTROS = [
   { id: 1, name: 'Menéndez Pelayo' },
@@ -57,4 +57,17 @@ export const ConEtiquetaPropia: Story = { args: { locations: CENTROS, value: '3'
 export const SinCentros: Story = {
   args: { locations: [], value: 'all' },
   parameters: { docs: { description: { story: 'Organización sin centros activos: no se pinta nada.' } } },
+};
+
+export const SeccionSuelta: Story = {
+  name: 'Sección suelta (LocationFilterSection)',
+  render: () => {
+    const [valor, setValor] = useState('1,3');
+    return (
+      <div className="w-64 rounded-md border border-border bg-popover p-1 shadow-elev">
+        <LocationFilterSection locations={CENTROS} value={valor} onChange={setValor} />
+      </div>
+    );
+  },
+  parameters: { docs: { description: { story: 'Solo las casillas, sin el botón: es la pieza que se monta dentro del popover del botón y dentro del popover "Filtrar".' } } },
 };

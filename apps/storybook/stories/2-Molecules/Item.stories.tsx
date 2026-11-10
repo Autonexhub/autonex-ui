@@ -4,7 +4,9 @@ import {
   ItemActions,
   ItemContent,
   ItemDescription,
+  ItemFooter,
   ItemGroup,
+  ItemHeader,
   ItemMedia,
   ItemSeparator,
   ItemTitle,
@@ -226,6 +228,32 @@ export const Tamanos: Story = {
           </ItemActions>
         </Item>
       ))}
+    </div>
+  ),
+};
+
+/** `ItemHeader` e `ItemFooter` ocupan toda la fila (`basis-full`) encima y debajo del contenido. */
+export const CabeceraYPie: Story = {
+  name: 'Cabecera y pie',
+  render: () => (
+    <div className="w-[28rem]">
+      <Item variant="outline">
+        <ItemHeader>
+          <Badge variant="info">WhatsApp</Badge>
+          <span className="text-xs text-muted-foreground">hace 5 min</span>
+        </ItemHeader>
+        <ItemMedia variant="icon">
+          <WhatsappLogo />
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>María López</ItemTitle>
+          <ItemDescription>Pregunta por el horario de la piscina exterior.</ItemDescription>
+        </ItemContent>
+        <ItemFooter>
+          <span className="text-xs text-muted-foreground">7 mensajes</span>
+          <Button variant="outline" size="sm">Abrir</Button>
+        </ItemFooter>
+      </Item>
     </div>
   ),
 };

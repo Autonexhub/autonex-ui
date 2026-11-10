@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -171,4 +172,30 @@ export const WithoutCloseButton: Story = {
       },
     },
   },
+};
+
+/** `DialogClose` con `asChild` convierte cualquier botón en cierre (Cancelar). */
+export const ConDialogClose: Story = {
+  name: 'Cancelar con DialogClose',
+  render: () => (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Pausar agente</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-md">
+        <DialogHeader>
+          <DialogTitle>¿Pausar el agente de voz?</DialogTitle>
+          <DialogDescription>Las llamadas entrantes pasarán a recepción hasta que lo reactives.</DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="ghost">Cancelar</Button>
+          </DialogClose>
+          <DialogClose asChild>
+            <Button>Pausar</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  ),
 };

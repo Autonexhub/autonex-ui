@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Alert, AlertDescription, AlertTitle } from '@autonexhub/react';
+import { Alert, AlertAction, AlertDescription, AlertTitle, Button } from '@autonexhub/react';
 import { CheckCircle, Info, Warning, WarningCircle } from '@phosphor-icons/react';
 
 const meta: Meta<typeof Alert> = {
@@ -93,6 +93,21 @@ export const AdminOnly: Story = {
       <AlertDescription>
         Esta sección solo está disponible para administradores.
       </AlertDescription>
+    </Alert>
+  ),
+};
+
+/** `AlertAction`: hueco absoluto arriba a la derecha para un botón de acción o de cierre. */
+export const ConAccion: Story = {
+  name: 'Con acción',
+  render: () => (
+    <Alert variant="warning" className="w-[28rem] pr-24">
+      <Warning className="h-4 w-4" />
+      <AlertTitle>Suscripción a punto de vencer</AlertTitle>
+      <AlertDescription>Tu plan se renueva el 15 de noviembre. Revisa el método de pago.</AlertDescription>
+      <AlertAction>
+        <Button size="xs" variant="outline">Revisar</Button>
+      </AlertAction>
     </Alert>
   ),
 };

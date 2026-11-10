@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import {
   Button,
   CushionEditor,
+  FinanceStat,
   InfoTip,
   KpiTile,
   RecurringCostDialog,
@@ -150,3 +151,16 @@ export const DialogoDeGastoDesdeSugerencia: Story = {
 
 /** Edición de un gasto existente. */
 export const DialogoDeGastoEdicion: Story = { render: () => <CostDialogDemo cost={existing} /> };
+
+/** `FinanceStat`: una celda suelta de la tira de cifras (la tira completa es `FinanceStatStrip`, ver FinanceV3Kpis). */
+export const CifraSuelta: Story = {
+  name: 'Cifra suelta (FinanceStat)',
+  render: () => (
+    <div className="grid w-full max-w-3xl grid-cols-2 overflow-hidden rounded-[10px] border border-border sm:grid-cols-4">
+      <FinanceStat label="Ingresos" value="12.480 €" delta={{ text: '▲ +1.306 €', good: true }} note="vs septiembre" />
+      <FinanceStat label="Vencido" value="2.150 €" negative note="9 facturas · 5 clientes" />
+      <FinanceStat label="Margen" value="38 %" estimate delta={{ text: '▼ −2 pp', good: false }} note="costes incompletos" info="Beneficio bruto entre ingresos del mes" />
+      <FinanceStat label="Días medios de cobro" value="—" note="sin dato" />
+    </div>
+  ),
+};
