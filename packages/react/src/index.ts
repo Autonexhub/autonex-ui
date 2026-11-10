@@ -442,3 +442,5 @@ export * from "./components/charts"
 export * from "./components/skeletons"
 export * from "./components/lists"
 export * from "./components/finance"
+
+export * from "./components/extras"
