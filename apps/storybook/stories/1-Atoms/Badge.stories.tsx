@@ -24,13 +24,13 @@ const meta: Meta<typeof Badge> = {
         'ghost',
         'link',
       ],
-      description: 'Visual style of the badge',
+      description: 'Estilo visual del badge',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Status indicators and tags. Color = meaning (green OK, red error, gray neutral).',
+        component: 'Indicadores de estado y etiquetas. Color = significado (verde OK, rojo error, gris neutro).',
       },
     },
   },
@@ -40,28 +40,29 @@ export default meta;
 type Story = StoryObj<typeof Badge>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   args: {
-    children: 'Badge',
+    children: 'Etiqueta',
     variant: 'default',
   },
 };
 
 export const SoftVariants: Story = {
-  name: 'Soft Variants (default)',
+  name: 'Variantes suaves (por defecto)',
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Badge variant="success">Completada</Badge>
       <Badge variant="destructive">Fallida</Badge>
       <Badge variant="warning">Esperando Agente</Badge>
-      <Badge variant="info">Info</Badge>
-      <Badge variant="secondary">En curso</Badge>
+      <Badge variant="info">Activa</Badge>
+      <Badge variant="secondary">Archivada</Badge>
       <Badge variant="outline">Pendiente</Badge>
     </div>
   ),
 };
 
 export const SolidVariants: Story = {
-  name: 'Solid Variants (emphasis)',
+  name: 'Variantes sólidas (énfasis)',
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Badge variant="success-solid">Activa</Badge>
@@ -73,7 +74,7 @@ export const SolidVariants: Story = {
 };
 
 export const AllVariants: Story = {
-  name: 'All Variants',
+  name: 'Todas las variantes',
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
       <Badge variant="default">Default</Badge>
@@ -93,7 +94,7 @@ export const AllVariants: Story = {
 };
 
 export const WithIcons: Story = {
-  name: 'With Icons',
+  name: 'Con iconos',
   render: () => (
     <div className="flex flex-wrap items-center gap-2">
       <Badge variant="success"><CheckCircle /> Activa</Badge>
@@ -104,7 +105,7 @@ export const WithIcons: Story = {
 };
 
 export const UsageExamples: Story = {
-  name: 'Usage Examples',
+  name: 'Ejemplos de uso',
   render: () => (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
@@ -118,7 +119,7 @@ export const UsageExamples: Story = {
         <Badge variant="secondary">tarifas</Badge>
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-sm">Score:</span>
+        <span className="text-sm">Puntuación:</span>
         <ScoreBadge score={8.5} scale={10} />
       </div>
     </div>

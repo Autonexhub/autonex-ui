@@ -9,24 +9,24 @@ const meta: Meta<typeof Separator> = {
     orientation: {
       control: 'radio',
       options: ['horizontal', 'vertical'],
-      description: 'Direction of the separator',
+      description: 'Dirección del separador',
       table: {
         defaultValue: { summary: 'horizontal' },
       },
     },
     decorative: {
       control: 'boolean',
-      description: 'If true, separator is purely decorative (no a11y role)',
+      description: 'Si es true, el separador es solo decorativo (sin rol de accesibilidad)',
     },
     className: {
       control: 'text',
-      description: 'Additional CSS classes (margins, colors)',
+      description: 'Clases CSS adicionales (márgenes, colores)',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Visual divider. Use sparingly—whitespace often suffices.',
+        component: 'Divisor visual. Úsalo con moderación: a menudo basta con el espacio en blanco.',
       },
     },
   },
@@ -36,6 +36,7 @@ export default meta;
 type Story = StoryObj<typeof Separator>;
 
 export const Horizontal: Story = {
+  name: 'Horizontal',
   render: () => (
     <div className="w-64">
       <p className="text-sm">Contenido superior</p>
@@ -46,6 +47,7 @@ export const Horizontal: Story = {
 };
 
 export const Vertical: Story = {
+  name: 'Vertical',
   render: () => (
     <div className="flex h-8 items-center gap-4">
       <span>Conversaciones</span>

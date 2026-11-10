@@ -9,32 +9,32 @@ const meta: Meta<typeof RadioGroup> = {
   argTypes: {
     defaultValue: {
       control: 'text',
-      description: 'Initial selected value (uncontrolled)',
+      description: 'Valor seleccionado inicial (no controlado)',
     },
     value: {
       control: 'text',
-      description: 'Selected value (controlled)',
+      description: 'Valor seleccionado (controlado)',
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable all radio items',
+      description: 'Deshabilita todas las opciones',
     },
     orientation: {
       control: 'radio',
       options: ['horizontal', 'vertical'],
-      description: 'Layout orientation',
+      description: 'Orientación',
       table: { defaultValue: { summary: 'vertical' } },
     },
     onValueChange: {
       action: 'valueChange',
-      description: 'Callback when selection changes',
+      description: 'Se llama cuando cambia la selección',
     },
   },
   parameters: {
     docs: {
       description: {
         component:
-          'Radio button group for single selection. Item con fondo bg-input y borde transparente; seleccionado en bg-primary con punto interior. Use RadioGroupItem with Label.',
+          'Grupo de botones de opción para elegir uno solo. Item con fondo bg-input y borde transparente; seleccionado en bg-primary con punto interior. Cada RadioGroupItem va con su Label.',
       },
     },
   },
@@ -44,6 +44,7 @@ export default meta;
 type Story = StoryObj<typeof RadioGroup>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <RadioGroup defaultValue="option-1">
       <div className="flex items-center space-x-2">
@@ -63,6 +64,7 @@ export const Default: Story = {
 };
 
 export const Horizontal: Story = {
+  name: 'Horizontal',
   render: () => (
     <RadioGroup defaultValue="voice" className="flex gap-4">
       <div className="flex items-center space-x-2">
@@ -82,6 +84,7 @@ export const Horizontal: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Deshabilitado',
   render: () => (
     <RadioGroup defaultValue="option-1" disabled>
       <div className="flex items-center space-x-2">
@@ -97,6 +100,7 @@ export const Disabled: Story = {
 };
 
 export const WithDescription: Story = {
+  name: 'Con descripción',
   render: () => (
     <RadioGroup defaultValue="comfortable">
       <div className="flex items-start space-x-2">

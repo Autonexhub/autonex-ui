@@ -8,14 +8,14 @@ const meta: Meta<typeof AspectRatio> = {
   argTypes: {
     ratio: {
       control: 'number',
-      description: 'Aspect ratio (width / height)',
+      description: 'Proporción (ancho / alto)',
       table: { defaultValue: { summary: '1' } },
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Maintains consistent aspect ratio for content. Use for images and videos.',
+        component: 'Mantiene una proporción fija para el contenido. Úsalo para imágenes y vídeos.',
       },
     },
   },
@@ -25,6 +25,7 @@ export default meta;
 type Story = StoryObj<typeof AspectRatio>;
 
 export const Square: Story = {
+  name: 'Cuadrado',
   render: () => (
     <div className="w-[300px]">
       <AspectRatio ratio={1}>
@@ -37,11 +38,12 @@ export const Square: Story = {
 };
 
 export const Landscape16by9: Story = {
+  name: 'Horizontal 16:9',
   render: () => (
     <div className="w-[450px]">
       <AspectRatio ratio={16 / 9}>
         <div className="flex h-full w-full items-center justify-center rounded-md bg-muted">
-          <span className="text-sm text-muted-foreground">16:9 (Video)</span>
+          <span className="text-sm text-muted-foreground">16:9 (vídeo)</span>
         </div>
       </AspectRatio>
     </div>
@@ -49,6 +51,7 @@ export const Landscape16by9: Story = {
 };
 
 export const Portrait4by3: Story = {
+  name: 'Clásico 4:3',
   render: () => (
     <div className="w-[300px]">
       <AspectRatio ratio={4 / 3}>
@@ -61,6 +64,7 @@ export const Portrait4by3: Story = {
 };
 
 export const WithImage: Story = {
+  name: 'Con imagen',
   render: () => (
     <div className="w-[450px]">
       <AspectRatio ratio={16 / 9} className="bg-muted">
@@ -75,11 +79,12 @@ export const WithImage: Story = {
 };
 
 export const Cinematic: Story = {
+  name: 'Panorámico',
   render: () => (
     <div className="w-[500px]">
       <AspectRatio ratio={21 / 9}>
         <div className="flex h-full w-full items-center justify-center rounded-md bg-muted">
-          <span className="text-sm text-muted-foreground">21:9 (Cinemascope)</span>
+          <span className="text-sm text-muted-foreground">21:9 (cinemascope)</span>
         </div>
       </AspectRatio>
     </div>
@@ -87,11 +92,12 @@ export const Cinematic: Story = {
 };
 
 export const PortraitPhone: Story = {
+  name: 'Vertical (móvil)',
   render: () => (
     <div className="w-[200px]">
       <AspectRatio ratio={9 / 16}>
         <div className="flex h-full w-full items-center justify-center rounded-md bg-muted">
-          <span className="text-sm text-muted-foreground">9:16 (Stories)</span>
+          <span className="text-sm text-muted-foreground">9:16 (historias)</span>
         </div>
       </AspectRatio>
     </div>
@@ -99,6 +105,7 @@ export const PortraitPhone: Story = {
 };
 
 export const AllRatios: Story = {
+  name: 'Todas las proporciones',
   render: () => (
     <div className="grid grid-cols-3 gap-4">
       <div>
@@ -123,7 +130,7 @@ export const AllRatios: Story = {
             <span className="text-xs text-muted-foreground">16:9</span>
           </div>
         </AspectRatio>
-        <p className="mt-1 text-center text-xs text-muted-foreground">Video</p>
+        <p className="mt-1 text-center text-xs text-muted-foreground">Vídeo</p>
       </div>
     </div>
   ),

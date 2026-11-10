@@ -13,13 +13,13 @@ const meta: Meta<typeof Avatar> = {
     },
     className: {
       control: 'text',
-      description: 'Additional CSS classes. Use to set size (h-6 w-6, h-8 w-8, h-10 w-10, h-12 w-12)',
+      description: 'Clases CSS adicionales. Sirven para fijar el tamaño (h-6 w-6, h-8 w-8, h-10 w-10, h-12 w-12)',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Avatar with image and fallback. Compose with AvatarImage and AvatarFallback. Usa shape="square" para entidades (logos de organización): una marca cuadrada se recorta dentro de un círculo.',
+        component: 'Avatar con imagen y alternativa de iniciales. Se compone con AvatarImage y AvatarFallback. Usa shape="square" para entidades (logos de organización): una marca cuadrada se recorta dentro de un círculo.',
       },
     },
   },
@@ -29,6 +29,7 @@ export default meta;
 type Story = StoryObj<typeof Avatar>;
 
 export const WithImage: Story = {
+  name: 'Con imagen',
   render: () => (
     <Avatar>
       <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -38,6 +39,7 @@ export const WithImage: Story = {
 };
 
 export const Fallback: Story = {
+  name: 'Iniciales (sin imagen)',
   render: () => (
     <Avatar>
       <AvatarFallback>MR</AvatarFallback>
@@ -46,6 +48,7 @@ export const Fallback: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Tamaños',
   render: () => (
     <div className="flex items-center gap-4">
       <Avatar className="h-6 w-6">
@@ -65,6 +68,7 @@ export const Sizes: Story = {
 };
 
 export const AvatarGroup: Story = {
+  name: 'Grupo de avatares',
   render: () => (
     <div className="flex -space-x-2">
       <Avatar className="border-2 border-background">
@@ -84,6 +88,7 @@ export const AvatarGroup: Story = {
 };
 
 export const Shapes: Story = {
+  name: 'Formas',
   render: () => (
     <div className="flex items-end gap-6">
       <div className="flex flex-col items-center gap-2">

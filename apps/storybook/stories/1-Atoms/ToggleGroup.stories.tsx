@@ -17,28 +17,28 @@ const meta: Meta<typeof ToggleGroup> = {
     type: {
       control: 'radio',
       options: ['single', 'multiple'],
-      description: 'Single or multiple selection',
+      description: 'Selección única o múltiple',
       table: { defaultValue: { summary: 'single' } },
     },
     variant: {
       control: 'select',
       options: ['default', 'outline'],
-      description: 'Visual style for all items',
+      description: 'Estilo visual de todos los elementos',
     },
     size: {
       control: 'select',
       options: ['default', 'sm', 'lg'],
-      description: 'Size for all items',
+      description: 'Tamaño de todos los elementos',
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable all items',
+      description: 'Deshabilita todos los elementos',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Group of toggles where only one (single) or multiple can be active. Use for toolbar groups.',
+        component: 'Grupo de toggles en el que puede haber uno activo (single) o varios (multiple). Para grupos de la barra de herramientas.',
       },
     },
   },
@@ -48,6 +48,7 @@ export default meta;
 type Story = StoryObj<typeof ToggleGroup>;
 
 export const Single: Story = {
+  name: 'Selección única',
   render: () => (
     <ToggleGroup type="single" defaultValue="center">
       <ToggleGroupItem value="left"><TextAlignLeft /></ToggleGroupItem>
@@ -58,6 +59,7 @@ export const Single: Story = {
 };
 
 export const Multiple: Story = {
+  name: 'Selección múltiple',
   render: () => (
     <ToggleGroup type="multiple" defaultValue={['bold']}>
       <ToggleGroupItem value="bold"><TextB /></ToggleGroupItem>
@@ -68,6 +70,7 @@ export const Multiple: Story = {
 };
 
 export const Outline: Story = {
+  name: 'Outline',
   render: () => (
     <ToggleGroup type="single" variant="outline" defaultValue="left">
       <ToggleGroupItem value="left"><TextAlignLeft /></ToggleGroupItem>
@@ -78,6 +81,7 @@ export const Outline: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Deshabilitado',
   render: () => (
     <ToggleGroup type="single" disabled>
       <ToggleGroupItem value="left"><TextAlignLeft /></ToggleGroupItem>
