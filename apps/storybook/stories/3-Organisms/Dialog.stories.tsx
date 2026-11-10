@@ -7,10 +7,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  Button,
+  Input,
+  Field,
+  FieldGroup,
+  FieldLabel,
 } from '@autonexhub/react';
-import { Button } from '@autonexhub/react';
-import { Input } from '@autonexhub/react';
-import { Field, FieldGroup, FieldLabel } from '@autonexhub/react';
 
 const meta: Meta<typeof Dialog> = {
   title: '3-Organisms/Dialog',
@@ -19,49 +21,51 @@ const meta: Meta<typeof Dialog> = {
   argTypes: {
     defaultOpen: {
       control: 'boolean',
-      description: 'Initial open state (uncontrolled)',
+      description: 'Estado abierto inicial (no controlado)',
     },
     open: {
       control: 'boolean',
-      description: 'Open state (controlled)',
+      description: 'Estado abierto (controlado)',
     },
     modal: {
       control: 'boolean',
-      description: 'If true (default), interaction outside is blocked',
+      description: 'Si es true (por defecto), se bloquea la interacción fuera del diálogo',
       table: {
         defaultValue: { summary: 'true' },
       },
     },
     onOpenChange: {
       action: 'openChange',
-      description: 'Callback when open state changes',
+      description: 'Se llama cuando cambia el estado abierto',
     },
   },
   parameters: {
     docs: {
       description: {
         component: `
-Modal dialog with fade+zoom animation (no sliding).
+Diálogo modal centrado. Es el sitio de **los formularios** (el panel lateral es para el detalle de un elemento de listado).
 
-## Features
-- **Animation**: Pure fade + zoom in place (no slide from corner)
-- **Border radius**: \`rounded-4xl\` (very rounded corners)
-- **showCloseButton**: Optional prop to hide the X button (default: true)
+## Características
+- **Animación**: fundido + zoom en el sitio, sin deslizar desde una esquina.
+- **Forma**: \`rounded-4xl\`, \`shadow-xl\`, ancho \`max-w-2xl\` (confirmaciones: \`sm:max-w-md\`).
+- **Espaciado horneado**: \`p-6\` + \`gap-6\` en \`DialogContent\`. No se anula (nada de \`p-0 gap-0\` ni rellenos en el header).
+- **Título**: \`text-lg font-semibold\`; no se re-estila por página.
+- **showCloseButton**: prop opcional para ocultar la X (por defecto: true).
 
-## Usage
+## Uso
 \`\`\`tsx
 <Dialog>
   <DialogTrigger asChild>
-    <Button>Open</Button>
+    <Button>Abrir</Button>
   </DialogTrigger>
   <DialogContent showCloseButton={false}>
     <DialogHeader>
-      <DialogTitle>Title</DialogTitle>
-      <DialogDescription>Description</DialogDescription>
+      <DialogTitle>Título</DialogTitle>
+      <DialogDescription>Descripción</DialogDescription>
     </DialogHeader>
-    {/* content */}
+    {/* contenido */}
     <DialogFooter>
-      <Button>Action</Button>
+      <Button>Acción</Button>
     </DialogFooter>
   </DialogContent>
 </Dialog>
@@ -76,31 +80,32 @@ export default meta;
 type Story = StoryObj<typeof Dialog>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Open Dialog</Button>
+        <Button>Editar perfil</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Edit Profile</DialogTitle>
+          <DialogTitle>Editar perfil</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Cambia tus datos y pulsa Guardar cuando termines.
           </DialogDescription>
         </DialogHeader>
-        <FieldGroup className="py-4 gap-4">
+        <FieldGroup className="gap-4">
           <Field>
-            <FieldLabel htmlFor="name">Name</FieldLabel>
-            <Input id="name" defaultValue="John Doe" />
+            <FieldLabel htmlFor="name">Nombre</FieldLabel>
+            <Input id="name" defaultValue="Lucía Martín" placeholder="Ej: Lucía Martín" />
           </Field>
           <Field>
-            <FieldLabel htmlFor="email">Email</FieldLabel>
-            <Input id="email" defaultValue="john@example.com" />
+            <FieldLabel htmlFor="email">Correo electrónico</FieldLabel>
+            <Input id="email" type="email" defaultValue="lucia@clinica-ejemplo.es" placeholder="Ej: nombre@empresa.es" />
           </Field>
         </FieldGroup>
         <DialogFooter>
-          <Button variant="ghost">Cancel</Button>
-          <Button>Save changes</Button>
+          <Button variant="ghost">Cancelar</Button>
+          <Button>Guardar cambios</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -108,6 +113,7 @@ export const Default: Story = {
 };
 
 export const Confirmation: Story = {
+  name: 'Confirmación',
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
@@ -138,21 +144,22 @@ export const Confirmation: Story = {
 };
 
 export const WithoutCloseButton: Story = {
+  name: 'Sin botón de cerrar',
   render: () => (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Open (no X button)</Button>
+        <Button variant="outline">Abrir (sin botón X)</Button>
       </DialogTrigger>
       <DialogContent showCloseButton={false}>
         <DialogHeader>
-          <DialogTitle>Custom Close Handling</DialogTitle>
+          <DialogTitle>Cierre desde el pie</DialogTitle>
           <DialogDescription>
-            This dialog has no X button. Use the footer buttons to close.
+            Este diálogo no tiene X: se cierra con los botones del pie.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button variant="ghost">Cancel</Button>
-          <Button>Continue</Button>
+          <Button variant="ghost">Cancelar</Button>
+          <Button>Continuar</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
@@ -160,7 +167,7 @@ export const WithoutCloseButton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Use `showCloseButton={false}` when you want custom close handling via footer buttons.',
+        story: 'Usa `showCloseButton={false}` cuando el cierre lo deban gestionar los botones del pie.',
       },
     },
   },

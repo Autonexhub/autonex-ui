@@ -5,8 +5,9 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  Card,
+  CardContent,
 } from '@autonexhub/react';
-import { Card, CardContent } from '@autonexhub/react';
 
 const meta: Meta<typeof Carousel> = {
   title: '3-Organisms/Carousel',
@@ -16,14 +17,14 @@ const meta: Meta<typeof Carousel> = {
     orientation: {
       control: 'radio',
       options: ['horizontal', 'vertical'],
-      description: 'Carousel orientation',
+      description: 'Orientación del carrusel',
       table: { defaultValue: { summary: 'horizontal' } },
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Carousel/slider component. Use for image galleries and content carousels.',
+        component: 'Carrusel. Úsalo para galerías de imágenes y carruseles de contenido.',
       },
     },
   },
@@ -33,6 +34,7 @@ export default meta;
 type Story = StoryObj<typeof Carousel>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <div className="w-full max-w-xs mx-auto">
       <Carousel>
@@ -57,6 +59,7 @@ export const Default: Story = {
 };
 
 export const MultipleItems: Story = {
+  name: 'Varios elementos',
   render: () => (
     <div className="w-full max-w-sm mx-auto">
       <Carousel
@@ -86,6 +89,7 @@ export const MultipleItems: Story = {
 };
 
 export const TwoPerView: Story = {
+  name: 'Dos por vista',
   render: () => (
     <div className="w-full max-w-lg mx-auto">
       <Carousel
@@ -100,7 +104,7 @@ export const TwoPerView: Story = {
               <div className="p-1">
                 <Card>
                   <CardContent className="flex aspect-video items-center justify-center p-6">
-                    <span className="text-3xl font-semibold">Slide {index + 1}</span>
+                    <span className="text-3xl font-semibold">Diapositiva {index + 1}</span>
                   </CardContent>
                 </Card>
               </div>
@@ -115,6 +119,7 @@ export const TwoPerView: Story = {
 };
 
 export const Vertical: Story = {
+  name: 'Vertical',
   render: () => (
     <div className="w-full max-w-xs mx-auto">
       <Carousel
@@ -145,6 +150,7 @@ export const Vertical: Story = {
 };
 
 export const WithImages: Story = {
+  name: 'Con imágenes',
   render: () => (
     <div className="w-full max-w-md mx-auto">
       <Carousel className="w-full">
