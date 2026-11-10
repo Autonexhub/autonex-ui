@@ -9,41 +9,41 @@ const meta: Meta<typeof Slider> = {
   argTypes: {
     defaultValue: {
       control: 'object',
-      description: 'Initial value (array for range)',
+      description: 'Valor inicial (array para un rango)',
     },
     max: {
       control: { type: 'number', min: 1, max: 1000 },
-      description: 'Maximum value',
+      description: 'Valor máximo',
       table: { defaultValue: { summary: '100' } },
     },
     min: {
       control: { type: 'number', min: 0, max: 100 },
-      description: 'Minimum value',
+      description: 'Valor mínimo',
       table: { defaultValue: { summary: '0' } },
     },
     step: {
       control: { type: 'number', min: 1, max: 50 },
-      description: 'Step increment',
+      description: 'Incremento de cada paso',
       table: { defaultValue: { summary: '1' } },
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable the slider',
+      description: 'Deshabilita el deslizador',
     },
     orientation: {
       control: 'radio',
       options: ['horizontal', 'vertical'],
-      description: 'Slider orientation',
+      description: 'Orientación del deslizador',
     },
     onValueChange: {
       action: 'valueChange',
-      description: 'Callback when value changes',
+      description: 'Se llama cuando cambia el valor',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Range slider for numeric input. Based on Radix UI Slider.',
+        component: 'Deslizador para valores numéricos o rangos. Basado en Radix UI Slider.',
       },
     },
   },
@@ -53,6 +53,7 @@ export default meta;
 type Story = StoryObj<typeof Slider>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   args: {
     defaultValue: [50],
     max: 100,
@@ -62,6 +63,7 @@ export const Default: Story = {
 };
 
 export const WithLabel: Story = {
+  name: 'Con etiqueta',
   render: () => (
     <div className="space-y-4 w-64">
       <div className="flex justify-between">
@@ -74,6 +76,7 @@ export const WithLabel: Story = {
 };
 
 export const Range: Story = {
+  name: 'Rango',
   render: () => (
     <div className="space-y-4 w-64">
       <Label>Rango de duración (min)</Label>
@@ -83,6 +86,7 @@ export const Range: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Deshabilitado',
   args: {
     defaultValue: [50],
     disabled: true,

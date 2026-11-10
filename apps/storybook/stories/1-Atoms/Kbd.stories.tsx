@@ -18,39 +18,39 @@ const meta: Meta<typeof Kbd> = {
     docs: {
       description: {
         component: `
-Keyboard shortcut display component for showing hotkeys consistently.
+Muestra atajos de teclado con un estilo coherente.
 
-## Usage
+## Uso
 \`\`\`tsx
 import { Kbd, KbdGroup } from '@autonexhub/react';
 
-// Single key
+// Una tecla
 <Kbd>K</Kbd>
 
-// Modifier + key
+// Modificador + tecla
 <KbdGroup>
   <Kbd>⌘</Kbd>
   <Kbd>K</Kbd>
 </KbdGroup>
 
-// In context
-<p>Press <Kbd>⌘K</Kbd> to open search</p>
+// En contexto
+<p>Pulsa <Kbd>⌘K</Kbd> para abrir la búsqueda</p>
 \`\`\`
 
-## Common Symbols
-- **⌘** Command (Mac)
+## Símbolos habituales
+- **⌘** Comando (Mac)
 - **⌃** Control
-- **⌥** Option/Alt
-- **⇧** Shift
-- **↵** Enter/Return
+- **⌥** Opción/Alt
+- **⇧** Mayúsculas
+- **↵** Intro
 - **⎋** Escape
-- **⌫** Delete/Backspace
+- **⌫** Borrar
 
-## Where to use
-- Command palette hints
-- Dropdown menu shortcuts
-- Tooltip shortcut hints
-- Documentation
+## Dónde usarlo
+- Pistas de la paleta de comandos
+- Atajos en menús desplegables
+- Atajos en tooltips
+- Documentación
 `,
       },
     },
@@ -61,10 +61,12 @@ export default meta;
 type Story = StoryObj<typeof Kbd>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => <Kbd>K</Kbd>,
 };
 
 export const WithModifier: Story = {
+  name: 'Con modificador',
   render: () => (
     <KbdGroup>
       <Kbd>⌘</Kbd>
@@ -74,6 +76,7 @@ export const WithModifier: Story = {
 };
 
 export const CommonShortcuts: Story = {
+  name: 'Atajos habituales',
   render: () => (
     <div className="space-y-3">
       <div className="flex items-center gap-4">
@@ -84,7 +87,7 @@ export const CommonShortcuts: Story = {
         </KbdGroup>
       </div>
       <div className="flex items-center gap-4">
-        <span className="text-sm w-32">Nueva issue</span>
+        <span className="text-sm w-32">Nueva tarea</span>
         <KbdGroup>
           <Kbd>⌘</Kbd>
           <Kbd>I</Kbd>
@@ -117,32 +120,34 @@ export const CommonShortcuts: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Common keyboard shortcuts used throughout the dashboard.',
+        story: 'Atajos de teclado habituales en todo el panel.',
       },
     },
   },
 };
 
 export const SingleKeys: Story = {
+  name: 'Teclas sueltas',
   render: () => (
     <div className="flex items-center gap-2">
       <Kbd>↵</Kbd>
       <Kbd>⎋</Kbd>
       <Kbd>⌫</Kbd>
       <Kbd>⇥</Kbd>
-      <Kbd>Space</Kbd>
+      <Kbd>Espacio</Kbd>
     </div>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Single key indicators: Enter, Escape, Backspace, Tab, Space.',
+        story: 'Teclas sueltas: Intro, Escape, Borrar, Tabulador y Espacio.',
       },
     },
   },
 };
 
 export const ArrowKeys: Story = {
+  name: 'Flechas',
   render: () => (
     <div className="flex items-center gap-1">
       <Kbd>↑</Kbd>
@@ -154,6 +159,7 @@ export const ArrowKeys: Story = {
 };
 
 export const InButton: Story = {
+  name: 'En un botón',
   render: () => (
     <Button variant="outline" className="gap-2">
       <MagnifyingGlass />
@@ -167,35 +173,37 @@ export const InButton: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Keyboard shortcut displayed inside a button.',
+        story: 'Atajo de teclado dentro de un botón.',
       },
     },
   },
 };
 
 export const InText: Story = {
+  name: 'En un texto',
   render: () => (
     <p className="text-sm text-muted-foreground">
-      Presiona{' '}
+      Pulsa{' '}
       <KbdGroup>
         <Kbd>⌘</Kbd>
         <Kbd>K</Kbd>
       </KbdGroup>{' '}
       para abrir la paleta de comandos, o{' '}
       <Kbd>C</Kbd>{' '}
-      para crear una nueva issue.
+      para crear una nueva tarea.
     </p>
   ),
   parameters: {
     docs: {
       description: {
-        story: 'Keyboard shortcuts inline with text.',
+        story: 'Atajos de teclado dentro de un texto.',
       },
     },
   },
 };
 
 export const MenuItemStyle: Story = {
+  name: 'En un menú',
   render: () => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -234,13 +242,14 @@ export const MenuItemStyle: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Keyboard shortcuts inside the official DropdownMenu (open the menu to see them).',
+        story: 'Atajos de teclado dentro del DropdownMenu oficial (abre el menú para verlos).',
       },
     },
   },
 };
 
 export const AllModifiers: Story = {
+  name: 'Todos los modificadores',
   render: () => (
     <div className="space-y-2">
       <div className="flex items-center gap-2">
@@ -254,7 +263,7 @@ export const AllModifiers: Story = {
         <span className="text-sm w-20 text-muted-foreground">Windows:</span>
         <Kbd>Ctrl</Kbd>
         <Kbd>Alt</Kbd>
-        <Kbd>Shift</Kbd>
+        <Kbd>Mayús</Kbd>
         <Kbd>Win</Kbd>
       </div>
     </div>
@@ -262,7 +271,7 @@ export const AllModifiers: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'All modifier key symbols for Mac and Windows.',
+        story: 'Todas las teclas modificadoras en Mac y Windows.',
       },
     },
   },

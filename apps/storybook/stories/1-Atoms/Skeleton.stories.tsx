@@ -8,7 +8,7 @@ const meta: Meta<typeof Skeleton> = {
   argTypes: {
     className: {
       control: 'text',
-      description: 'Size and shape classes. Use h-* w-* for size, rounded-* for corners.',
+      description: 'Clases de tamaño y forma: h-* w-* para el tamaño, rounded-* para las esquinas.',
       table: {
         defaultValue: { summary: 'rounded-2xl' },
       },
@@ -18,7 +18,7 @@ const meta: Meta<typeof Skeleton> = {
     docs: {
       description: {
         component:
-          'Loading placeholder con animate-pulse (animate-shimmer queda reservado para barridos de progreso). Use in content areas while data loads.',
+          'Marcador de carga con animate-pulse (animate-shimmer queda reservado para barridos de progreso). Se usa en las zonas de contenido mientras cargan los datos.',
       },
     },
   },
@@ -28,12 +28,14 @@ export default meta;
 type Story = StoryObj<typeof Skeleton>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   args: {
     className: 'h-4 w-48',
   },
 };
 
 export const Shapes: Story = {
+  name: 'Formas',
   render: () => (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
@@ -57,6 +59,7 @@ export const Shapes: Story = {
 };
 
 export const CardSkeleton: Story = {
+  name: 'Tarjeta en carga',
   render: () => (
     <div className="rounded-lg border bg-card p-4 w-64 space-y-3">
       <div className="flex items-center gap-3">

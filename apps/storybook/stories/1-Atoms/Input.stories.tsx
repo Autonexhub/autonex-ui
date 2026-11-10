@@ -36,21 +36,24 @@ export default meta;
 type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   args: {
     placeholder: 'Buscar conversaciones...',
   },
 };
 
 export const WithLabel: Story = {
+  name: 'Con etiqueta',
   render: () => (
     <Field className="w-80">
       <FieldLabel htmlFor="email">Correo electrónico</FieldLabel>
-      <Input id="email" type="email" placeholder="nombre@empresa.com" />
+      <Input id="email" type="email" placeholder="nombre@empresa.es" />
     </Field>
   ),
 };
 
 export const States: Story = {
+  name: 'Estados',
   render: () => (
     <div className="space-y-4 w-80">
       <Field>
@@ -71,10 +74,11 @@ export const States: Story = {
 };
 
 export const Types: Story = {
+  name: 'Tipos',
   render: () => (
     <div className="space-y-4 w-80">
       <Input type="text" placeholder="Nombre del contacto" />
-      <Input type="email" placeholder="nombre@empresa.com" />
+      <Input type="email" placeholder="nombre@empresa.es" />
       <Input type="password" placeholder="Contraseña" />
       <Input type="number" placeholder="Nº de llamadas" />
       <Input type="search" placeholder="Buscar..." />

@@ -8,17 +8,17 @@ const meta: Meta<typeof Progress> = {
   argTypes: {
     value: {
       control: { type: 'range', min: 0, max: 100, step: 1 },
-      description: 'Progress value (0-100)',
+      description: 'Valor del progreso (0-100)',
     },
     className: {
       control: 'text',
-      description: 'Additional CSS classes',
+      description: 'Clases CSS adicionales',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Progress bar indicator. Value from 0-100.',
+        component: 'Barra de progreso. Valor de 0 a 100.',
       },
     },
   },
@@ -28,6 +28,7 @@ export default meta;
 type Story = StoryObj<typeof Progress>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   args: {
     value: 60,
   },
@@ -35,6 +36,7 @@ export const Default: Story = {
 };
 
 export const States: Story = {
+  name: 'Estados',
   render: () => (
     <div className="space-y-4 w-64">
       <div className="space-y-1">

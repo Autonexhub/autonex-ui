@@ -10,25 +10,25 @@ const meta: Meta<typeof Button> = {
     variant: {
       control: 'select',
       options: ['default', 'outline', 'ghost', 'destructive', 'success', 'brand', 'chip', 'link', 'secondary'],
-      description: 'Visual style of the button',
+      description: 'Estilo visual del botón',
     },
     size: {
       control: 'select',
       options: ['default', 'xs', 'sm', 'lg', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'],
-      description: 'Size of the button',
+      description: 'Tamaño del botón',
     },
     disabled: {
       control: 'boolean',
     },
     asChild: {
       control: 'boolean',
-      description: 'Render as child element (for links)',
+      description: 'Se renderiza como el elemento hijo (para enlaces)',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Primary action element. Pill-shaped with 1px down translation on press.',
+        component: 'Elemento de acción. Forma de píldora (`rounded-4xl`) que se hunde 1px al pulsar. Máximo un botón `default` por bloque y un `brand` por pantalla.',
       },
     },
   },
@@ -38,14 +38,15 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   args: {
-    children: 'Button',
+    children: 'Botón',
     variant: 'default',
   },
 };
 
 export const AllVariants: Story = {
-  name: 'All Variants',
+  name: 'Todas las variantes',
   render: () => (
     <div className="flex flex-wrap gap-4 items-center">
       <Button variant="default">Default</Button>
@@ -56,29 +57,29 @@ export const AllVariants: Story = {
       <Button variant="brand">Brand</Button>
       <Button variant="chip">Chip</Button>
       <Button variant="link">Link</Button>
-      <Button variant="secondary">Secondary (avoid)</Button>
+      <Button variant="secondary">Secondary (evitar)</Button>
     </div>
   ),
 };
 
 export const AllSizes: Story = {
-  name: 'All Sizes',
+  name: 'Todos los tamaños',
   render: () => (
     <div className="flex flex-wrap gap-4 items-center">
-      <Button size="xs">Extra small</Button>
-      <Button size="sm">Small</Button>
-      <Button size="default">Default</Button>
-      <Button size="lg">Large</Button>
-      <Button size="icon-xs"><Plus /></Button>
-      <Button size="icon-sm"><Plus /></Button>
-      <Button size="icon"><Plus /></Button>
-      <Button size="icon-lg"><Plus /></Button>
+      <Button size="xs">Muy pequeño</Button>
+      <Button size="sm">Pequeño</Button>
+      <Button size="default">Por defecto</Button>
+      <Button size="lg">Grande</Button>
+      <Button size="icon-xs" aria-label="Añadir"><Plus /></Button>
+      <Button size="icon-sm" aria-label="Añadir"><Plus /></Button>
+      <Button size="icon" aria-label="Añadir"><Plus /></Button>
+      <Button size="icon-lg" aria-label="Añadir"><Plus /></Button>
     </div>
   ),
 };
 
 export const WithIcons: Story = {
-  name: 'With Icons',
+  name: 'Con iconos',
   render: () => (
     <div className="flex flex-wrap gap-4 items-center">
       <Button><Plus /> Crear</Button>
@@ -90,6 +91,7 @@ export const WithIcons: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Deshabilitado',
   args: {
     children: 'Guardar',
     disabled: true,
@@ -97,7 +99,7 @@ export const Disabled: Story = {
 };
 
 export const ButtonHierarchy: Story = {
-  name: 'Button Hierarchy (max 1 default per block)',
+  name: 'Jerarquía (máx. 1 default por bloque)',
   render: () => (
     <div className="flex gap-2 p-4 border rounded-lg bg-card">
       <Button variant="default">Guardar</Button>

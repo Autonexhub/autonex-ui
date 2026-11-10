@@ -10,36 +10,36 @@ const meta: Meta<typeof Toggle> = {
     variant: {
       control: 'select',
       options: ['default', 'outline'],
-      description: 'Visual style',
+      description: 'Estilo visual',
       table: { defaultValue: { summary: 'default' } },
     },
     size: {
       control: 'select',
       options: ['default', 'sm', 'lg'],
-      description: 'Toggle size',
+      description: 'Tamaño del toggle',
       table: { defaultValue: { summary: 'default' } },
     },
     pressed: {
       control: 'boolean',
-      description: 'Controlled pressed state',
+      description: 'Estado pulsado (controlado)',
     },
     defaultPressed: {
       control: 'boolean',
-      description: 'Initial pressed state (uncontrolled)',
+      description: 'Estado pulsado inicial (no controlado)',
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable the toggle',
+      description: 'Deshabilita el toggle',
     },
     onPressedChange: {
       action: 'pressedChange',
-      description: 'Callback when pressed state changes',
+      description: 'Se llama cuando cambia el estado pulsado',
     },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Two-state button that can be on or off. Use for toolbar actions.',
+        component: 'Botón de dos estados (activado o desactivado). Para acciones de barra de herramientas.',
       },
     },
   },
@@ -49,18 +49,21 @@ export default meta;
 type Story = StoryObj<typeof Toggle>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   args: {
     children: <TextB />,
   },
 };
 
 export const WithText: Story = {
+  name: 'Con texto',
   args: {
-    children: 'Toggle',
+    children: 'Activar',
   },
 };
 
 export const Outline: Story = {
+  name: 'Outline',
   args: {
     variant: 'outline',
     children: <TextItalic />,
@@ -68,6 +71,7 @@ export const Outline: Story = {
 };
 
 export const Pressed: Story = {
+  name: 'Pulsado',
   args: {
     defaultPressed: true,
     children: <TextB />,
@@ -75,6 +79,7 @@ export const Pressed: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Deshabilitado',
   args: {
     disabled: true,
     children: <TextB />,
@@ -82,7 +87,7 @@ export const Disabled: Story = {
 };
 
 export const AllVariants: Story = {
-  name: 'All Variants',
+  name: 'Todas las variantes',
   render: () => (
     <div className="flex items-center gap-2">
       <Toggle><TextB /></Toggle>
@@ -95,6 +100,7 @@ export const AllVariants: Story = {
 };
 
 export const Sizes: Story = {
+  name: 'Tamaños',
   render: () => (
     <div className="flex items-center gap-2">
       <Toggle size="sm"><TextB /></Toggle>

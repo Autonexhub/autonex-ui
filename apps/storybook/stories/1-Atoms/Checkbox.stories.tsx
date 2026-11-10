@@ -9,30 +9,30 @@ const meta: Meta<typeof Checkbox> = {
   argTypes: {
     checked: {
       control: 'boolean',
-      description: 'Controlled checked state',
+      description: 'Estado marcado (controlado)',
     },
     defaultChecked: {
       control: 'boolean',
-      description: 'Initial checked state (uncontrolled)',
+      description: 'Estado marcado inicial (no controlado)',
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable the checkbox',
+      description: 'Deshabilita la casilla',
     },
     required: {
       control: 'boolean',
-      description: 'Mark as required for forms',
+      description: 'Marca el campo como obligatorio en formularios',
     },
     onCheckedChange: {
       action: 'checkedChange',
-      description: 'Callback when checked state changes',
+      description: 'Se llama cuando cambia el estado marcado',
     },
   },
   parameters: {
     docs: {
       description: {
         component:
-          'Checkbox input based on Radix UI. Fondo bg-input con borde transparente, marcado en bg-primary con check Phosphor. Use with Label for accessibility.',
+          'Casilla de verificación basada en Radix UI. Fondo bg-input con borde transparente, marcado en bg-primary con check Phosphor. Úsala siempre con Label por accesibilidad.',
       },
     },
   },
@@ -41,9 +41,12 @@ const meta: Meta<typeof Checkbox> = {
 export default meta;
 type Story = StoryObj<typeof Checkbox>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  name: 'Por defecto',
+};
 
 export const WithLabel: Story = {
+  name: 'Con etiqueta',
   render: () => (
     <div className="flex items-center space-x-2">
       <Checkbox id="terms" />
@@ -53,18 +56,21 @@ export const WithLabel: Story = {
 };
 
 export const Checked: Story = {
+  name: 'Marcada',
   args: {
     checked: true,
   },
 };
 
 export const Disabled: Story = {
+  name: 'Deshabilitada',
   args: {
     disabled: true,
   },
 };
 
 export const CheckboxGroup: Story = {
+  name: 'Grupo de casillas',
   render: () => (
     <div className="space-y-2">
       <div className="flex items-center space-x-2">
@@ -85,6 +91,7 @@ export const CheckboxGroup: Story = {
 
 /** Los tres estados, uno al lado del otro: deben verse distintos entre sí. */
 export const TresEstados: Story = {
+  name: 'Tres estados',
   render: () => (
     <div className="flex items-center gap-6">
       <div className="flex items-center space-x-2">

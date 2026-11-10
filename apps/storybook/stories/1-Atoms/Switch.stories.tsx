@@ -9,36 +9,36 @@ const meta: Meta<typeof Switch> = {
   argTypes: {
     checked: {
       control: 'boolean',
-      description: 'Controlled checked state',
+      description: 'Estado marcado (controlado)',
     },
     defaultChecked: {
       control: 'boolean',
-      description: 'Initial checked state (uncontrolled)',
+      description: 'Estado marcado inicial (no controlado)',
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable the switch',
+      description: 'Deshabilita el interruptor',
     },
     size: {
       control: 'radio',
       options: ['default', 'sm'],
-      description: 'Switch size',
+      description: 'Tamaño del interruptor',
       table: { defaultValue: { summary: 'default' } },
     },
     required: {
       control: 'boolean',
-      description: 'Mark as required for forms',
+      description: 'Marca el campo como obligatorio en formularios',
     },
     onCheckedChange: {
       action: 'checkedChange',
-      description: 'Callback when checked state changes',
+      description: 'Se llama cuando cambia el estado marcado',
     },
   },
   parameters: {
     docs: {
       description: {
         component:
-          'Toggle switch based on Radix UI. Use for binary on/off settings. Checked = verde success (bg-success), unchecked = gris bg-input (decisión 2026-08-31).',
+          'Interruptor basado en Radix UI para ajustes de activado/desactivado. Checked = verde success (bg-success), unchecked = gris bg-input (decisión 2026-08-31).',
       },
     },
   },
@@ -47,9 +47,12 @@ const meta: Meta<typeof Switch> = {
 export default meta;
 type Story = StoryObj<typeof Switch>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  name: 'Por defecto',
+};
 
 export const WithLabel: Story = {
+  name: 'Con etiqueta',
   render: () => (
     <div className="flex items-center space-x-2">
       <Switch id="notificaciones" />
@@ -59,27 +62,30 @@ export const WithLabel: Story = {
 };
 
 export const Checked: Story = {
+  name: 'Activado',
   args: {
     checked: true,
   },
 };
 
 export const Disabled: Story = {
+  name: 'Deshabilitado',
   args: {
     disabled: true,
   },
 };
 
 export const Sizes: Story = {
+  name: 'Tamaños',
   render: () => (
     <div className="flex items-center gap-6">
       <div className="flex items-center space-x-2">
         <Switch id="sw-sm" size="sm" defaultChecked />
-        <Label htmlFor="sw-sm">Small</Label>
+        <Label htmlFor="sw-sm">Pequeño (sm)</Label>
       </div>
       <div className="flex items-center space-x-2">
         <Switch id="sw-default" defaultChecked />
-        <Label htmlFor="sw-default">Default</Label>
+        <Label htmlFor="sw-default">Por defecto</Label>
       </div>
     </div>
   ),

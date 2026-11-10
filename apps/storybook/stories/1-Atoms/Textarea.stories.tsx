@@ -9,30 +9,30 @@ const meta: Meta<typeof Textarea> = {
   argTypes: {
     placeholder: {
       control: 'text',
-      description: 'Placeholder text',
+      description: 'Texto de ejemplo (placeholder)',
     },
     disabled: {
       control: 'boolean',
-      description: 'Disable the textarea',
+      description: 'Deshabilita el área de texto',
     },
     rows: {
       control: { type: 'number', min: 1, max: 20 },
-      description: 'Number of visible text lines',
+      description: 'Número de líneas visibles',
     },
     value: {
       control: 'text',
-      description: 'Controlled value',
+      description: 'Valor (controlado)',
     },
     defaultValue: {
       control: 'text',
-      description: 'Default value (uncontrolled)',
+      description: 'Valor inicial (no controlado)',
     },
   },
   parameters: {
     docs: {
       description: {
         component:
-          'Multi-line text input. Relleno bg-muted, rounded-2xl, sin resize manual (crece con el contenido via field-sizing donde el navegador lo soporta); error via aria-invalid.',
+          'Campo de texto de varias líneas. Relleno bg-muted, rounded-2xl, sin resize manual (crece con el contenido via field-sizing donde el navegador lo soporta); error via aria-invalid.',
       },
     },
   },
@@ -42,12 +42,14 @@ export default meta;
 type Story = StoryObj<typeof Textarea>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   args: {
     placeholder: 'Escribe tu mensaje...',
   },
 };
 
 export const WithLabel: Story = {
+  name: 'Con etiqueta',
   render: () => (
     <Field className="w-80">
       <FieldLabel htmlFor="message">Nota interna</FieldLabel>
@@ -57,6 +59,7 @@ export const WithLabel: Story = {
 };
 
 export const Disabled: Story = {
+  name: 'Deshabilitado',
   args: {
     placeholder: 'Escribe tu mensaje...',
     disabled: true,
@@ -64,6 +67,7 @@ export const Disabled: Story = {
 };
 
 export const Invalid: Story = {
+  name: 'Con error',
   args: {
     placeholder: 'Campo con error',
     'aria-invalid': true,
