@@ -1,5 +1,16 @@
 # @autonexhub/tokens
 
+## 7.0.0
+
+### Minor Changes
+
+- Move the remaining app UI into the package, each with stories (single source of truth for the Storybook):
+  - Finanzas: KpiTile/KpiStrip, FinanceStat, ForecastTable, ForecastDrivers, StatementTable, CashFlowTable, PlanVsActualTable, ReceivablesPanel, FixedCosts, AlertsTable, CashPeriodDetail, ScenarioCards, VatAccountCard, SyncButton, CushionEditor, Milestone/RecurringCost dialogs, and the cash/ARR/MRR/paired-bar charts + chart kit.
+  - Charts: AreaChart, BarChart, TopicsBubbleChart, DailyStatsChart, VoiceHourly, LanguageDistribution, ConversionFunnel, EmailTiming, ChannelStackedHourly, ConversationOutcome.
+  - ImageCropModal, AutonexScore, EditableNameTable, 17 page skeletons, PanelTooltipShell/PanelTooltipRow.
+  - Stories for Atoms, Molecules and Organisms consolidated (Spanish text), plus page templates.
+    All translatable components take `labels` props with Spanish defaults.
+
 ## 6.0.0
 
 ### Minor Changes
