@@ -1,5 +1,21 @@
 # @autonexhub/react
 
+## 8.0.0
+
+### Minor Changes
+
+- Move the remaining portable app UI into the package with stories, and give every component part a story:
+  - ColumnsButton, WhatsAppIcon, MicroConfetti/BigCelebration, Drive (FileCard, FileContextMenu, GridView), LinearFilterBar, MarkdownContent/MarkdownView.
+  - Services and pricing: FamilySelect, ServicePriceEditor, ServicePriceIssues, ServiceReviewBadges, ServicePriceMatrix, FamilyServiceMatrix (+ pricing helpers).
+  - Billing: MoneyCell, BillingStatusBadge, MandateStatus, InvoiceBreakdown, InvoiceTimeline. Margins: MarginStatusBadge, MarginFilters, CostBreakdownPanel, MarginTable, MarginsSummaryCards, MarginCharts.
+  - New stories for AutonexIsotipo, FinanceChartKit, FinanceStat, SidebarBookmarksDialog, LocationFilterSection and the small parts of Bubble, Alert, Item, Popover, Table, Sidebar, Dialog and Sheet.
+    New dependency: canvas-confetti. All translatable components take `labels` props (Spanish defaults).
+
+### Patch Changes
+
+- Updated dependencies
+  - @autonexhub/tokens@8.0.0
+
 ## 7.0.0
 
 ### Minor Changes
