@@ -6,10 +6,10 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  Button,
+  Badge,
+  ChannelBadge,
 } from '@autonexhub/react';
-import { Button } from '@autonexhub/react';
-import { Badge } from '@autonexhub/react';
-import { ChannelBadge } from '@autonexhub/react';
 import { useRef, useState } from 'react';
 
 const meta: Meta<typeof Sheet> = {
@@ -19,29 +19,29 @@ const meta: Meta<typeof Sheet> = {
   argTypes: {
     defaultOpen: {
       control: 'boolean',
-      description: 'Initial open state (uncontrolled)',
+      description: 'Estado abierto inicial (no controlado)',
     },
     open: {
       control: 'boolean',
-      description: 'Open state (controlled)',
+      description: 'Estado abierto (controlado)',
     },
     modal: {
       control: 'boolean',
-      description: 'If true (default), interaction outside is blocked',
+      description: 'Si es true (por defecto), se bloquea la interacción fuera del panel',
       table: {
         defaultValue: { summary: 'true' },
       },
     },
     onOpenChange: {
       action: 'openChange',
-      description: 'Callback when open state changes',
+      description: 'Se llama cuando cambia el estado abierto',
     },
   },
   parameters: {
     docs: {
       description: {
         component:
-          'Panel lateral. Dos variantes (DesignRules › Paneles laterales): **modal** (por defecto) con velo, para formularios y confirmaciones que piden toda la atención; **no modal / inline** (`<Sheet modal={false}>` + `<SheetContent inline>`) sin velo, para el detalle de un elemento de un listado: una TARJETA FLOTANTE (`rounded-xl border shadow-lg`) por encima de la tarjeta de contenido, con 8px de margen arriba/derecha/abajo; la lista sigue viva, un clic en otra fila cambia el panel, y se cierra solo con ✕ o Esc. Se monta en la tarjeta del chasis (`[data-shell-panel-host]`, cabecera + área de scroll): ocupa toda su altura (tapa la fila del breadcrumb) y nunca la sidebar. Ancho por defecto ~58% del host (560–1100px). `side`: "right" (por defecto), "left", "top", "bottom".',
+          'Panel lateral. Dos variantes (DesignRules › Paneles laterales): **modal** (por defecto) con velo, para flujos con pasos o contenido largo que piden toda la atención (los formularios y confirmaciones van en `Dialog`); **no modal / inline** (`<Sheet modal={false}>` + `<SheetContent inline>`) sin velo, para el detalle de un elemento de un listado: una TARJETA FLOTANTE (`rounded-xl border shadow-lg`) por encima de la tarjeta de contenido, con 8px de margen arriba/derecha/abajo; la lista sigue viva, un clic en otra fila cambia el panel, y se cierra con ✕, Esc o un clic en cualquier otra zona. Se monta en la tarjeta del chasis (`[data-shell-panel-host]`, cabecera + área de scroll): ocupa toda su altura (tapa la fila del breadcrumb) y nunca la sidebar. Ancho por defecto ~58% del host (560–1100px). `side`: "right" (por defecto), "left", "top", "bottom".',
       },
     },
   },
@@ -51,32 +51,33 @@ export default meta;
 type Story = StoryObj<typeof Sheet>;
 
 export const Default: Story = {
+  name: 'Por defecto',
   render: () => (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">Open Sheet</Button>
+        <Button variant="outline">Abrir panel</Button>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Contact Details</SheetTitle>
-          <SheetDescription>View and edit contact information</SheetDescription>
+          <SheetTitle>Detalle del contacto</SheetTitle>
+          <SheetDescription>Datos del contacto y canal de entrada</SheetDescription>
         </SheetHeader>
         <div className="py-4 space-y-4">
           <div>
-            <p className="text-sm text-muted-foreground">Name</p>
+            <p className="text-sm text-muted-foreground">Nombre</p>
             <p className="font-medium">Juan García</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Phone</p>
+            <p className="text-sm text-muted-foreground">Teléfono</p>
             <p className="font-mono">+34 612 345 678</p>
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Channel</p>
+            <p className="text-sm text-muted-foreground">Canal</p>
             <ChannelBadge channel="whatsapp" />
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">Status</p>
-            <Badge variant="success">Active</Badge>
+            <p className="text-sm text-muted-foreground">Estado</p>
+            <Badge variant="info">Activa</Badge>
           </div>
         </div>
       </SheetContent>
@@ -85,17 +86,18 @@ export const Default: Story = {
 };
 
 export const LeftSide: Story = {
+  name: 'Lado izquierdo',
   render: () => (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">Open Left Sheet</Button>
+        <Button variant="outline">Abrir panel izquierdo</Button>
       </SheetTrigger>
       <SheetContent side="left">
         <SheetHeader>
-          <SheetTitle>Navigation</SheetTitle>
+          <SheetTitle>Navegación</SheetTitle>
         </SheetHeader>
         <div className="py-4">
-          <p className="text-sm text-muted-foreground">Menu items go here</p>
+          <p className="text-sm text-muted-foreground">Aquí van los elementos del menú</p>
         </div>
       </SheetContent>
     </Sheet>
@@ -184,7 +186,7 @@ export const NoModal: Story = {
     docs: {
       description: {
         story:
-          'Tarjeta flotante con sombra (`shadow-lg`) y 8px de margen sobre la tarjeta de contenido, sin velo: la lista de detrás sigue operativa y el panel cambia de conversación al hacer clic en otra fila; un clic en cualquier otra zona lo cierra (como ✕ y Esc). Usar para el detalle de un elemento de un listado (Conversaciones, Casos pendientes). Para formularios o confirmaciones, la variante modal por defecto.',
+          'Tarjeta flotante con sombra (`shadow-lg`) y 8px de margen sobre la tarjeta de contenido, sin velo: la lista de detrás sigue operativa y el panel cambia de conversación al hacer clic en otra fila; un clic en cualquier otra zona lo cierra (como ✕ y Esc). Usar para el detalle de un elemento de un listado (Conversaciones, Casos pendientes). Para formularios o confirmaciones, `Dialog`; la variante modal del Sheet queda para flujos con pasos.',
       },
     },
   },

@@ -10,13 +10,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  Input,
+  Button,
+  Textarea,
+  Checkbox,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+  toast,
+  Toaster,
 } from '@autonexhub/react';
-import { Input } from '@autonexhub/react';
-import { Button } from '@autonexhub/react';
-import { Textarea } from '@autonexhub/react';
-import { Checkbox } from '@autonexhub/react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@autonexhub/react';
-import { toast, Toaster } from '@autonexhub/react';
 
 const meta: Meta = {
   title: '3-Organisms/Form',
@@ -24,7 +29,7 @@ const meta: Meta = {
   parameters: {
     docs: {
       description: {
-        component: 'Form components with react-hook-form and Zod validation.',
+        component: 'Componentes de formulario con react-hook-form y validación con Zod.',
       },
     },
   },
@@ -44,7 +49,7 @@ type Story = StoryObj;
 // Simple form schema and component
 const simpleSchema = z.object({
   username: z.string().min(2, { message: 'El nombre debe tener al menos 2 caracteres.' }),
-  email: z.string().email({ message: 'Email inválido.' }),
+  email: z.string().email({ message: 'Correo electrónico no válido.' }),
 });
 
 function SimpleFormExample() {
@@ -58,7 +63,7 @@ function SimpleFormExample() {
 
   function onSubmit(values: z.infer<typeof simpleSchema>) {
     toast.success('Formulario enviado', {
-      description: `Usuario: ${values.username}, Email: ${values.email}`,
+      description: `Usuario: ${values.username}, correo electrónico: ${values.email}`,
     });
   }
 
@@ -72,7 +77,7 @@ function SimpleFormExample() {
             <FormItem>
               <FormLabel>Nombre de usuario</FormLabel>
               <FormControl>
-                <Input placeholder="tu_usuario" {...field} />
+                <Input placeholder="Ej: lucia_martin" {...field} />
               </FormControl>
               <FormDescription>Este será tu nombre público.</FormDescription>
               <FormMessage />
@@ -84,9 +89,9 @@ function SimpleFormExample() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Correo electrónico</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="tu@email.com" {...field} />
+                <Input type="email" placeholder="Ej: nombre@empresa.es" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -99,13 +104,14 @@ function SimpleFormExample() {
 }
 
 export const Simple: Story = {
+  name: 'Simple',
   render: () => <SimpleFormExample />,
 };
 
 // Contact form schema and component
 const contactSchema = z.object({
   name: z.string().min(2, { message: 'Nombre requerido.' }),
-  email: z.string().email({ message: 'Email inválido.' }),
+  email: z.string().email({ message: 'Correo electrónico no válido.' }),
   phone: z.string().optional(),
   channel: z.string({ required_error: 'Selecciona un canal.' }),
   message: z.string().min(10, { message: 'El mensaje debe tener al menos 10 caracteres.' }),
@@ -140,7 +146,7 @@ function ContactFormExample() {
             <FormItem>
               <FormLabel>Nombre completo</FormLabel>
               <FormControl>
-                <Input placeholder="Juan Pérez" {...field} />
+                <Input placeholder="Ej: Juan Pérez" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -152,9 +158,9 @@ function ContactFormExample() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Correo electrónico</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder="tu@email.com" {...field} />
+                  <Input type="email" placeholder="Ej: nombre@empresa.es" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -167,7 +173,7 @@ function ContactFormExample() {
               <FormItem>
                 <FormLabel>Teléfono (opcional)</FormLabel>
                 <FormControl>
-                  <Input placeholder="+34 612 345 678" {...field} />
+                  <Input placeholder="Ej: 612 345 678" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -187,7 +193,7 @@ function ContactFormExample() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="email">Email</SelectItem>
+                  <SelectItem value="email">Correo electrónico</SelectItem>
                   <SelectItem value="phone">Teléfono</SelectItem>
                   <SelectItem value="whatsapp">WhatsApp</SelectItem>
                 </SelectContent>
@@ -236,12 +242,13 @@ function ContactFormExample() {
 }
 
 export const Contact: Story = {
+  name: 'Contacto',
   render: () => <ContactFormExample />,
 };
 
 // Login form schema and component
 const loginSchema = z.object({
-  email: z.string().email({ message: 'Email inválido.' }),
+  email: z.string().email({ message: 'Correo electrónico no válido.' }),
   password: z.string().min(6, { message: 'La contraseña debe tener al menos 6 caracteres.' }),
   remember: z.boolean().default(false),
 });
@@ -258,7 +265,7 @@ function LoginFormExample() {
 
   function onSubmit(values: z.infer<typeof loginSchema>) {
     toast.success('Iniciando sesión...', {
-      description: `Email: ${values.email}`,
+      description: `Correo electrónico: ${values.email}`,
     });
   }
 
@@ -270,9 +277,9 @@ function LoginFormExample() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Correo electrónico</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="tu@email.com" {...field} />
+                <Input type="email" placeholder="Ej: nombre@empresa.es" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -312,12 +319,13 @@ function LoginFormExample() {
 }
 
 export const Login: Story = {
+  name: 'Inicio de sesión',
   render: () => <LoginFormExample />,
 };
 
 // Error example component
 const withErrorSchema = z.object({
-  email: z.string().email({ message: 'Email inválido.' }),
+  email: z.string().email({ message: 'Correo electrónico no válido.' }),
 });
 
 function WithErrorFormExample() {
@@ -339,7 +347,7 @@ function WithErrorFormExample() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email con error</FormLabel>
+              <FormLabel>Correo electrónico con error</FormLabel>
               <FormControl>
                 <Input type="email" {...field} />
               </FormControl>
@@ -354,5 +362,6 @@ function WithErrorFormExample() {
 }
 
 export const WithError: Story = {
+  name: 'Con error',
   render: () => <WithErrorFormExample />,
 };

@@ -6,9 +6,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  Badge,
+  ChannelBadge,
 } from '@autonexhub/react';
-import { Badge } from '@autonexhub/react';
-import { ChannelBadge } from '@autonexhub/react';
 
 /**
  * Receta canónica de tabla del panel (la misma que Conversaciones en dev):
@@ -49,6 +49,7 @@ const TableFrame = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const ConversationsTable: Story = {
+  name: 'Tabla de conversaciones',
   render: () => (
     <TableFrame>
       <Table>
@@ -83,13 +84,14 @@ export const ConversationsTable: Story = {
 };
 
 export const EmptyTable: Story = {
+  name: 'Tabla vacía',
   render: () => (
     <TableFrame>
       <Table>
         <TableHeader>
           <TableRow>
             <TableHead>Nombre</TableHead>
-            <TableHead>Email</TableHead>
+            <TableHead>Correo electrónico</TableHead>
             <TableHead>Rol</TableHead>
           </TableRow>
         </TableHeader>
