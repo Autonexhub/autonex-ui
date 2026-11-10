@@ -10,7 +10,7 @@ const meta: Meta<typeof ProfileSkeleton> = {
     docs: {
       description: {
         component:
-          'Skeleton de /linear/settings/profile: seis tarjetas (foto, información personal, logotipo de la organización, etc.) con la anatomía real de la página.',
+          'Skeleton de /settings/profile: seis tarjetas (foto, información personal, logotipo de la organización, etc.) con la anatomía real de la página.',
       },
     },
   },

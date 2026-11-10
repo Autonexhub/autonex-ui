@@ -19,7 +19,7 @@ const meta: Meta<typeof RealmRail> = {
         component: `
 **Qué es:** la navegación principal. Arriba la **organización** (selector), después los **reinos**
 — Agentes IA · Operaciones · CRM —, un separador y los **contextos** que el usuario puede ver
-(Linear · Admin · Finanzas · DevOps). Abajo **Buscar** (⌘K), **Rambo IA** (abre el panel derecho)
+(Admin · Finanzas · DevOps). Abajo **Buscar** (⌘K), **Rambo IA** (abre el panel derecho)
 y el **avatar** con el menú de usuario.
 
 **Estados:**

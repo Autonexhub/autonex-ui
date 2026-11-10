@@ -1,6 +1,6 @@
 {
   "name": "@autonexhub/react",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "description": "React component library for Autonex applications",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -66,7 +66,6 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@radix-ui/react-toggle-group": "^1.0.4",
     "@radix-ui/react-tooltip": "^1.0.7",
-    "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^0.2.1",
@@ -89,7 +88,6 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.0",
     "@testing-library/react": "^16.0.0",
-    "@types/canvas-confetti": "^1.9.0",
     "@types/d3-hierarchy": "^3.1.7",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",

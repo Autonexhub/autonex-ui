@@ -1,5 +1,13 @@
 # @autonexhub/tokens
 
+## 9.0.0
+
+### Minor Changes
+
+- Remove the Linear-only pieces (the internal Linear task module was retired; tasks live in Plane):
+  LinearFilterBar, MarkdownContent/MarkdownView, MicroConfetti/BigCelebration, LinearIssuesSkeleton, LinearKanbanSkeleton, BacklogPageSkeleton, their stories, and the canvas-confetti dependency. Docs/comments no longer mention the Linear context.
+  Storybook deploy: ship an .htaccess so index.html, iframe.html and index.json are always revalidated (no stale "Couldn't find story" after a release).
+
 ## 8.0.0
 
 ### Minor Changes

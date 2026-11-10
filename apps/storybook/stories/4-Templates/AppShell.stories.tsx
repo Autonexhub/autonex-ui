@@ -39,7 +39,7 @@ De izquierda a derecha, todo sobre el **lienzo** gris \`bg-sidebar\` (#F5F5F5, \
 
 1. **Rail de reinos (48px)** sobre el lienzo, sin tarjeta: organización arriba, los **reinos**
    (Agentes IA · Operaciones · CRM), separador, los **contextos** a los que tienes acceso
-   (Linear · Admin · Finanzas · DevOps) y abajo Buscar (⌘K), Rambo IA y el avatar.
+   (Admin · Finanzas · DevOps) y abajo Buscar (⌘K), Rambo IA y el avatar.
    - Activo sobre el lienzo = **píldora blanca** con sombra mínima.
    - **Al pasar el ratón** (retardo 150ms) se despliega como **tarjeta blanca de alto completo**
      (208px, esquinas derechas redondeadas, \`shadow-elev\`) **por encima** de todo, sin mover la página.

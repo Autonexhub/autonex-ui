@@ -6,9 +6,6 @@ export type { ColumnDef, ColumnsButtonProps, ColumnsButtonLabels } from "./colum
 export { WhatsAppIcon } from "./whatsapp-icon"
 export type { WhatsAppIconProps } from "./whatsapp-icon"
 
-export { MicroConfetti, BigCelebration, DEFAULT_CELEBRATION_MESSAGE } from "./confetti"
-export type { BigCelebrationProps } from "./confetti"
-
 export {
   FileCard,
   FileContextMenu,
@@ -27,18 +24,6 @@ export type {
   GridViewProps,
   GridViewLabels,
 } from "./drive"
-
-export { LinearFilterBar, DEFAULT_LINEAR_FILTER_BAR_LABELS } from "./linear-filter-bar"
-export type {
-  LinearFilterBarProps,
-  LinearFilterBarLabels,
-  LinearFilterValue,
-  FilterField as LinearFilterField,
-  FilterFieldOption as LinearFilterFieldOption,
-} from "./linear-filter-bar"
-
-export { MarkdownContent, MarkdownView, DEFAULT_MARKDOWN_CONTENT_LABELS } from "./markdown-content"
-export type { MarkdownContentProps, MarkdownContentLabels } from "./markdown-content"
 
 export {
   TARIFA_UNICA,

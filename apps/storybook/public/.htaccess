@@ -1,0 +1,7 @@
+# Storybook entry points must always be revalidated, otherwise browsers/CDN keep an older
+# copy after a release and show "Couldn't find story". Hashed files in /assets are immutable.
+<IfModule mod_headers.c>
+  <FilesMatch "^(index\.html|iframe\.html|index\.json|stories\.json|project\.json)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>

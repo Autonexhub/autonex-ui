@@ -1,4 +1,3 @@
-export { BacklogPageSkeleton } from "./backlog-page-skeleton"
 export { CareersKanbanSkeleton } from "./careers-kanban-skeleton"
 export { CareersPositionsSkeleton } from "./careers-positions-skeleton"
 export { ChatMessagesSkeleton } from "./chat-messages-skeleton"
@@ -6,7 +5,6 @@ export { ContactRecordSkeleton, ConversationInsightsBodySkeleton, ConversationIn
 export { ConversationDetailSkeleton } from "./conversation-detail-skeleton"
 export { DashboardHomeSkeleton } from "./dashboard-home-skeleton"
 export { KBBlocksSkeleton } from "./kb-blocks-skeleton"
-export { LinearIssuesSkeleton, LinearKanbanSkeleton } from "./linear-issues-skeleton"
 export { ProfileSkeleton } from "./profile-skeleton"
 export { ServiceDetailHeaderSkeleton, ServiceDetailSkeleton } from "./service-detail-skeleton"
 export { VoiceMetricsSkeleton, ChartSkeleton } from "./voice-metrics-skeleton"

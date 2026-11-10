@@ -4,7 +4,7 @@ import { Skeleton } from "../ui/skeleton";
 import { cn } from "../../lib/utils";
 
 /**
- * Skeleton de /linear/settings/profile. Calca la anatomía real de la página
+ * Skeleton de /settings/profile. Calca la anatomía real de la página
  * (seis tarjetas) para que nada salte al llegar los datos:
  *
  *   1. Foto de perfil — avatar de 96px + botón de subida

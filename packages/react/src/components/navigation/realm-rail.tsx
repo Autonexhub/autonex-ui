@@ -26,7 +26,7 @@ export interface RailEntry {
 export interface RealmRailProps {
   /** Reinos (arriba). */
   realms: RailEntry[]
-  /** Contextos de trabajo (Linear, Admin, Finanzas, DevOps…). */
+  /** Contextos de trabajo (Admin, Finanzas, DevOps…). */
   contexts?: RailEntry[]
   /** Fijos abajo (Buscar, Rambo IA). */
   footer?: RailEntry[]

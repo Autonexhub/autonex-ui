@@ -31,7 +31,6 @@ import {
   Envelope,
   Gear,
   Handshake,
-  Kanban,
   ListBullets,
   MagnifyingGlass,
   Megaphone,
@@ -115,7 +114,6 @@ export function demoRailEntries(realm: RealmId | null, { withContexts = true } =
   }));
   const contexts: RailEntry[] = withContexts
     ? [
-        { id: 'linear', label: 'Linear', icon: Kanban, onSelect: noop },
         { id: 'admin', label: 'Admin', icon: Gear, onSelect: noop },
         { id: 'finance', label: 'Finanzas', icon: Receipt, onSelect: noop },
         { id: 'devops', label: 'DevOps', icon: Pulse, onSelect: noop },

@@ -32,7 +32,7 @@ El enlace de Configuración se pinta con \`renderLink\` + \`settingsHref\` (por 
 - **Escritorio → pie del rail de reinos** (\`variant="rail"\`): avatar suelto de 32px con hover gris
   suave; con el rail desplegado o fijado, el nombre al lado (\`showName\`). El menú se abre a la derecha.
 - **Móvil → pie del drawer** (\`variant="default"\`), debajo de la cuota: avatar de 32px + nombre y
-  email. Es también el que usa la cabecera de ajustes de Linear.
+  email. Es también el que usa la cabecera de ajustes.
 
 **Reglas:** la tarjeta de módulos de escritorio ya no lleva usuario (ni selector de organización):
 los dos están en el rail. No hay variante plegada: en escritorio el rail ya es la versión compacta.
