@@ -1,5 +1,15 @@
 # @autonexhub/react
 
+## 10.0.0
+
+### Minor Changes
+
+- Add Kanban (KanbanBoard, KanbanColumn, KanbanColumnTitle, KanbanEmpty, KanbanCard, KanbanCardSection) — the one board recipe used by Negocios, Tareas, Candidatos and Incidencias — and Plane-style priority (PriorityIcon, PrioritySelect, PRIORITY_ORDER, PRIORITY_META, priorityKey, priorityRank) for Marta's Incidencias.
+
+### Patch Changes
+
+- @autonexhub/tokens@10.0.0
+
 ## 9.0.0
 
 ### Minor Changes

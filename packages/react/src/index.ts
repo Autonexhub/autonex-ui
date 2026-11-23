@@ -395,6 +395,9 @@ export {
 
 // Molecules
 export { EmptyState, ChartEmptyState } from "./components/molecules/empty-state"
+export { KanbanBoard, KanbanColumn, KanbanColumnTitle, KanbanEmpty, KanbanCard, KanbanCardSection } from "./components/molecules/kanban"
+export { PriorityIcon, PrioritySelect, PRIORITY_ORDER, PRIORITY_META, priorityKey, priorityRank } from "./components/molecules/priority"
+export type { Priority, PriorityKey, PriorityLabels } from "./components/molecules/priority"
 export { ChannelBadge } from "./components/molecules/channel-badge"
 export type { ChannelType } from "./components/molecules/channel-badge"
 export { ScoreBadge } from "./components/molecules/score-badge"
