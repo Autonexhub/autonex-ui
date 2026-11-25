@@ -33,3 +33,38 @@ export const Board: StoryObj = {
     </div>
   ),
 };
+
+const many = ['Nuevo', 'Contactado', 'Cualificado', 'Propuesta', 'Negociación', 'Ganado', 'Perdido'];
+
+/**
+ * Más columnas de las que caben: al hacer scroll los bordes se desvanecen 24px (máscara, solo en el lado que aún
+ * tiene contenido). `fadeEdges={false}` lo quita; `fadeWidth` cambia el ancho.
+ */
+export const EdgeFade: StoryObj = {
+  render: () => (
+    <div className="h-[360px] w-[720px]">
+      <KanbanBoard>
+        {many.map((name, i) => (
+          <KanbanColumn key={name} title={<KanbanColumnTitle label={name} />} count={i % 3}>
+            {Array.from({ length: i % 3 }, (_, j) => <Card key={j} title={`Negocio ${i}-${j}`} sub="Ana López" />)}
+            {i % 3 === 0 && <KanbanEmpty>Sin negocios</KanbanEmpty>}
+          </KanbanColumn>
+        ))}
+      </KanbanBoard>
+    </div>
+  ),
+};
+
+export const WithoutFade: StoryObj = {
+  render: () => (
+    <div className="h-[360px] w-[720px]">
+      <KanbanBoard fadeEdges={false}>
+        {many.map((name) => (
+          <KanbanColumn key={name} title={<KanbanColumnTitle label={name} />} count={0}>
+            <KanbanEmpty>Sin negocios</KanbanEmpty>
+          </KanbanColumn>
+        ))}
+      </KanbanBoard>
+    </div>
+  ),
+};

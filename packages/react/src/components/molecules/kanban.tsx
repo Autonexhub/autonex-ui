@@ -1,4 +1,4 @@
-import { forwardRef, type HTMLAttributes, type ReactNode, type Ref } from 'react';
+import { forwardRef, useCallback, useEffect, useRef, useState, type HTMLAttributes, type ReactNode, type Ref } from 'react';
 import { Badge } from '../ui/badge';
 import { cn } from '../../lib/utils';
 
@@ -6,7 +6,7 @@ import { cn } from '../../lib/utils';
  * Kanban — receta ÚNICA (decisión Bruno 22/11, referencia HubSpot). En Marta lo usan Negocios, Tareas,
  * Candidatos e Incidencias. Ver DesignRules › Kanban y la story 2-Molecules/Kanban.
  *
- *  - Tablero: scroll horizontal, columnas separadas 16px.
+ *  - Tablero: scroll horizontal, columnas separadas 16px; los bordes se desvanecen 24px donde queda contenido.
  *  - Columna = bandeja gris (`bg-muted/60`, `rounded-xl`) con la cabecera DENTRO:
  *    `KanbanColumnTitle` (Badge) + contador + extra opcional (importe, "+").
  *    Pie opcional con un resumen (donde HubSpot pone los importes).
@@ -14,9 +14,59 @@ import { cn } from '../../lib/utils';
  *  - Solo presentación: el arrastre (HTML5 o dnd-kit) lo pone cada página por props/ref.
  */
 
-export function KanbanBoard({ children, className }: { children: ReactNode; className?: string }) {
+/** Ancho por defecto del desvanecido de los bordes: sutil, como HubSpot (Bruno 23/11; con 48px se comía media tarjeta). */
+const DEFAULT_FADE = 24;
+
+export interface KanbanBoardProps {
+  children: ReactNode;
+  className?: string;
+  /**
+   * Al hacer scroll horizontal el borde no corta en seco: se desvanece, y solo en el lado que aún tiene
+   * contenido. Máscara `mask-image`, no un degradado superpuesto (DesignRules › Corte del scroll). Por defecto, sí.
+   */
+  fadeEdges?: boolean;
+  /** Ancho del desvanecido en px (por defecto 24). */
+  fadeWidth?: number;
+}
+
+export function KanbanBoard({ children, className, fadeEdges = true, fadeWidth = DEFAULT_FADE }: KanbanBoardProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ left: false, right: false });
+
+  const measure = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    const left = el.scrollLeft > 4;
+    const right = el.scrollLeft + el.clientWidth < el.scrollWidth - 4;
+    setEdges((p) => (p.left === left && p.right === right ? p : { left, right }));
+  }, []);
+
+  useEffect(() => {
+    if (!fadeEdges) return;
+    const el = ref.current;
+    if (!el) return;
+    measure();
+    if (typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    if (el.firstElementChild) ro.observe(el.firstElementChild);
+    return () => ro.disconnect();
+  }, [fadeEdges, measure]);
+
+  const fade = `${fadeWidth}px`;
+  const mask = fadeEdges && (edges.left || edges.right)
+    ? `linear-gradient(to right, ${edges.left ? 'transparent' : 'black'} 0, black ${fade}, black calc(100% - ${fade}), ${edges.right ? 'transparent' : 'black'} 100%)`
+    : undefined;
+
   return (
-    <div className={cn('min-h-0 flex-1 overflow-x-auto pb-2', className)}>
+    <div
+      ref={ref}
+      onScroll={fadeEdges ? measure : undefined}
+      data-fade-left={fadeEdges && edges.left ? '' : undefined}
+      data-fade-right={fadeEdges && edges.right ? '' : undefined}
+      className={cn('min-h-0 flex-1 overflow-x-auto pb-2', className)}
+      style={mask ? { maskImage: mask, WebkitMaskImage: mask } : undefined}
+    >
       <div className="flex h-full gap-4">{children}</div>
     </div>
   );

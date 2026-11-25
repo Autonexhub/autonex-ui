@@ -53,3 +53,23 @@ export const TextoDeLimpiarPropio: Story = {
     clearAllLabel: 'Quitar filtros',
   },
 };
+
+/** `onSelect`: pulsar el texto de una píldora abre ese filtro para cambiarlo (como Linear); el aspa la quita. */
+export const Editable: Story = {
+  render: function Render() {
+    const [filters, setFilters] = useState<ActiveFilter[]>(inicial);
+    const [last, setLast] = useState<string | null>(null);
+    return (
+      <div className="space-y-2">
+        <ActiveFilters
+          filters={filters}
+          onRemove={(id) => setFilters((f) => f.filter((x) => x.id !== id))}
+          onClearAll={() => setFilters([])}
+          onSelect={setLast}
+          isSelectable={(id) => id !== 'status:draft'}
+        />
+        <p className="text-xs text-muted-foreground">Abierto: {last ?? '—'}</p>
+      </div>
+    );
+  },
+};
