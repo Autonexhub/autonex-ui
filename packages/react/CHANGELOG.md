@@ -1,5 +1,23 @@
 # @autonexhub/react
 
+## 11.1.0
+
+### Minor Changes
+
+- FilterBar (moved up from the Marta panel): search, per-field filters, date filter, Group by, Sort, Columns and "More filters". Applied filters show as pills below the bar (with ✕ and "Clear all"); clicking a pill reopens that filter for editing, also inside "More filters" (like Linear); buttons keep a reserved counter slot and a fixed order, so they don't shift when toggling; every menu is built from the system `Command` items, with search only above 7 options; the custom date range uses the system `DatePicker` (no native date inputs). Texts by `labels` (Spanish defaults, `defaultFilterBarLabels`), `extraChips` for app-specific filters, `disabled`, `inlineLimit`, `hideSearch`. Helpers `resolveDateRange` (local dates, Monday-first weeks), `applyLocalFilters`, `groupItems` and `FILTER_NULL`. Types `FilterBarState`, `FilterField`, `FilterBarOption`, `FilterValue`, `FilterDateRange`, `FilterDatePreset`, `SortOption`, `GroupByOption`, `FilterBarExtraChip`, `FilterBarLabels`.
+- PropSelect + PropOption: clickable property chip that opens a system `Command` menu (groups, "None …", check, person avatar / colour dot / icon / hint per option, footer `actions`, search above 7 options); read-only without `onChange`.
+- TagChip: clickable tag with a colour dot (empty, suffix, removable, disabled).
+- PersonAvatar: `avatarUrl`/`avatar_url` photo or initials, unassigned placeholder, sizes `xs` (20px) and `sm` (24px).
+- KanbanBoard: subtle 24px edge fade while scrolling horizontally (mask, only on the side with more content). On by default; `fadeEdges={false}` turns it off, `fadeWidth` changes it. New `KanbanBoardProps` type.
+- ActiveFilters: optional `onSelect` / `isSelectable` / `editLabel` so a pill's text reopens its filter; the ✕ still removes it.
+- InfoTip: dedicated story (2-Molecules/InfoTip).
+- Also first published here: the ChannelBadge icon-only change listed under 11.0.0 (Phosphor icon in the channel colour, 16/18px) was committed after the 11.0.0 publish.
+- Tests: vitest + happy-dom setup for the package (`pnpm test`).
+
+### Patch Changes
+
+- @autonexhub/tokens@11.1.0
+
 ## 11.0.0
 
 ### Minor Changes
