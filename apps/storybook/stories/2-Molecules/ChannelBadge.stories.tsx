@@ -8,7 +8,7 @@ const meta: Meta<typeof ChannelBadge> = {
   argTypes: {
     channel: {
       control: 'select',
-      options: ['voice', 'web', 'whatsapp', 'instagram', 'manual'],
+      options: ['voice', 'web', 'whatsapp', 'instagram', 'facebook', 'manual'],
     },
     size: {
       control: 'select',
@@ -44,6 +44,7 @@ export const AllChannels: Story = {
       <ChannelBadge channel="web" />
       <ChannelBadge channel="whatsapp" />
       <ChannelBadge channel="instagram" />
+      <ChannelBadge channel="facebook" />
       <ChannelBadge channel="manual" />
     </div>
   ),
@@ -59,12 +60,22 @@ export const Sizes: Story = {
 };
 
 export const IconOnly: Story = {
+  name: 'Icon Only',
+  parameters: {
+    docs: {
+      description: {
+        story: 'Without label the badge shows the channel glyph (Phosphor) in the channel color, not the dot: a colored dot alone means nothing to users. The label goes to the tooltip and aria-label.',
+      },
+    },
+  },
   render: () => (
     <div className="flex gap-2">
       <ChannelBadge channel="voice" showLabel={false} />
       <ChannelBadge channel="web" showLabel={false} />
       <ChannelBadge channel="whatsapp" showLabel={false} />
       <ChannelBadge channel="instagram" showLabel={false} />
+      <ChannelBadge channel="facebook" showLabel={false} />
+      <ChannelBadge channel="manual" showLabel={false} />
     </div>
   ),
 };
