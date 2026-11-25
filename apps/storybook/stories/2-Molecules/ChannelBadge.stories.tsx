@@ -64,7 +64,7 @@ export const IconOnly: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Without label the badge shows the channel glyph (monochrome Phosphor), not the dot: a colored dot alone means nothing to users. The label goes to the tooltip and aria-label.',
+        story: 'Without label the badge shows the channel glyph (Phosphor) in the channel color, not the dot: a colored dot alone means nothing to users. The label goes to the tooltip and aria-label.',
       },
     },
   },

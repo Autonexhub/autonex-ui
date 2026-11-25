@@ -5,7 +5,7 @@
 ### Minor Changes
 
 - ChannelBadge: add the `facebook` channel (Messenger) — gray badge with a `bg-chart-4` dot and the "Facebook" label, same style as the other channels. `ChannelType` now includes `'facebook'`.
-- ChannelBadge: icon-only (`showLabel={false}`) now shows the channel's monochrome Phosphor icon (Phone, Globe, WhatsappLogo, InstagramLogo, FacebookLogo, PencilSimple) instead of the colored dot, with the label as tooltip and aria-label.
+- ChannelBadge: icon-only (`showLabel={false}`) now shows the channel's Phosphor icon in the channel color (Phone, Globe, WhatsappLogo, InstagramLogo, FacebookLogo, PencilSimple) instead of the colored dot, with the label as tooltip and aria-label.
 
 ### Patch Changes
 
