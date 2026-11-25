@@ -1,5 +1,15 @@
 # @autonexhub/react
 
+## 11.0.0
+
+### Minor Changes
+
+- ChannelBadge: add the `facebook` channel (Messenger) — gray badge with a `bg-chart-4` dot and the "Facebook" label, same style as the other channels. `ChannelType` now includes `'facebook'`.
+
+### Patch Changes
+
+- @autonexhub/tokens@11.0.0
+
 ## 10.0.0
 
 ### Minor Changes

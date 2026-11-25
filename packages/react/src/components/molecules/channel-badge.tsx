@@ -1,6 +1,6 @@
 import { cn } from "../../lib/utils";
 
-export type ChannelType = 'voice' | 'web' | 'whatsapp' | 'instagram' | 'manual';
+export type ChannelType = 'voice' | 'web' | 'whatsapp' | 'instagram' | 'facebook' | 'manual';
 
 interface ChannelBadgeProps {
   channel: ChannelType;
@@ -27,6 +27,10 @@ const CHANNEL_CONFIG: Record<ChannelType, { label: string; dotColor: string }> =
   instagram: {
     label: 'Instagram',
     dotColor: 'bg-chart-3', // Lilac
+  },
+  facebook: {
+    label: 'Facebook',
+    dotColor: 'bg-chart-4',
   },
   manual: {
     label: 'Manual',

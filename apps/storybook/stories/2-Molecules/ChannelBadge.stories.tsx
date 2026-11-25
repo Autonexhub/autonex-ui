@@ -8,7 +8,7 @@ const meta: Meta<typeof ChannelBadge> = {
   argTypes: {
     channel: {
       control: 'select',
-      options: ['voice', 'web', 'whatsapp', 'instagram', 'manual'],
+      options: ['voice', 'web', 'whatsapp', 'instagram', 'facebook', 'manual'],
     },
     size: {
       control: 'select',
@@ -44,6 +44,7 @@ export const AllChannels: Story = {
       <ChannelBadge channel="web" />
       <ChannelBadge channel="whatsapp" />
       <ChannelBadge channel="instagram" />
+      <ChannelBadge channel="facebook" />
       <ChannelBadge channel="manual" />
     </div>
   ),
@@ -65,6 +66,7 @@ export const IconOnly: Story = {
       <ChannelBadge channel="web" showLabel={false} />
       <ChannelBadge channel="whatsapp" showLabel={false} />
       <ChannelBadge channel="instagram" showLabel={false} />
+      <ChannelBadge channel="facebook" showLabel={false} />
     </div>
   ),
 };
