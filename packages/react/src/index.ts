@@ -456,3 +456,5 @@ export * from "./components/lists"
 export * from "./components/finance"
 
 export * from "./components/extras"
+// Calidad (RAP): puertas, veredicto, gravedad, dimensiones, hallazgos, transcripción con evidencia, herramientas, sparkline
+export * from "./components/molecules/quality"
