@@ -1,5 +1,16 @@
 # @autonexhub/react
 
+## 11.2.0
+
+### Minor Changes
+
+- Quality (RAP) components, `molecules/quality`: `GateBadge` (open / closed / not measured, `lowConfidence` marker, optional `label`), `GateRow` (gate with description and quoted evidence; "Ir al momento" shows m:ss or "turno N" and calls `onSeek(quote)`), `RapVerdictBadge` (`pass` Aprobada, `fail` No aprobada, `indeterminate` Indeterminada, `no_basis` Sin base), `SeverityBadge` (Crítica/Alta/Media/Baja/Limpia with a colour dot), `DimensionBars` + `RAP_DIMENSIONS` (VE Veracidad 32, PR Proceso 30, CO Conducción 22, TE Técnica 16; `null` = "Sin evaluar", tone below `threshold`), `FindingCard` (pattern, severity, dimension, confidence, penalty, quote and reason, "Ir al momento", Confirmado/Rechazado chip, `actions` slot, `active`), `TranscriptEvidence` (forwardRef `scrollToTurn`, highlighted turn scrolled into view, evidence markers, timestamps call `onSeek(seconds, turn)`), `ToolCallTimeline` (seek, duration, error, collapsible input/output JSON) and `Sparkline` (inline SVG, nulls break the line, optional fill). Helpers `formatOffset`, `momentLabel`, `sparklineSegments`. Spanish defaults, overridable by props.
+- Stories under 2-Molecules/Quality and vitest tests.
+
+### Patch Changes
+
+- @autonexhub/tokens@11.2.0
+
 ## 11.1.0
 
 ### Minor Changes
